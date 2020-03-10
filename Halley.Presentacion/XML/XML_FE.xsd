@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="XML_FE" targetNamespace="http://tempuri.org/XML_FE.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/XML_FE.xsd" xmlns:mstns="http://tempuri.org/GetHojaLiquidacion.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Cabecera">
+    <xs:complexType>
+      <xs:attribute name="Estado" type="xs:boolean" />
+      <xs:attribute name="ComprobanteId" type="xs:int" />
+      <xs:attribute name="TipoComprobanteID" type="xs:int" />
+      <xs:attribute name="RUC" type="xs:string" />
+      <xs:attribute name="TipoDocumentoEmisor" type="xs:string" />
+      <xs:attribute name="RazonSocial" type="xs:string" />
+      <xs:attribute name="DomicilioFiscalEmisor" type="xs:string" />
+      <xs:attribute name="TelefonoEmisor" type="xs:string" />
+      
+      
+      <!--<xs:attribute name="RutaXMLFE" type="xs:string" />
+      <xs:attribute name="RutaCDRFE" type="xs:string" />
+      <xs:attribute name="RutaCertificado" type="xs:string" />
+      <xs:attribute name="ClaveCertificado" type="xs:string" />
+      <xs:attribute name="UsuarioSOL" type="xs:string" />
+      <xs:attribute name="ClaveSol" type="xs:string" />-->
+      
+      <xs:attribute name="EmiteFE" type="xs:string" />
+      <xs:attribute name="TipoOperacion" type="xs:string" />
+      <xs:attribute name="FechaEmision" type="xs:dateTime" />
+      <xs:attribute name="CodigoDomicilioFiscal" type="xs:string" />
+      <xs:attribute name="TipoDocumentoIdentidadCliente" type="xs:string" />
+      <xs:attribute name="NumeroDocumentoIdentidadCliente" type="xs:string" />
+      <xs:attribute name="RazonSocialCliente" type="xs:string" />
+      <xs:attribute name="TipoMoneda" type="xs:string" />
+      <xs:attribute name="DescuentosGlobales" type="xs:decimal" />
+      <xs:attribute name="SubTotal" type="xs:decimal" />
+      <xs:attribute name="SumatoriaOtrosCargos" type="xs:decimal" />
+      <xs:attribute name="TotalDescuentos" type="xs:decimal" />
+      <xs:attribute name="OperacionesGravadas" type="xs:decimal" />
+      <xs:attribute name="OperacionesInafectas" type="xs:decimal" />
+      <xs:attribute name="ValorVentaOperacionesExoneradas" type="xs:decimal" />
+      <xs:attribute name="SumatoriaIGV" type="xs:decimal" />
+      <xs:attribute name="SumatoriaISC" type="xs:decimal" />
+      <xs:attribute name="SumatoriaOtrosTributos" type="xs:decimal" />
+      <xs:attribute name="ImporteTotal" type="xs:decimal" />
+      <xs:attribute name="Gratuitas" type="xs:decimal" />
+      <xs:attribute name="CalculoIgv" type="xs:decimal" />
+      <xs:attribute name="CalculoDetraccion" type="xs:decimal" />
+      <xs:attribute name="CalculoIsc" type="xs:decimal" />
+      <xs:attribute name="TipoDocumento" type="xs:string" />
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      <xs:attribute name="NumComprobante" type="xs:string" />
+      <xs:attribute name="NumComprobante2" type="xs:string" />
+      <xs:attribute name="NomTipoComprobante" type="xs:string" />
+      <xs:attribute name="DireccionCLiente" type="xs:string" />
+
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Detalle">
+    <xs:complexType>
+      <xs:attribute name="ComprobanteId" type="xs:int" />
+      <xs:attribute name="CodigoUM" type="xs:string" />
+      <xs:attribute name="Cantidad" type="xs:decimal" />
+      <xs:attribute name="CodigoProducto" type="xs:string" />
+      <xs:attribute name="CodigoProductoSunat" type="xs:string" />
+      <xs:attribute name="DescripcionProducto" type="xs:string" />
+
+      <xs:attribute name="ValorUnitario" type="xs:decimal" />
+      <xs:attribute name="DescuentoItem" type="xs:decimal" />
+      <xs:attribute name="MontoIgvItem" type="xs:decimal" />
+      <xs:attribute name="AfectacionIGVItem" type="xs:decimal" />
+      <xs:attribute name="MontoISCItem" type="xs:decimal" />
+      <xs:attribute name="TipoSistemaISC" type="xs:string" />
+      <xs:attribute name="PrecioVentaItem" type="xs:decimal" />
+      <xs:attribute name="ValorVentaItem" type="xs:decimal" />
+      <xs:attribute name="Suma" type="xs:decimal" />
+      <xs:attribute name="TotalVenta" type="xs:decimal" />
+      <xs:attribute name="TipoDocumento" type="xs:string" />
+      <xs:attribute name="Serie" type="xs:string" />
+      <xs:attribute name="Numero" type="xs:string" />
+      
+    </xs:complexType>
+  </xs:element>
+
+
+  
+</xs:schema>

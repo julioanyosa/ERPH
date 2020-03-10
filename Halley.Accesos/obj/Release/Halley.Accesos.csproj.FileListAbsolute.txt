@@ -1,0 +1,9 @@
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Release\Halley.Accesos.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Release\Halley.Accesos.pdb
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Release\Halley.Configuracion.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Release\Halley.Configuracion.pdb
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\obj\Release\Halley.Accesos.csprojResolveAssemblyReference.cache
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\obj\Release\Halley.Accesos.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\obj\Release\Halley.Accesos.pdb

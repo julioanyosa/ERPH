@@ -1,0 +1,4 @@
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\bin\Release\Halley.Entidad.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\bin\Release\Halley.Entidad.pdb
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\obj\Release\Halley.Entidad.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\obj\Release\Halley.Entidad.pdb

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="085cbd4c-6657-4a02-bcf7-a4b6a839760b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1010/WCF_FE.FEService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FEService1.wsdl" MetadataType="Wsdl" ID="2b6c7761-aa2e-4719-a720-5aa93d39f24d" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?wsdl" />
+    <MetadataFile FileName="WCF_FE.xsd" MetadataType="Schema" ID="9c1ebf8a-90bc-4846-94d1-c3b26bdbe346" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?xsd=xsd4" />
+    <MetadataFile FileName="WCF_FE41.xsd" MetadataType="Schema" ID="a23e0a68-1a36-48bc-b1ec-828ce15deaf6" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCF_FE4.xsd" MetadataType="Schema" ID="d6d6c276-180c-4066-9875-34415a9e59e1" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCF_FE42.xsd" MetadataType="Schema" ID="8a04cb16-e439-48b4-a06c-87e277986575" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCF_FE43.xsd" MetadataType="Schema" ID="6c194226-52f5-4fae-aca8-13bd97b96f9b" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?xsd=xsd3" />
+    <MetadataFile FileName="WCF_FE1.disco" MetadataType="Disco" ID="b0c4a9f5-d73a-452c-a8a6-1d7b9acab697" SourceId="1" SourceUrl="http://lenovo:1010/WCF_FE.FEService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,10 @@
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\Halley.Utilitario.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\Halley.Utilitario.pdb
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\C1.Win.C1Chart.2.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\C1.Win.C1List.2.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\C1.Win.C1TrueDBGrid.2.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\C1.Win.C1Chart.2.xml
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\C1.Win.C1List.2.xml
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Release\C1.Win.C1TrueDBGrid.2.xml
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\obj\Release\Halley.Utilitario.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\obj\Release\Halley.Utilitario.pdb

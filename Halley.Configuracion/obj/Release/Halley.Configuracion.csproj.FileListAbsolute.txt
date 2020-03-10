@@ -1,0 +1,4 @@
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Configuracion\bin\Release\Halley.Configuracion.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Configuracion\bin\Release\Halley.Configuracion.pdb
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Configuracion\obj\Release\Halley.Configuracion.dll
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Configuracion\obj\Release\Halley.Configuracion.pdb
