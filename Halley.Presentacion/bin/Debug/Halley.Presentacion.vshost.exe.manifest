@@ -10,22 +10,33 @@
   <trustInfo>
     <security>
       <applicationRequestMinimum>
-        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" ID="Custom" SameSite="site">
+          <IPermission Read="USERNAME" version="1" class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+          <IPermission version="1" class="System.Security.Permissions.FileDialogPermission, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Unrestricted="true" />
+          <IPermission version="1" Permanent="True" Expiry="9223372036854775807" UserQuota="9223372036854775807" Allowed="AssemblyIsolationByUser" class="System.Security.Permissions.IsolatedStorageFilePermission, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+          <IPermission version="1" class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Flags="ReflectionEmit, RestrictedMemberAccess" />
+          <IPermission version="1" class="System.Security.Permissions.SecurityPermission, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Flags="Assertion, Execution, BindingRedirects" />
+          <IPermission version="1" class="System.Security.Permissions.UIPermission, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Unrestricted="true" />
+          <IPermission version="1" class="System.Drawing.Printing.PrintingPermission, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Level="DefaultPrinting" />
+          <IPermission version="1" class="System.Security.Permissions.MediaPermission, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Audio="SafeAudio" Image="SafeImage" Video="SafeVideo" />
+          <IPermission version="1" class="System.Security.Permissions.WebBrowserPermission, WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Level="Safe" />
+          <IPermission version="1" class="System.Net.DnsPermission, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Unrestricted="true" />
+        </PermissionSet>
         <defaultAssemblyRequest permissionSetReference="Custom" />
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
-        <!-- Opciones del manifiesto de Control de cuentas de usuario
-             Si desea cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el 
-             nodo requestedExecutionLevel por alguno de los siguientes.
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si desea cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el 
+          nodo requestedExecutionLevel por alguno de los siguientes.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-            La especificación del nodo requestedExecutionLevel deshabilitará la virtualización de archivos y del Registro..
-            Si desea usar la virtualización de archivos y del Registro para la compatibilidad 
-            con versiones anteriores, elimine el nodo requestedExecutionLevel.
-        -->
+         Si desea usar la virtualización de archivos y del Registro para la 
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
     </security>
@@ -336,7 +347,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>pzn37g/LrIx6zFnK6B5/2qtwdoc=</dsig:DigestValue>
+        <dsig:DigestValue>I8L7kQ8fzXSvJ8x2k/Kfcpq/VK8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -348,7 +359,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Qv00qhLHsS6dpGtJjIEH2rS7tFE=</dsig:DigestValue>
+        <dsig:DigestValue>M1Qn0DLEgFwC3NXXH4AFoPck5IU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -360,7 +371,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ai/VIEdHu1+BunJmFkM246YCu1o=</dsig:DigestValue>
+        <dsig:DigestValue>yED0r1jShxd65Z6AI/jmjBFBKjw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -372,7 +383,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8Xl5kkM6EAKYAzmpNCXa3+iFjIU=</dsig:DigestValue>
+        <dsig:DigestValue>mpoda1NWLiUgq2jnIlYUbpCaDH0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -384,31 +395,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>QVgEUkr4MoUnVtXBTcttRVepaQ0=</dsig:DigestValue>
+        <dsig:DigestValue>mgudSeolyTw3tJ8nOwBPIg9ukIE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Presentacion.exe" size="10571264">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Presentacion.exe" size="10573312">
       <assemblyIdentity name="Halley.Presentacion" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>NXWZIeV2LFpC3fpelAgkByESd2M=</dsig:DigestValue>
+        <dsig:DigestValue>VVIOZKKsUj+RBY9jodf/MrtROFA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Utilitario.dll" size="66048">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Utilitario.dll" size="67072">
       <assemblyIdentity name="Halley.Utilitario" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>mQTMGczVy0J1Bl93Eyn4i3jCISY=</dsig:DigestValue>
+        <dsig:DigestValue>FboJV0z3HyZ7gKuYOmmNsgbNHO0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -517,13 +528,13 @@
       <dsig:DigestValue>6Hoy+pN7CxFnHIAnVGb9LDmALac=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Halley.Presentacion.exe.config" size="5520">
+  <file name="Halley.Presentacion.exe.config" size="5518">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>JvMnzI73QNJYdZyOJaSwu7DLguA=</dsig:DigestValue>
+      <dsig:DigestValue>35zHOCJEsvIKpwurbmIwrS8Dk7E=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Ionic.Zip.dll" size="462336">
@@ -661,11 +672,4 @@
       <dsig:DigestValue>eAAM1JNlPPtcRlSdC4kNR617RsE=</dsig:DigestValue>
     </hash>
   </file>
-  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
-    <application>
-      <!-- Lista de todas las versiones de Windows con las que esta aplicación está diseñada para funcionar. Windows seleccionará automáticamente el entorno de mayor compatibilidad.-->
-      <!-- Si la aplicación está diseñada para funcionar con Windows 7, quite los comentarios del siguiente nodo supportedOS-->
-      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>-->
-    </application>
-  </compatibility>
 </asmv1:assembly>

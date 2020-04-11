@@ -104,5 +104,7 @@ E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Debug\C1.Win.C1TrueDBGri
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Debug\C1.Win.C1Chart.2.xml
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Debug\C1.Win.C1List.2.xml
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\bin\Debug\C1.Win.C1TrueDBGrid.2.xml
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\obj\Debug\Halley.Utilitario.Form1.resources
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\obj\Debug\Halley.Utilitario.csproj.GenerateResource.Cache
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\obj\Debug\Halley.Utilitario.dll
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Utilitario\obj\Debug\Halley.Utilitario.pdb

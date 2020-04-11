@@ -68,6 +68,7 @@
             this.CboTipoComprobante = new C1.Win.C1List.C1Combo();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.BtnEliminarGeneradas = new C1.Win.C1Input.C1Button();
             this.BtnObtenerInformaciónTicket = new C1.Win.C1Input.C1Button();
             this.BtnExcel = new C1.Win.C1Input.C1Button();
             this.BtnUltimo = new C1.Win.C1Input.C1Button();
@@ -618,6 +619,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.BtnEliminarGeneradas);
             this.tabPage1.Controls.Add(this.BtnObtenerInformaciónTicket);
             this.tabPage1.Controls.Add(this.BtnConfirmacionBajaFE);
             this.tabPage1.Controls.Add(this.BtnExcel);
@@ -654,6 +656,21 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gestionar envios";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // BtnEliminarGeneradas
+            // 
+            this.BtnEliminarGeneradas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnEliminarGeneradas.Image = global::Halley.Presentacion.Properties.Resources.Cancel_32x32;
+            this.BtnEliminarGeneradas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnEliminarGeneradas.Location = new System.Drawing.Point(20, 540);
+            this.BtnEliminarGeneradas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnEliminarGeneradas.Name = "BtnEliminarGeneradas";
+            this.BtnEliminarGeneradas.Size = new System.Drawing.Size(143, 51);
+            this.BtnEliminarGeneradas.TabIndex = 451;
+            this.BtnEliminarGeneradas.Text = "Eliminar\r\ngenerados";
+            this.BtnEliminarGeneradas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnEliminarGeneradas.UseVisualStyleBackColor = true;
+            this.BtnEliminarGeneradas.Click += new System.EventHandler(this.BtnEliminarGeneradas_Click);
             // 
             // BtnObtenerInformaciónTicket
             // 
@@ -1029,5 +1046,6 @@
         private C1.Win.C1Input.C1Button BtnObtenerInformaciónTicket;
         private C1.Win.C1Input.C1Button BtnGenerarAltaBoletasContingencia;
         private C1.Win.C1Input.C1Button BtnGenerarBajaBoletasContngencia;
+        private C1.Win.C1Input.C1Button BtnEliminarGeneradas;
     }
 }

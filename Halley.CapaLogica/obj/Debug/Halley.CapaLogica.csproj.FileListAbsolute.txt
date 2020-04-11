@@ -189,7 +189,6 @@ D:\janyosa\personal\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\C
 D:\janyosa\personal\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.csprojResolveAssemblyReference.cache
 D:\janyosa\personal\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.dll
 D:\janyosa\personal\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.pdb
-E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.csprojResolveAssemblyReference.cache
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\Halley.CapaLogica.dll.config
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\Halley.CapaLogica.dll
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\Halley.CapaLogica.pdb
@@ -212,5 +211,6 @@ E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\System.Data.SQLite
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\C1.Win.C1Chart.2.xml
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\C1.Win.C1TrueDBGrid.2.xml
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\bin\Debug\C1.Win.C1List.2.xml
+E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.csprojResolveAssemblyReference.cache
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.dll
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.CapaLogica\obj\Debug\Halley.CapaLogica.pdb

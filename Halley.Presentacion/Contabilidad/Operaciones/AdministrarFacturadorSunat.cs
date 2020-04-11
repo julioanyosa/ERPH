@@ -50,7 +50,7 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
             dr11["texto"] = "TODOS";
             dtcom.Rows.Add(dr11);
 
-           
+
 
 
             DataRow dr1 = dtcom.NewRow();
@@ -369,7 +369,7 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
                 {
                     if (MessageBox.Show("¿Seguro que desea generar el resumen diario de fecha " + TxtFechaBaja.Value.ToShortDateString() + ".?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
-                        objCL_Comprobante.GenerarTxtFacturadorSunatResumenDiario(TxtFechaBaja.Value, c1cboCia.SelectedValue.ToString(), LblRutaArchivo.Text, false,4);
+                        objCL_Comprobante.GenerarTxtFacturadorSunatResumenDiario(TxtFechaBaja.Value, c1cboCia.SelectedValue.ToString(), LblRutaArchivo.Text, false, 4);
 
                         MessageBox.Show("Se genero el resumen diario correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Cursor = Cursors.Default;
@@ -651,7 +651,7 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
                 {
                     if (MessageBox.Show("¿Seguro que desea generar el resumen diario de fecha " + TxtFechaBaja.Value.ToShortDateString() + ".?", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
-                        objCL_Comprobante.GenerarTxtFacturadorSunatResumenDiario(TxtFechaBaja.Value, c1cboCia.SelectedValue.ToString(), LblRutaArchivo.Text, true,4);
+                        objCL_Comprobante.GenerarTxtFacturadorSunatResumenDiario(TxtFechaBaja.Value, c1cboCia.SelectedValue.ToString(), LblRutaArchivo.Text, true, 4);
 
                         MessageBox.Show("Se genero el resumen diario correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Cursor = Cursors.Default;
@@ -817,6 +817,43 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
                 MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void BtnEliminarGeneradas_Click(object sender, EventArgs e)
+        {
+            //papu
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                DataTable dt;
+                dt = objCL_Comprobante.ObtenerFacturadorComprobantesEliminar(c1cboCia.SelectedValue.ToString());
+
+                //recorremos y eliminamos
+                foreach (DataRow DR in dt.Rows)
+                {
+                    if (DR["TIP_DOCU"].ToString() == "01" | DR["TIP_DOCU"].ToString() == "03")
+                    {
+                        System.IO.File.Delete(rutaarchivos + DR["NOM_ARCH"].ToString() + ".CAB");
+                        System.IO.File.Delete(rutaarchivos + DR["NOM_ARCH"].ToString() + ".DET");
+                        System.IO.File.Delete(rutaarchivos + DR["NOM_ARCH"].ToString() + ".LEY");
+                        System.IO.File.Delete(rutaarchivos + DR["NOM_ARCH"].ToString() + ".TRI");
+
+                        //eliminar de la bd
+                        objCL_Comprobante.EliminarFacturadorComprobantes(DR["NOM_ARCH"].ToString(), c1cboCia.SelectedValue.ToString());
+                    }
+
+                }
+
+                MessageBox.Show("Se eliminó los comprobantes generados", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor = Cursors.Default;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+            }
+
         }
 
 
