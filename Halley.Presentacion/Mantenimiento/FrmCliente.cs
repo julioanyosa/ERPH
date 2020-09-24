@@ -207,7 +207,7 @@ namespace Halley.Presentacion.Mantenimiento
             {
                 OcultarBotones(true, true, false, false, false, false);
 
-                if (MessageBox.Show("¿Está seguro que desea eliminar el chofer?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (MessageBox.Show("¿Está seguro que desea eliminar el cliente?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     ObtenerDatosControles();
                     ObjCL_Cliente.UpdateCliente(ObjCliente, "E");

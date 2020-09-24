@@ -116,7 +116,7 @@
             this.TxtDireccionNumero.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDireccionNumero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtDireccionNumero.Location = new System.Drawing.Point(148, 231);
-            this.TxtDireccionNumero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtDireccionNumero.Margin = new System.Windows.Forms.Padding(4);
             this.TxtDireccionNumero.MaxLength = 50;
             this.TxtDireccionNumero.Name = "TxtDireccionNumero";
             this.TxtDireccionNumero.ReadOnly = true;
@@ -132,7 +132,7 @@
             this.TxtAlias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtAlias.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtAlias.Location = new System.Drawing.Point(151, 112);
-            this.TxtAlias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtAlias.Margin = new System.Windows.Forms.Padding(4);
             this.TxtAlias.MaxLength = 100;
             this.TxtAlias.Name = "TxtAlias";
             this.TxtAlias.ReadOnly = true;
@@ -148,7 +148,7 @@
             this.TxtApellido1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtApellido1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtApellido1.Location = new System.Drawing.Point(151, 275);
-            this.TxtApellido1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtApellido1.Margin = new System.Windows.Forms.Padding(4);
             this.TxtApellido1.MaxLength = 50;
             this.TxtApellido1.Name = "TxtApellido1";
             this.TxtApellido1.ReadOnly = true;
@@ -164,7 +164,7 @@
             this.TxtNombre2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtNombre2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtNombre2.Location = new System.Drawing.Point(151, 243);
-            this.TxtNombre2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtNombre2.Margin = new System.Windows.Forms.Padding(4);
             this.TxtNombre2.MaxLength = 50;
             this.TxtNombre2.Name = "TxtNombre2";
             this.TxtNombre2.ReadOnly = true;
@@ -180,7 +180,7 @@
             this.TxtDireccionInterior.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDireccionInterior.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtDireccionInterior.Location = new System.Drawing.Point(148, 263);
-            this.TxtDireccionInterior.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtDireccionInterior.Margin = new System.Windows.Forms.Padding(4);
             this.TxtDireccionInterior.MaxLength = 50;
             this.TxtDireccionInterior.Name = "TxtDireccionInterior";
             this.TxtDireccionInterior.ReadOnly = true;
@@ -196,7 +196,7 @@
             this.TxtDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtDireccion.Location = new System.Drawing.Point(148, 290);
-            this.TxtDireccion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtDireccion.Margin = new System.Windows.Forms.Padding(4);
             this.TxtDireccion.MaxLength = 300;
             this.TxtDireccion.Multiline = true;
             this.TxtDireccion.Name = "TxtDireccion";
@@ -213,7 +213,7 @@
             this.TxtApellido2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtApellido2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtApellido2.Location = new System.Drawing.Point(151, 307);
-            this.TxtApellido2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtApellido2.Margin = new System.Windows.Forms.Padding(4);
             this.TxtApellido2.MaxLength = 50;
             this.TxtApellido2.Name = "TxtApellido2";
             this.TxtApellido2.ReadOnly = true;
@@ -229,7 +229,7 @@
             this.TxtNombre1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtNombre1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtNombre1.Location = new System.Drawing.Point(151, 211);
-            this.TxtNombre1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtNombre1.Margin = new System.Windows.Forms.Padding(4);
             this.TxtNombre1.MaxLength = 50;
             this.TxtNombre1.Name = "TxtNombre1";
             this.TxtNombre1.ReadOnly = true;
@@ -386,7 +386,7 @@
             this.TxtRazonSocial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtRazonSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtRazonSocial.Location = new System.Drawing.Point(151, 80);
-            this.TxtRazonSocial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtRazonSocial.Margin = new System.Windows.Forms.Padding(4);
             this.TxtRazonSocial.MaxLength = 200;
             this.TxtRazonSocial.Name = "TxtRazonSocial";
             this.TxtRazonSocial.ReadOnly = true;
@@ -401,7 +401,7 @@
             this.BtnNuevo.Image = global::Halley.Presentacion.Properties.Resources.newdocument_16x16;
             this.BtnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnNuevo.Location = new System.Drawing.Point(1046, 87);
-            this.BtnNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(109, 28);
             this.BtnNuevo.TabIndex = 15;
@@ -415,7 +415,7 @@
             this.BtnGuardar.Image = global::Halley.Presentacion.Properties.Resources.save_16x16;
             this.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnGuardar.Location = new System.Drawing.Point(1046, 202);
-            this.BtnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(109, 28);
             this.BtnGuardar.TabIndex = 18;
@@ -429,7 +429,7 @@
             this.BtnCancelar.Image = global::Halley.Presentacion.Properties.Resources.cancel_16x16;
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCancelar.Location = new System.Drawing.Point(1046, 125);
-            this.BtnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(109, 28);
             this.BtnCancelar.TabIndex = 16;
@@ -444,7 +444,7 @@
             this.TxtNroDocumento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtNroDocumento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtNroDocumento.Location = new System.Drawing.Point(151, 179);
-            this.TxtNroDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtNroDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.TxtNroDocumento.MaxLength = 50;
             this.TxtNroDocumento.Name = "TxtNroDocumento";
             this.TxtNroDocumento.ReadOnly = true;
@@ -476,9 +476,9 @@
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Location = new System.Drawing.Point(543, 44);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(493, 362);
             this.groupBox3.TabIndex = 304;
             this.groupBox3.TabStop = false;
@@ -511,7 +511,7 @@
             this.CboPais.Images.Add(((System.Drawing.Image)(resources.GetObject("CboPais.Images"))));
             this.CboPais.ItemHeight = 15;
             this.CboPais.Location = new System.Drawing.Point(148, 23);
-            this.CboPais.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboPais.Margin = new System.Windows.Forms.Padding(4);
             this.CboPais.MatchEntryTimeout = ((long)(2000));
             this.CboPais.MaxDropDownItems = ((short)(5));
             this.CboPais.MaxLength = 32767;
@@ -530,7 +530,7 @@
             this.TxtNombreVia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtNombreVia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtNombreVia.Location = new System.Drawing.Point(148, 202);
-            this.TxtNombreVia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtNombreVia.Margin = new System.Windows.Forms.Padding(4);
             this.TxtNombreVia.MaxLength = 50;
             this.TxtNombreVia.Name = "TxtNombreVia";
             this.TxtNombreVia.ReadOnly = true;
@@ -567,7 +567,7 @@
             this.CboVia.Images.Add(((System.Drawing.Image)(resources.GetObject("CboVia.Images"))));
             this.CboVia.ItemHeight = 15;
             this.CboVia.Location = new System.Drawing.Point(148, 170);
-            this.CboVia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboVia.Margin = new System.Windows.Forms.Padding(4);
             this.CboVia.MatchEntryTimeout = ((long)(2000));
             this.CboVia.MaxDropDownItems = ((short)(5));
             this.CboVia.MaxLength = 32767;
@@ -597,7 +597,7 @@
             this.CboDistrito.Images.Add(((System.Drawing.Image)(resources.GetObject("CboDistrito.Images"))));
             this.CboDistrito.ItemHeight = 15;
             this.CboDistrito.Location = new System.Drawing.Point(148, 134);
-            this.CboDistrito.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboDistrito.Margin = new System.Windows.Forms.Padding(4);
             this.CboDistrito.MatchEntryTimeout = ((long)(2000));
             this.CboDistrito.MaxDropDownItems = ((short)(5));
             this.CboDistrito.MaxLength = 32767;
@@ -627,7 +627,7 @@
             this.CboProvincia.Images.Add(((System.Drawing.Image)(resources.GetObject("CboProvincia.Images"))));
             this.CboProvincia.ItemHeight = 15;
             this.CboProvincia.Location = new System.Drawing.Point(148, 98);
-            this.CboProvincia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboProvincia.Margin = new System.Windows.Forms.Padding(4);
             this.CboProvincia.MatchEntryTimeout = ((long)(2000));
             this.CboProvincia.MaxDropDownItems = ((short)(5));
             this.CboProvincia.MaxLength = 32767;
@@ -658,7 +658,7 @@
             this.CboDepartamento.Images.Add(((System.Drawing.Image)(resources.GetObject("CboDepartamento.Images"))));
             this.CboDepartamento.ItemHeight = 15;
             this.CboDepartamento.Location = new System.Drawing.Point(148, 63);
-            this.CboDepartamento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboDepartamento.Margin = new System.Windows.Forms.Padding(4);
             this.CboDepartamento.MatchEntryTimeout = ((long)(2000));
             this.CboDepartamento.MaxDropDownItems = ((short)(5));
             this.CboDepartamento.MaxLength = 32767;
@@ -694,7 +694,7 @@
             this.CboTipoCliente.Images.Add(((System.Drawing.Image)(resources.GetObject("CboTipoCliente.Images"))));
             this.CboTipoCliente.ItemHeight = 15;
             this.CboTipoCliente.Location = new System.Drawing.Point(151, 44);
-            this.CboTipoCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboTipoCliente.Margin = new System.Windows.Forms.Padding(4);
             this.CboTipoCliente.MatchEntryTimeout = ((long)(2000));
             this.CboTipoCliente.MaxDropDownItems = ((short)(5));
             this.CboTipoCliente.MaxLength = 32767;
@@ -735,7 +735,7 @@
             this.CboTipoDocumento.Images.Add(((System.Drawing.Image)(resources.GetObject("CboTipoDocumento.Images"))));
             this.CboTipoDocumento.ItemHeight = 15;
             this.CboTipoDocumento.Location = new System.Drawing.Point(151, 144);
-            this.CboTipoDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboTipoDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.CboTipoDocumento.MatchEntryTimeout = ((long)(2000));
             this.CboTipoDocumento.MaxDropDownItems = ((short)(5));
             this.CboTipoDocumento.MaxLength = 32767;
@@ -763,7 +763,7 @@
             this.BtnEditar.Image = global::Halley.Presentacion.Properties.Resources.edit_16x16;
             this.BtnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnEditar.Location = new System.Drawing.Point(1046, 163);
-            this.BtnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnEditar.Name = "BtnEditar";
             this.BtnEditar.Size = new System.Drawing.Size(109, 28);
             this.BtnEditar.TabIndex = 17;
@@ -777,7 +777,7 @@
             this.BtnEliminar.Image = global::Halley.Presentacion.Properties.Resources.delete_16x16;
             this.BtnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnEliminar.Location = new System.Drawing.Point(1046, 240);
-            this.BtnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(109, 28);
             this.BtnEliminar.TabIndex = 19;
@@ -791,7 +791,7 @@
             this.btnBuscar.Image = global::Halley.Presentacion.Properties.Resources.Consultar_16x16;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscar.Location = new System.Drawing.Point(1045, 6);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(109, 28);
             this.btnBuscar.TabIndex = 311;
@@ -815,7 +815,7 @@
             this.TxtDocumento2.BackColor = System.Drawing.Color.White;
             this.TxtDocumento2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDocumento2.Location = new System.Drawing.Point(895, 11);
-            this.TxtDocumento2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtDocumento2.Margin = new System.Windows.Forms.Padding(4);
             this.TxtDocumento2.MaxLength = 50;
             this.TxtDocumento2.Name = "TxtDocumento2";
             this.TxtDocumento2.Size = new System.Drawing.Size(133, 20);
@@ -852,7 +852,7 @@
             this.TxtClienteID.BackColor = System.Drawing.Color.White;
             this.TxtClienteID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtClienteID.Location = new System.Drawing.Point(151, 11);
-            this.TxtClienteID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtClienteID.Margin = new System.Windows.Forms.Padding(4);
             this.TxtClienteID.MaxLength = 50;
             this.TxtClienteID.Name = "TxtClienteID";
             this.TxtClienteID.ReadOnly = true;
@@ -989,7 +989,7 @@
             this.Controls.Add(this.TxtNombre1);
             this.Controls.Add(this.label22);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmCliente";
             this.Text = "Agregar Clientes";
             this.Load += new System.EventHandler(this.FrmCliente_Load);

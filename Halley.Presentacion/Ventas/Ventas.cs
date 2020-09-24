@@ -2125,6 +2125,26 @@ namespace Halley.Presentacion.Ventas
                         else if (EmpresaID == "AH")
                             ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoTicket", CboSerieGuia.ComboBox.SelectedValue.ToString());
                         break;
+                    case "4":
+                        if (EmpresaID == "GH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        else if (EmpresaID == "IH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        else if (EmpresaID == "CH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        else if (EmpresaID == "AH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        break;
+                    case "5":
+                        if (EmpresaID == "GH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        else if (EmpresaID == "IH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        else if (EmpresaID == "CH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        else if (EmpresaID == "AH")
+                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
+                        break;
                 }
                 MessageBox.Show("Se actualizo la serie de la empresa '" + EmpresaID + "', de " + CboTipoComprobante.ComboBox.Text + " con la serie: " + CboSerieGuia.ComboBox.SelectedValue.ToString() + ".", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
