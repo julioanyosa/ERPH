@@ -130,7 +130,16 @@ namespace Halley.Presentacion.Ventas.Pagos
                         TotalIGV = Convert.ToDecimal(dsPedido.Tables["Pedido"].Rows[0]["TotalIGV"]);
                         montoimpuestobolsa = Convert.ToDecimal(dsPedido.Tables["Pedido"].Rows[0]["TotalICBPER"]);
 
-                        Total = subTotal + TotalIGV + montoimpuestobolsa;
+                        decimal descuento = 0;
+                        DataView DVDESCUENTO = new DataView(dsPedido.Tables["detallePedido"], "ProductoID = '00267000102.7'", "", DataViewRowState.CurrentRows);
+                        if (DVDESCUENTO.Count > 0)
+                        {
+                            descuento = Convert.ToDecimal(DVDESCUENTO[0]["Importe"]);
+                        }
+
+
+
+                        Total = subTotal + TotalIGV + montoimpuestobolsa + descuento;
                         TotalPagar = Math.Floor(Total) + (Math.Floor(((Total - Math.Floor(Total)) * 10)) / 10);
 
                         lblSubTotal.Text = subTotal.ToString("C");
@@ -529,6 +538,12 @@ namespace Halley.Presentacion.Ventas.Pagos
                 {
                     estadoID = 12;//comprobante pagado
                 }
+                decimal descuento = 0;
+                DataView DVDESCUENTO = new DataView(dsPedido.Tables["detallePedido"], "ProductoID = '00267000102.7'", "", DataViewRowState.CurrentRows);
+                if (DVDESCUENTO.Count > 0)
+                {
+                    descuento = Convert.ToDecimal(DVDESCUENTO[0]["Importe"]);
+                }
 
                 ObjComprobante.EstadoID = estadoID;
                 ObjComprobante.Externa = chkExterno.Checked;
@@ -536,7 +551,7 @@ namespace Halley.Presentacion.Ventas.Pagos
                 ObjComprobante.NumVale = NumVale;
                 ObjComprobante.TotalICBPER = montoimpuestobolsa;
                 ObjComprobante.MontoPagado = TotalPagar;
-                ObjComprobante.Descuento = 0;
+                ObjComprobante.Descuento = descuento;
                 ObjComprobante.MontoTotal = Total;
                 
                        

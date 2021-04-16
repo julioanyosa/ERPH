@@ -525,12 +525,20 @@ namespace Halley.CapaLogica.Ventas
 
             Stb.Append("OP. INAFECTA: ".PadRight(20, ' ') + 0.ToString("C").PadLeft(20, ' ') + "\n");
 
-            if (MontoIGV == 0)
+                       
+                        if (MontoIGV == 0)
                 Stb.Append("OP. GRAVADAS: ".PadRight(20, ' ') + 0.ToString("C").PadLeft(20, ' ') + "\n");
             else
                 Stb.Append("OP. GRAVADAS: ".PadRight(20, ' ') + (TotalComprobante - MontoIGV - TotalICBPER).ToString("C").PadLeft(20, ' ') + "\n");
 
-            Stb.Append("TOTAL DSCTO: ".PadRight(20, ' ') + 0.ToString("C").PadLeft(20, ' ') + "\n");
+            decimal descuento = 0;
+            DataView DVDESCUENTO = new DataView(DTDetalles, "ProductoID = '00267000102.7'", "", DataViewRowState.CurrentRows);
+            if (DVDESCUENTO.Count > 0)
+            {
+                descuento = Convert.ToDecimal(DVDESCUENTO[0]["Importe"]);
+            }
+
+            Stb.Append("TOTAL DSCTO: ".PadRight(20, ' ') + descuento.ToString("C").PadLeft(20, ' ') + "\n");
             Stb.Append("IGV: ".PadRight(20, ' ') + MontoIGV.ToString("C").PadLeft(20, ' ') + "\n");
             if (TotalICBPER > 0)
             {
@@ -1638,11 +1646,18 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
             #endregion
         }
 
-        public DataSet ObtenerDatosCliente(string RUC)
+        public DataSet ObtenerUrlSunat()
         {
             CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
             DataSet Ds = new DataSet();
-            Ds = objCD_Venta.ObtenerDatosCliente(RUC);
+            Ds = objCD_Venta.ObtenerUrlSunat();
+            return Ds;
+        }
+        public DataSet ObtenerDatosCliente(string RUC, string urldni, string urlsunat)
+        {
+            CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
+            DataSet Ds = new DataSet();
+            Ds = objCD_Venta.ObtenerDatosCliente(RUC, urldni, urlsunat);
             return Ds;
         }
 

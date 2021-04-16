@@ -62,7 +62,7 @@ namespace Halley.Presentacion
             //ahora se gauradara en una tabla Configuracion.Configuracion
             CapaLogica.Users.CL_Usuario ObjUsuario = new CapaLogica.Users.CL_Usuario();
             UTI_Datatables.Dt_Configuracion = ObjUsuario.USP_M_CONFIGURACION(2, 0, "", "", "", "", 0, NuevaIP);
-            LblVersion.Text = "07/04/2020_" + Application.ProductVersion;
+            LblVersion.Text = "15/04/2021_" + Application.ProductVersion;
         }
 
         private void txtUsuario_Leave(object sender, EventArgs e)

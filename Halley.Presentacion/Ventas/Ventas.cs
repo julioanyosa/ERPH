@@ -85,6 +85,9 @@ namespace Halley.Presentacion.Ventas
         string NombreVia;
         string DireccionNumero;
         string DireccionInterior;
+
+        string urldni;
+        string urlsunat;
         #endregion
 
 
@@ -95,6 +98,11 @@ namespace Halley.Presentacion.Ventas
 
         private void Ventas_Load(object sender, EventArgs e)
         {
+            DataSet dsurlsunat = new CL_Venta().ObtenerUrlSunat();
+            urldni = dsurlsunat.Tables[0].Rows[0]["urldni"].ToString();
+            urlsunat = dsurlsunat.Tables[0].Rows[0]["urlsunat"].ToString();
+
+
             PnlUsuarioRapido.Visible = false;
             TdgClientes.Visible = false;
             //useCliente1.Cargar(new CL_Cliente().GetClientes());
@@ -421,12 +429,18 @@ namespace Halley.Presentacion.Ventas
                             return;
                         }
 
-                        //aca modificar acacacacacacaca
+                        decimal descuento = 0;
+                        DataView DVDESCUENTO = new DataView(DtDetalleComprobante, "ProductoID = '00267000102.7'", "", DataViewRowState.CurrentRows);
+                        if (DVDESCUENTO.Count > 0)
+                        {
+                            descuento = Convert.ToDecimal(DVDESCUENTO[0]["Importe"]);
+                        }
+
                         DataTable dt = new DataTable();
                         dt = ObjCL_Venta.GenerarComprobante(DtDetalleComprobante, EmpresaID, AppSettings.SedeID, ClienteID, Convert.ToInt32(CboTipoComprobante.ComboBox.SelectedValue),
                                             TxtDireccion.Text, TipoVentaID, TipoPagoId, Convert.ToInt32(CboFormaPago.ComboBox.SelectedValue), NumCaja, IGV, Subtotal, TotalIGV,
                                             TotalPagar, LstCreditos.SelectedIndex, CreditoID, CreditoDisponible, VendedorID, AppSettings.UserID, CboSerieGuia.ComboBox.SelectedValue.ToString(),
-                                            TipoTicket, DtValesConsumo, DtBoucher, DtNotaIngreso, montoimpuestobolsa, 0, TotalComprobante);
+                                            TipoTicket, DtValesConsumo, DtBoucher, DtNotaIngreso, montoimpuestobolsa, descuento, TotalComprobante);
 
                         if (dt.Rows[0]["respuesta"].ToString() != "OK")
                             MessageBox.Show(dt.Rows[0]["respuesta"].ToString(), "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1209,7 +1223,7 @@ namespace Halley.Presentacion.Ventas
             if (DtDetalleComprobante.Rows.Count > 0)
             {
                 TotalIGV = Convert.ToDecimal(DtDetalleComprobante.Compute("sum(Importe) *  " + IGV, ""));
-                Subtotal = Convert.ToDecimal(DtDetalleComprobante.Compute("sum(Importe)", "").ToString());
+                Subtotal = Convert.ToDecimal(DtDetalleComprobante.Compute("sum(Importe)", "ProductoID <> '00267000102.7'").ToString());
 
 
 
@@ -1645,75 +1659,11 @@ namespace Halley.Presentacion.Ventas
                 CboSerieGuia.ComboBox.DisplayMember = "Serie";
                 CboSerieGuia.ComboBox.ValueMember = "Serie";
 
-                //seleccionar la serie por defecto
-                switch (CboTipoComprobante.ComboBox.SelectedValue.ToString())
+                DataView DVS = new DataView(UTI_Datatables.Dt_Configuracion, "Codigo ='" + EmpresaID + "_SERIE_" + CboTipoComprobante.ComboBox.SelectedValue.ToString() + "'", "", DataViewRowState.CurrentRows);
+
+                if (DVS.Count > 0)
                 {
-                    case "1":
-                        if (EmpresaID == "GH")
-                        {
-                            if (AppSettings.GHSerieDefectoBoleta != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.GHSerieDefectoBoleta;
-                        }
-                        else if (EmpresaID == "IH")
-                        {
-                            if (AppSettings.IHSerieDefectoBoleta != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.IHSerieDefectoBoleta;
-                        }
-                        else if (EmpresaID == "CH")
-                        {
-                            if (AppSettings.CHSerieDefectoBoleta != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.CHSerieDefectoBoleta;
-                        }
-                        else if (EmpresaID == "AH")
-                        {
-                            if (AppSettings.AHSerieDefectoBoleta != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.AHSerieDefectoBoleta;
-                        }
-                        break;
-                    case "2":
-                        if (EmpresaID == "GH")
-                        {
-                            if (AppSettings.GHSerieDefectoFactura != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.GHSerieDefectoFactura;
-                        }
-                        else if (EmpresaID == "IH")
-                        {
-                            if (AppSettings.IHSerieDefectoFactura != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.IHSerieDefectoFactura;
-                        }
-                        else if (EmpresaID == "CH")
-                        {
-                            if (AppSettings.CHSerieDefectoFactura != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.CHSerieDefectoFactura;
-                        }
-                        else if (EmpresaID == "AH")
-                        {
-                            if (AppSettings.AHSerieDefectoFactura != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.AHSerieDefectoFactura;
-                        }
-                        break;
-                    case "3":
-                        if (EmpresaID == "GH")
-                        {
-                            if (AppSettings.GHSerieDefectoTicket != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.GHSerieDefectoTicket;
-                        }
-                        else if (EmpresaID == "IH")
-                        {
-                            if (AppSettings.IHSerieDefectoTicket != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.IHSerieDefectoTicket;
-                        }
-                        else if (EmpresaID == "CH")
-                        {
-                            if (AppSettings.CHSerieDefectoTicket != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.CHSerieDefectoTicket;
-                        }
-                        else if (EmpresaID == "AH")
-                        {
-                            if (AppSettings.AHSerieDefectoTicket != "")
-                                CboSerieGuia.ComboBox.SelectedValue = AppSettings.AHSerieDefectoTicket;
-                        }
-                        break;
+                    CboSerieGuia.ComboBox.SelectedValue = DVS[0]["Data"].ToString();
                 }
 
                 if (Dv.Count == 0)
@@ -2091,61 +2041,12 @@ namespace Halley.Presentacion.Ventas
         {
             if (CboSerieGuia.SelectedIndex != -1)
             {
-                UpdateConfiguration ObjUpdateConfiguration = new UpdateConfiguration();
-                //seleccionar la serie por defecto
-                switch (CboTipoComprobante.ComboBox.SelectedValue.ToString())
-                {
-                    case "1":
-                        if (EmpresaID == "GH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "IH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "CH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "AH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        break;
-                    case "2":
-                        if (EmpresaID == "GH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "IH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "CH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "AH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        break;
-                    case "3":
-                        if (EmpresaID == "GH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoTicket", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "IH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoTicket", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "CH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoTicket", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "AH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoTicket", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        break;
-                    case "4":
-                        if (EmpresaID == "GH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "IH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "CH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "AH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoBoleta", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        break;
-                    case "5":
-                        if (EmpresaID == "GH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("GHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "IH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("IHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "CH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("CHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        else if (EmpresaID == "AH")
-                            ObjUpdateConfiguration.AppSettingsSectionModify("AHSerieDefectoFactura", CboSerieGuia.ComboBox.SelectedValue.ToString());
-                        break;
-                }
+                DataTable DtImpresora = new DataTable();
+                DtImpresora = ObjUsuario.USP_M_CONFIGURACION(1, 0, c1cboCia.SelectedValue.ToString(), c1cboCia.SelectedValue.ToString() + "_SERIE_" + CboTipoComprobante.ComboBox.SelectedValue.ToString(), "SERIE POR DEFECTO", CboSerieGuia.ComboBox.SelectedValue.ToString(), AppSettings.UserID, NuevaIP);
+
+                UTI_Datatables.Dt_Configuracion = ObjUsuario.USP_M_CONFIGURACION(2, 0, "", "", "", "", AppSettings.UserID, NuevaIP);
+
+
                 MessageBox.Show("Se actualizo la serie de la empresa '" + EmpresaID + "', de " + CboTipoComprobante.ComboBox.Text + " con la serie: " + CboSerieGuia.ComboBox.SelectedValue.ToString() + ".", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -2155,7 +2056,7 @@ namespace Halley.Presentacion.Ventas
             if (c1cboCia.SelectedIndex != -1)
             {
                 EmpresaID = c1cboCia.SelectedValue.ToString();
-                if (NroTerminales == 1)
+                if (NroTerminales == 1 | NroTerminales == 3)
                 {
                     if (CboTipoComprobante.SelectedIndex != -1)
                     {
@@ -2465,6 +2366,7 @@ namespace Halley.Presentacion.Ventas
         {
             try
             {
+        
                 if (TxtNroDocumentoCliente.Text.Length != 8 & TxtNroDocumentoCliente.Text.Length != 11)
                 {
                     TxtRazonSocial.Text = "";
@@ -2477,7 +2379,7 @@ namespace Halley.Presentacion.Ventas
                 TxtRazonSocial.Text = "";
                 TxtDireccion.Value = "";
                 LblEstadoCliente.Text = "";
-                DataSet DS = ObjCL_Venta.ObtenerDatosCliente(TxtNroDocumentoCliente.Text);
+                DataSet DS = ObjCL_Venta.ObtenerDatosCliente(TxtNroDocumentoCliente.Text, urldni, urlsunat);
 
                 if (DS.Tables[0].Rows.Count == 1)
                 {

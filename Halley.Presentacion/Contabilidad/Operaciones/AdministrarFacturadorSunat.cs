@@ -23,7 +23,7 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
 
         string rutaarchivos = "";
         string ruc = "";
-        string DomicilioFiscal, RutaXMLFE, RutaCDRFE, RutaCertificado, ClaveCertificado, UsuarioSOL, ClaveSol, RutaWS;
+        string DomicilioFiscal, RutaXMLFE, RutaCDRFE, RutaCertificado, ClaveCertificado, UsuarioSOL, ClaveSol, RutaWS, ValidezId, ValidezClave;
         int hojas = 0;
 
         public AdministrarFacturadorSunat()
@@ -38,7 +38,7 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
 
         private void LlenarCombos()
         {
-            c1Combo.FillC1Combo(this.c1cboCia, new CL_Empresas().GetEmpresas(), "NomEmpresa", "EmpresaID");
+            c1Combo.FillC1Combo(this.c1cboCia, new CL_Empresas().GetEmpresasVentas(), "NomEmpresa", "EmpresaID");
 
 
             DataTable dtcom = new DataTable("t1");
@@ -758,6 +758,8 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
                 UsuarioSOL = dt1.Rows[0]["UsuarioSOL"].ToString();
                 ClaveSol = dt1.Rows[0]["ClaveSol"].ToString();
                 RutaWS = dt1.Rows[0]["RutaWS"].ToString();
+                ValidezId = dt1.Rows[0]["ValidezId"].ToString();
+                ValidezClave = dt1.Rows[0]["ValidezClave"].ToString();
             }
         }
 
@@ -854,6 +856,66 @@ namespace Halley.Presentacion.Contabilidad.Operaciones
                 Cursor = Cursors.Default;
             }
 
+        }
+
+        private void BtnValidez_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TdgProductosFormulados.RowCount > 0)
+                {
+                    string NumComprobante = this.TdgProductosFormulados.Columns["NumComprobante"].Value.ToString();
+                    string Comprobante = this.TdgProductosFormulados.Columns["Comprobante"].Value.ToString();
+                    string EstadoSunat = this.TdgProductosFormulados.Columns["EstadoSunat"].Value.ToString();
+                    string TipoSunat = this.TdgProductosFormulados.Columns["TipoSunat"].Value.ToString();
+                    string NroTicket = this.TdgProductosFormulados.Columns["NroTicket"].Value.ToString();
+                    int ComprobanteId = Convert.ToInt32(this.TdgProductosFormulados.Columns["ComprobanteId"].Value.ToString());
+                    DateTime FechaEmision = Convert.ToDateTime(this.TdgProductosFormulados.Columns["FechaEmision"].Value);
+                    decimal ImporteTotal = Convert.ToDecimal(this.TdgProductosFormulados.Columns["ImporteTotal"].Value);
+
+                    if (TipoSunat == "01" | TipoSunat == "03")
+                    {
+                        DataSet ds = objCL_Comprobante.ConsultarValidez(ruc, ValidezId, ValidezClave, TipoSunat, Comprobante.Substring(0, 4), Convert.ToInt32(Comprobante.Substring(5)), FechaEmision, ImporteTotal);
+                        //DateTime fecha = new DateTime(2020, 10, 1, 0, 0, 0);
+                        //DataSet ds = objCL_Comprobante.ConsultarValidez("20602070574", ValidezId, ValidezClave, "01", "F001", 7905, fecha, Convert.ToDecimal(108.46));
+
+                        string mensaje = "";
+
+                        DataTable dtrespuesta = ds.Tables[0];
+                        if (Convert.ToBoolean(dtrespuesta.Rows[0]["respuesta"]))
+                        {
+                            DataTable dtcabecera = ds.Tables[1];
+
+                            mensaje = "Estado: " + dtcabecera.Rows[0]["estadoCp"].ToString() + "\n" + "Estado RUC: " + dtcabecera.Rows[0]["estadoRuc"].ToString() + "\n" + "Estado Domicilio: " + dtcabecera.Rows[0]["condDomiRuc"].ToString() + "\n\nObservaciones:\n";
+
+                            DataTable dtdetalle = ds.Tables[2];
+                            foreach (DataRow DR in dtdetalle.Rows)
+                            {
+                                mensaje += DR["observaciones"] + "\n";
+                            }
+                        }
+                        else
+                        {
+                            mensaje = "hubo un error al consultar validez";
+                        }
+                        MessageBox.Show(mensaje, "Información encontrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Solo se puede consultar boletas y facturas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

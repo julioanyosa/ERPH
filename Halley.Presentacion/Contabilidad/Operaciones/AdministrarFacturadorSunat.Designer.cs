@@ -68,6 +68,7 @@
             this.CboTipoComprobante = new C1.Win.C1List.C1Combo();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.BtnValidez = new C1.Win.C1Input.C1Button();
             this.BtnEliminarGeneradas = new C1.Win.C1Input.C1Button();
             this.BtnObtenerInformaciónTicket = new C1.Win.C1Input.C1Button();
             this.BtnExcel = new C1.Win.C1Input.C1Button();
@@ -108,50 +109,45 @@
             // DtpFechaIni
             // 
             this.DtpFechaIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaIni.Location = new System.Drawing.Point(90, 104);
-            this.DtpFechaIni.Margin = new System.Windows.Forms.Padding(4);
+            this.DtpFechaIni.Location = new System.Drawing.Point(68, 71);
             this.DtpFechaIni.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpFechaIni.Name = "DtpFechaIni";
-            this.DtpFechaIni.Size = new System.Drawing.Size(107, 26);
+            this.DtpFechaIni.Size = new System.Drawing.Size(81, 22);
             this.DtpFechaIni.TabIndex = 402;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 108);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(11, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 19);
+            this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 403;
             this.label1.Text = "Fechas:";
             // 
             // DtpFechaFin
             // 
             this.DtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaFin.Location = new System.Drawing.Point(213, 104);
-            this.DtpFechaFin.Margin = new System.Windows.Forms.Padding(4);
+            this.DtpFechaFin.Location = new System.Drawing.Point(160, 71);
             this.DtpFechaFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpFechaFin.Name = "DtpFechaFin";
-            this.DtpFechaFin.Size = new System.Drawing.Size(107, 26);
+            this.DtpFechaFin.Size = new System.Drawing.Size(81, 22);
             this.DtpFechaFin.TabIndex = 404;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 151);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 103);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 19);
+            this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 407;
             this.label3.Text = "Comprobante:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(329, 104);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(247, 71);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 19);
+            this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 409;
             this.label4.Text = "Estado SUNAT:";
             // 
@@ -159,25 +155,23 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(4, 9);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(3, 6);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(276, 25);
+            this.label5.Size = new System.Drawing.Size(217, 20);
             this.label5.TabIndex = 410;
             this.label5.Text = "Administrar Facturador Sunat";
             // 
             // TdgProductosFormulados
             // 
             this.TdgProductosFormulados.AllowUpdate = false;
-            this.TdgProductosFormulados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.TdgProductosFormulados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TdgProductosFormulados.CaptionHeight = 17;
             this.TdgProductosFormulados.FilterBar = true;
             this.TdgProductosFormulados.GroupByCaption = "Drag a column header here to group by that column";
             this.TdgProductosFormulados.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgProductosFormulados.Images"))));
-            this.TdgProductosFormulados.Location = new System.Drawing.Point(19, 188);
-            this.TdgProductosFormulados.Margin = new System.Windows.Forms.Padding(4);
+            this.TdgProductosFormulados.Location = new System.Drawing.Point(14, 129);
             this.TdgProductosFormulados.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightRowRaiseCell;
             this.TdgProductosFormulados.Name = "TdgProductosFormulados";
             this.TdgProductosFormulados.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -185,7 +179,7 @@
             this.TdgProductosFormulados.PreviewInfo.ZoomFactor = 75D;
             this.TdgProductosFormulados.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("TdgProductosFormulados.PrintInfo.PageSettings")));
             this.TdgProductosFormulados.RowHeight = 27;
-            this.TdgProductosFormulados.Size = new System.Drawing.Size(1004, 344);
+            this.TdgProductosFormulados.Size = new System.Drawing.Size(1057, 273);
             this.TdgProductosFormulados.TabIndex = 412;
             this.TdgProductosFormulados.Text = "c1TrueDBGrid1";
             this.TdgProductosFormulados.PropBag = resources.GetString("TdgProductosFormulados.PropBag");
@@ -193,10 +187,9 @@
             // BtnAnterior
             // 
             this.BtnAnterior.Image = global::Halley.Presentacion.Properties.Resources.previous_16x16;
-            this.BtnAnterior.Location = new System.Drawing.Point(789, 135);
-            this.BtnAnterior.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnAnterior.Location = new System.Drawing.Point(592, 92);
             this.BtnAnterior.Name = "BtnAnterior";
-            this.BtnAnterior.Size = new System.Drawing.Size(74, 35);
+            this.BtnAnterior.Size = new System.Drawing.Size(56, 24);
             this.BtnAnterior.TabIndex = 413;
             this.BtnAnterior.UseVisualStyleBackColor = true;
             this.BtnAnterior.Click += new System.EventHandler(this.BtnAnterior_Click);
@@ -204,10 +197,9 @@
             // BtnSiguiente
             // 
             this.BtnSiguiente.Image = global::Halley.Presentacion.Properties.Resources.next_16x16;
-            this.BtnSiguiente.Location = new System.Drawing.Point(871, 135);
-            this.BtnSiguiente.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnSiguiente.Location = new System.Drawing.Point(653, 92);
             this.BtnSiguiente.Name = "BtnSiguiente";
-            this.BtnSiguiente.Size = new System.Drawing.Size(74, 35);
+            this.BtnSiguiente.Size = new System.Drawing.Size(56, 24);
             this.BtnSiguiente.TabIndex = 414;
             this.BtnSiguiente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSiguiente.UseVisualStyleBackColor = true;
@@ -216,10 +208,9 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(747, 104);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(560, 71);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 19);
+            this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 416;
             this.label6.Text = "Registros";
             // 
@@ -234,17 +225,16 @@
             this.CboCantidadRegistros.ColumnCaptionHeight = 17;
             this.CboCantidadRegistros.ColumnFooterHeight = 17;
             this.CboCantidadRegistros.ColumnHeaders = false;
-            this.CboCantidadRegistros.ContentHeight = 21;
+            this.CboCantidadRegistros.ContentHeight = 17;
             this.CboCantidadRegistros.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboCantidadRegistros.DisplayMember = "texto";
             this.CboCantidadRegistros.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboCantidadRegistros.EditorFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboCantidadRegistros.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboCantidadRegistros.EditorHeight = 21;
+            this.CboCantidadRegistros.EditorHeight = 17;
             this.CboCantidadRegistros.Images.Add(((System.Drawing.Image)(resources.GetObject("CboCantidadRegistros.Images"))));
             this.CboCantidadRegistros.ItemHeight = 15;
-            this.CboCantidadRegistros.Location = new System.Drawing.Point(823, 96);
-            this.CboCantidadRegistros.Margin = new System.Windows.Forms.Padding(4);
+            this.CboCantidadRegistros.Location = new System.Drawing.Point(617, 66);
             this.CboCantidadRegistros.MatchEntryTimeout = ((long)(2000));
             this.CboCantidadRegistros.MaxDropDownItems = ((short)(10));
             this.CboCantidadRegistros.MaxLength = 32767;
@@ -253,7 +243,7 @@
             this.CboCantidadRegistros.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.CboCantidadRegistros.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboCantidadRegistros.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboCantidadRegistros.Size = new System.Drawing.Size(107, 27);
+            this.CboCantidadRegistros.Size = new System.Drawing.Size(80, 23);
             this.CboCantidadRegistros.TabIndex = 415;
             this.CboCantidadRegistros.ValueMember = "valor";
             this.CboCantidadRegistros.PropBag = resources.GetString("CboCantidadRegistros.PropBag");
@@ -262,10 +252,9 @@
             // 
             this.BtnBuscar.Image = global::Halley.Presentacion.Properties.Resources.Consultar_16x16;
             this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBuscar.Location = new System.Drawing.Point(950, 89);
-            this.BtnBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnBuscar.Location = new System.Drawing.Point(712, 61);
             this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(102, 34);
+            this.BtnBuscar.Size = new System.Drawing.Size(76, 23);
             this.BtnBuscar.TabIndex = 417;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -276,10 +265,9 @@
             // 
             this.BtnActualizarinformacion.Image = global::Halley.Presentacion.Properties.Resources.users_folder_smooth_32x32;
             this.BtnActualizarinformacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnActualizarinformacion.Location = new System.Drawing.Point(731, 4);
-            this.BtnActualizarinformacion.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnActualizarinformacion.Location = new System.Drawing.Point(548, 3);
             this.BtnActualizarinformacion.Name = "BtnActualizarinformacion";
-            this.BtnActualizarinformacion.Size = new System.Drawing.Size(199, 49);
+            this.BtnActualizarinformacion.Size = new System.Drawing.Size(149, 34);
             this.BtnActualizarinformacion.TabIndex = 418;
             this.BtnActualizarinformacion.Text = "Obtener info Sunat";
             this.BtnActualizarinformacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -292,10 +280,9 @@
             this.BtnVolverGenerar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnVolverGenerar.Image = global::Halley.Presentacion.Properties.Resources.PageSetup_16x16;
             this.BtnVolverGenerar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVolverGenerar.Location = new System.Drawing.Point(895, 540);
-            this.BtnVolverGenerar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnVolverGenerar.Location = new System.Drawing.Point(671, 406);
             this.BtnVolverGenerar.Name = "BtnVolverGenerar";
-            this.BtnVolverGenerar.Size = new System.Drawing.Size(128, 34);
+            this.BtnVolverGenerar.Size = new System.Drawing.Size(96, 23);
             this.BtnVolverGenerar.TabIndex = 419;
             this.BtnVolverGenerar.Text = "Generar txt";
             this.BtnVolverGenerar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -311,11 +298,9 @@
             this.groupBox5.Controls.Add(this.label30);
             this.groupBox5.Controls.Add(this.TxtFechaGenerarFacturacionElectronicaFin);
             this.groupBox5.Controls.Add(this.label31);
-            this.groupBox5.Location = new System.Drawing.Point(20, 16);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox5.Location = new System.Drawing.Point(15, 11);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(1030, 111);
+            this.groupBox5.Size = new System.Drawing.Size(772, 76);
             this.groupBox5.TabIndex = 431;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Generar Txt Facturación electrónica";
@@ -331,17 +316,16 @@
             this.CboComprobanteFacturadorSunat.ColumnHeaders = false;
             this.CboComprobanteFacturadorSunat.ColumnWidth = 100;
             this.CboComprobanteFacturadorSunat.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.CboComprobanteFacturadorSunat.ContentHeight = 21;
+            this.CboComprobanteFacturadorSunat.ContentHeight = 17;
             this.CboComprobanteFacturadorSunat.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboComprobanteFacturadorSunat.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboComprobanteFacturadorSunat.EditorFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboComprobanteFacturadorSunat.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboComprobanteFacturadorSunat.EditorHeight = 21;
+            this.CboComprobanteFacturadorSunat.EditorHeight = 17;
             this.CboComprobanteFacturadorSunat.ExtendRightColumn = true;
             this.CboComprobanteFacturadorSunat.Images.Add(((System.Drawing.Image)(resources.GetObject("CboComprobanteFacturadorSunat.Images"))));
             this.CboComprobanteFacturadorSunat.ItemHeight = 15;
-            this.CboComprobanteFacturadorSunat.Location = new System.Drawing.Point(140, 42);
-            this.CboComprobanteFacturadorSunat.Margin = new System.Windows.Forms.Padding(4);
+            this.CboComprobanteFacturadorSunat.Location = new System.Drawing.Point(105, 29);
             this.CboComprobanteFacturadorSunat.MatchEntryTimeout = ((long)(2000));
             this.CboComprobanteFacturadorSunat.MaxDropDownItems = ((short)(5));
             this.CboComprobanteFacturadorSunat.MaxLength = 32767;
@@ -350,7 +334,7 @@
             this.CboComprobanteFacturadorSunat.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.CboComprobanteFacturadorSunat.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboComprobanteFacturadorSunat.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboComprobanteFacturadorSunat.Size = new System.Drawing.Size(213, 27);
+            this.CboComprobanteFacturadorSunat.Size = new System.Drawing.Size(160, 23);
             this.CboComprobanteFacturadorSunat.TabIndex = 424;
             this.CboComprobanteFacturadorSunat.VisualStyle = C1.Win.C1List.VisualStyle.Office2007Blue;
             this.CboComprobanteFacturadorSunat.PropBag = resources.GetString("CboComprobanteFacturadorSunat.PropBag");
@@ -358,31 +342,28 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(31, 50);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Location = new System.Drawing.Point(23, 34);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(101, 19);
+            this.label32.Size = new System.Drawing.Size(84, 13);
             this.label32.TabIndex = 425;
             this.label32.Text = "Comprobante :";
             // 
             // TxtFechaGenerarFacturacionElectronicaIni
             // 
             this.TxtFechaGenerarFacturacionElectronicaIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.TxtFechaGenerarFacturacionElectronicaIni.Location = new System.Drawing.Point(489, 46);
-            this.TxtFechaGenerarFacturacionElectronicaIni.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtFechaGenerarFacturacionElectronicaIni.Location = new System.Drawing.Point(367, 31);
             this.TxtFechaGenerarFacturacionElectronicaIni.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.TxtFechaGenerarFacturacionElectronicaIni.Name = "TxtFechaGenerarFacturacionElectronicaIni";
-            this.TxtFechaGenerarFacturacionElectronicaIni.Size = new System.Drawing.Size(107, 26);
+            this.TxtFechaGenerarFacturacionElectronicaIni.Size = new System.Drawing.Size(81, 22);
             this.TxtFechaGenerarFacturacionElectronicaIni.TabIndex = 421;
             // 
             // BtnGenerarTxtFacturacionElectronica
             // 
             this.BtnGenerarTxtFacturacionElectronica.Image = global::Halley.Presentacion.Properties.Resources.Aprobado_16x16;
             this.BtnGenerarTxtFacturacionElectronica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGenerarTxtFacturacionElectronica.Location = new System.Drawing.Point(875, 42);
-            this.BtnGenerarTxtFacturacionElectronica.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerarTxtFacturacionElectronica.Location = new System.Drawing.Point(656, 29);
             this.BtnGenerarTxtFacturacionElectronica.Name = "BtnGenerarTxtFacturacionElectronica";
-            this.BtnGenerarTxtFacturacionElectronica.Size = new System.Drawing.Size(147, 34);
+            this.BtnGenerarTxtFacturacionElectronica.Size = new System.Drawing.Size(110, 23);
             this.BtnGenerarTxtFacturacionElectronica.TabIndex = 413;
             this.BtnGenerarTxtFacturacionElectronica.Text = "Generar Txt Sunat";
             this.BtnGenerarTxtFacturacionElectronica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -392,30 +373,27 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(397, 50);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Location = new System.Drawing.Point(298, 34);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(84, 19);
+            this.label30.Size = new System.Drawing.Size(73, 13);
             this.label30.TabIndex = 415;
             this.label30.Text = "Fecha inicial:";
             // 
             // TxtFechaGenerarFacturacionElectronicaFin
             // 
             this.TxtFechaGenerarFacturacionElectronicaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.TxtFechaGenerarFacturacionElectronicaFin.Location = new System.Drawing.Point(724, 44);
-            this.TxtFechaGenerarFacturacionElectronicaFin.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtFechaGenerarFacturacionElectronicaFin.Location = new System.Drawing.Point(543, 30);
             this.TxtFechaGenerarFacturacionElectronicaFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.TxtFechaGenerarFacturacionElectronicaFin.Name = "TxtFechaGenerarFacturacionElectronicaFin";
-            this.TxtFechaGenerarFacturacionElectronicaFin.Size = new System.Drawing.Size(107, 26);
+            this.TxtFechaGenerarFacturacionElectronicaFin.Size = new System.Drawing.Size(81, 22);
             this.TxtFechaGenerarFacturacionElectronicaFin.TabIndex = 423;
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(640, 50);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Location = new System.Drawing.Point(480, 34);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(76, 19);
+            this.label31.Size = new System.Drawing.Size(66, 13);
             this.label31.TabIndex = 422;
             this.label31.Text = "Fecha final:";
             // 
@@ -423,10 +401,9 @@
             // 
             this.BtnGenerarBajaBoletas.Image = global::Halley.Presentacion.Properties.Resources.Aprobado_16x16;
             this.BtnGenerarBajaBoletas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGenerarBajaBoletas.Location = new System.Drawing.Point(439, 26);
-            this.BtnGenerarBajaBoletas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerarBajaBoletas.Location = new System.Drawing.Point(329, 18);
             this.BtnGenerarBajaBoletas.Name = "BtnGenerarBajaBoletas";
-            this.BtnGenerarBajaBoletas.Size = new System.Drawing.Size(204, 48);
+            this.BtnGenerarBajaBoletas.Size = new System.Drawing.Size(153, 33);
             this.BtnGenerarBajaBoletas.TabIndex = 426;
             this.BtnGenerarBajaBoletas.Text = "Generar baja resumen diario boleta electrónica";
             this.BtnGenerarBajaBoletas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -440,40 +417,36 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(230, 18);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(172, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 19);
+            this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 432;
             this.label7.Text = "Ruta BD:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(230, 56);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(172, 38);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(90, 19);
+            this.label8.Size = new System.Drawing.Size(75, 13);
             this.label8.TabIndex = 433;
             this.label8.Text = "Ruta Archivo:";
             // 
             // LblRutaArchivo
             // 
             this.LblRutaArchivo.AutoSize = true;
-            this.LblRutaArchivo.Location = new System.Drawing.Point(348, 56);
-            this.LblRutaArchivo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblRutaArchivo.Location = new System.Drawing.Point(261, 38);
             this.LblRutaArchivo.Name = "LblRutaArchivo";
-            this.LblRutaArchivo.Size = new System.Drawing.Size(69, 19);
+            this.LblRutaArchivo.Size = new System.Drawing.Size(57, 13);
             this.LblRutaArchivo.TabIndex = 434;
             this.LblRutaArchivo.Text = "xxxxxxxxxx";
             // 
             // LblRutaBD
             // 
             this.LblRutaBD.AutoSize = true;
-            this.LblRutaBD.Location = new System.Drawing.Point(348, 18);
-            this.LblRutaBD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblRutaBD.Location = new System.Drawing.Point(261, 12);
             this.LblRutaBD.Name = "LblRutaBD";
-            this.LblRutaBD.Size = new System.Drawing.Size(69, 19);
+            this.LblRutaBD.Size = new System.Drawing.Size(57, 13);
             this.LblRutaBD.TabIndex = 435;
             this.LblRutaBD.Text = "xxxxxxxxxx";
             // 
@@ -485,10 +458,9 @@
             // 
             this.BtnSeleccionarRutaArchivo.Image = global::Halley.Presentacion.Properties.Resources.Consultar_16x16;
             this.BtnSeleccionarRutaArchivo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnSeleccionarRutaArchivo.Location = new System.Drawing.Point(7, 10);
-            this.BtnSeleccionarRutaArchivo.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnSeleccionarRutaArchivo.Location = new System.Drawing.Point(5, 7);
             this.BtnSeleccionarRutaArchivo.Name = "BtnSeleccionarRutaArchivo";
-            this.BtnSeleccionarRutaArchivo.Size = new System.Drawing.Size(206, 65);
+            this.BtnSeleccionarRutaArchivo.Size = new System.Drawing.Size(154, 44);
             this.BtnSeleccionarRutaArchivo.TabIndex = 437;
             this.BtnSeleccionarRutaArchivo.Text = "Seleccione carpeta\r\nfacturador";
             this.BtnSeleccionarRutaArchivo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -499,10 +471,9 @@
             // 
             this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(231, 540);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Location = new System.Drawing.Point(173, 406);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(95, 19);
+            this.label27.Size = new System.Drawing.Size(79, 13);
             this.label27.TabIndex = 443;
             this.label27.Text = "Motivo Sunat:";
             // 
@@ -510,11 +481,10 @@
             // 
             this.TxtMotivoEliminacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TxtMotivoEliminacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtMotivoEliminacion.Location = new System.Drawing.Point(334, 540);
-            this.TxtMotivoEliminacion.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtMotivoEliminacion.Location = new System.Drawing.Point(250, 406);
             this.TxtMotivoEliminacion.MaxLength = 200;
             this.TxtMotivoEliminacion.Name = "TxtMotivoEliminacion";
-            this.TxtMotivoEliminacion.Size = new System.Drawing.Size(336, 26);
+            this.TxtMotivoEliminacion.Size = new System.Drawing.Size(252, 22);
             this.TxtMotivoEliminacion.TabIndex = 442;
             this.TxtMotivoEliminacion.Tag = null;
             this.TxtMotivoEliminacion.Value = "Baja por anulación";
@@ -524,10 +494,9 @@
             this.BtnConfirmacionBajaFE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnConfirmacionBajaFE.Image = global::Halley.Presentacion.Properties.Resources.PageSetup_16x16;
             this.BtnConfirmacionBajaFE.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnConfirmacionBajaFE.Location = new System.Drawing.Point(685, 540);
-            this.BtnConfirmacionBajaFE.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnConfirmacionBajaFE.Location = new System.Drawing.Point(514, 406);
             this.BtnConfirmacionBajaFE.Name = "BtnConfirmacionBajaFE";
-            this.BtnConfirmacionBajaFE.Size = new System.Drawing.Size(202, 34);
+            this.BtnConfirmacionBajaFE.Size = new System.Drawing.Size(152, 23);
             this.BtnConfirmacionBajaFE.TabIndex = 441;
             this.BtnConfirmacionBajaFE.Text = "Confirmación de Baja";
             this.BtnConfirmacionBajaFE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -545,17 +514,16 @@
             this.CboEstadoSunat.ColumnCaptionHeight = 20;
             this.CboEstadoSunat.ColumnFooterHeight = 20;
             this.CboEstadoSunat.ColumnHeaders = false;
-            this.CboEstadoSunat.ContentHeight = 21;
+            this.CboEstadoSunat.ContentHeight = 17;
             this.CboEstadoSunat.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboEstadoSunat.DisplayMember = "texto";
             this.CboEstadoSunat.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboEstadoSunat.EditorFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboEstadoSunat.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboEstadoSunat.EditorHeight = 21;
+            this.CboEstadoSunat.EditorHeight = 17;
             this.CboEstadoSunat.Images.Add(((System.Drawing.Image)(resources.GetObject("CboEstadoSunat.Images"))));
             this.CboEstadoSunat.ItemHeight = 15;
-            this.CboEstadoSunat.Location = new System.Drawing.Point(437, 100);
-            this.CboEstadoSunat.Margin = new System.Windows.Forms.Padding(4);
+            this.CboEstadoSunat.Location = new System.Drawing.Point(328, 68);
             this.CboEstadoSunat.MatchEntryTimeout = ((long)(2000));
             this.CboEstadoSunat.MaxDropDownItems = ((short)(10));
             this.CboEstadoSunat.MaxLength = 32767;
@@ -564,7 +532,7 @@
             this.CboEstadoSunat.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.CboEstadoSunat.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboEstadoSunat.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboEstadoSunat.Size = new System.Drawing.Size(298, 27);
+            this.CboEstadoSunat.Size = new System.Drawing.Size(224, 23);
             this.CboEstadoSunat.TabIndex = 445;
             this.CboEstadoSunat.ValueMember = "valor";
             this.CboEstadoSunat.PropBag = resources.GetString("CboEstadoSunat.PropBag");
@@ -580,17 +548,16 @@
             this.CboTipoComprobante.ColumnCaptionHeight = 17;
             this.CboTipoComprobante.ColumnFooterHeight = 17;
             this.CboTipoComprobante.ColumnHeaders = false;
-            this.CboTipoComprobante.ContentHeight = 21;
+            this.CboTipoComprobante.ContentHeight = 17;
             this.CboTipoComprobante.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboTipoComprobante.DisplayMember = "texto";
             this.CboTipoComprobante.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboTipoComprobante.EditorFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboTipoComprobante.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboTipoComprobante.EditorHeight = 21;
+            this.CboTipoComprobante.EditorHeight = 17;
             this.CboTipoComprobante.Images.Add(((System.Drawing.Image)(resources.GetObject("CboTipoComprobante.Images"))));
             this.CboTipoComprobante.ItemHeight = 15;
-            this.CboTipoComprobante.Location = new System.Drawing.Point(121, 143);
-            this.CboTipoComprobante.Margin = new System.Windows.Forms.Padding(4);
+            this.CboTipoComprobante.Location = new System.Drawing.Point(91, 98);
             this.CboTipoComprobante.MatchEntryTimeout = ((long)(2000));
             this.CboTipoComprobante.MaxDropDownItems = ((short)(10));
             this.CboTipoComprobante.MaxLength = 32767;
@@ -599,26 +566,28 @@
             this.CboTipoComprobante.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.CboTipoComprobante.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboTipoComprobante.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboTipoComprobante.Size = new System.Drawing.Size(216, 27);
+            this.CboTipoComprobante.Size = new System.Drawing.Size(162, 23);
             this.CboTipoComprobante.TabIndex = 444;
             this.CboTipoComprobante.ValueMember = "valor";
             this.CboTipoComprobante.PropBag = resources.GetString("CboTipoComprobante.PropBag");
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 50);
+            this.tabControl1.Location = new System.Drawing.Point(2, 34);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1116, 692);
+            this.tabControl1.Size = new System.Drawing.Size(1111, 510);
             this.tabControl1.TabIndex = 446;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.BtnValidez);
             this.tabPage1.Controls.Add(this.BtnEliminarGeneradas);
             this.tabPage1.Controls.Add(this.BtnObtenerInformaciónTicket);
             this.tabPage1.Controls.Add(this.BtnConfirmacionBajaFE);
@@ -649,23 +618,37 @@
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.BtnVolverGenerar);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1108, 660);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Size = new System.Drawing.Size(1103, 484);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gestionar envios";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // BtnValidez
+            // 
+            this.BtnValidez.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnValidez.Image = global::Halley.Presentacion.Properties.Resources.PageSetup_16x16;
+            this.BtnValidez.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnValidez.Location = new System.Drawing.Point(672, 435);
+            this.BtnValidez.Name = "BtnValidez";
+            this.BtnValidez.Size = new System.Drawing.Size(96, 23);
+            this.BtnValidez.TabIndex = 452;
+            this.BtnValidez.Text = "Validez";
+            this.BtnValidez.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnValidez.UseVisualStyleBackColor = true;
+            this.BtnValidez.Click += new System.EventHandler(this.BtnValidez_Click);
             // 
             // BtnEliminarGeneradas
             // 
             this.BtnEliminarGeneradas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnEliminarGeneradas.Image = global::Halley.Presentacion.Properties.Resources.Cancel_32x32;
             this.BtnEliminarGeneradas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEliminarGeneradas.Location = new System.Drawing.Point(20, 540);
-            this.BtnEliminarGeneradas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnEliminarGeneradas.Location = new System.Drawing.Point(15, 406);
             this.BtnEliminarGeneradas.Name = "BtnEliminarGeneradas";
-            this.BtnEliminarGeneradas.Size = new System.Drawing.Size(143, 51);
+            this.BtnEliminarGeneradas.Size = new System.Drawing.Size(107, 35);
             this.BtnEliminarGeneradas.TabIndex = 451;
             this.BtnEliminarGeneradas.Text = "Eliminar\r\ngenerados";
             this.BtnEliminarGeneradas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -677,10 +660,9 @@
             this.BtnObtenerInformaciónTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnObtenerInformaciónTicket.Image = global::Halley.Presentacion.Properties.Resources.PageSetup_16x16;
             this.BtnObtenerInformaciónTicket.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnObtenerInformaciónTicket.Location = new System.Drawing.Point(685, 582);
-            this.BtnObtenerInformaciónTicket.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnObtenerInformaciónTicket.Location = new System.Drawing.Point(495, 434);
             this.BtnObtenerInformaciónTicket.Name = "BtnObtenerInformaciónTicket";
-            this.BtnObtenerInformaciónTicket.Size = new System.Drawing.Size(228, 34);
+            this.BtnObtenerInformaciónTicket.Size = new System.Drawing.Size(171, 23);
             this.BtnObtenerInformaciónTicket.TabIndex = 450;
             this.BtnObtenerInformaciónTicket.Text = "Obtener información ticket";
             this.BtnObtenerInformaciónTicket.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -690,10 +672,9 @@
             // BtnExcel
             // 
             this.BtnExcel.Image = global::Halley.Presentacion.Properties.Resources.excel_16x16;
-            this.BtnExcel.Location = new System.Drawing.Point(950, 3);
-            this.BtnExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnExcel.Location = new System.Drawing.Point(712, 2);
             this.BtnExcel.Name = "BtnExcel";
-            this.BtnExcel.Size = new System.Drawing.Size(102, 50);
+            this.BtnExcel.Size = new System.Drawing.Size(76, 34);
             this.BtnExcel.TabIndex = 420;
             this.BtnExcel.Text = "Exportar";
             this.BtnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -705,10 +686,9 @@
             // 
             this.BtnUltimo.Image = global::Halley.Presentacion.Properties.Resources.next_16x16;
             this.BtnUltimo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnUltimo.Location = new System.Drawing.Point(950, 135);
-            this.BtnUltimo.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnUltimo.Location = new System.Drawing.Point(712, 92);
             this.BtnUltimo.Name = "BtnUltimo";
-            this.BtnUltimo.Size = new System.Drawing.Size(102, 35);
+            this.BtnUltimo.Size = new System.Drawing.Size(76, 24);
             this.BtnUltimo.TabIndex = 449;
             this.BtnUltimo.Text = "Último";
             this.BtnUltimo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -719,10 +699,9 @@
             // 
             this.BtnPrimero.Image = global::Halley.Presentacion.Properties.Resources.previous_16x16;
             this.BtnPrimero.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnPrimero.Location = new System.Drawing.Point(680, 135);
-            this.BtnPrimero.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnPrimero.Location = new System.Drawing.Point(510, 92);
             this.BtnPrimero.Name = "BtnPrimero";
-            this.BtnPrimero.Size = new System.Drawing.Size(101, 35);
+            this.BtnPrimero.Size = new System.Drawing.Size(76, 24);
             this.BtnPrimero.TabIndex = 448;
             this.BtnPrimero.Text = "Primero";
             this.BtnPrimero.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -731,10 +710,9 @@
             // 
             // LblCantidad
             // 
-            this.LblCantidad.Location = new System.Drawing.Point(345, 143);
-            this.LblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCantidad.Location = new System.Drawing.Point(259, 98);
             this.LblCantidad.Name = "LblCantidad";
-            this.LblCantidad.Size = new System.Drawing.Size(182, 27);
+            this.LblCantidad.Size = new System.Drawing.Size(136, 18);
             this.LblCantidad.TabIndex = 447;
             this.LblCantidad.Text = "0 registros encontrados";
             this.LblCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -742,10 +720,9 @@
             // LblPagina
             // 
             this.LblPagina.AutoSize = true;
-            this.LblPagina.Location = new System.Drawing.Point(550, 143);
-            this.LblPagina.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblPagina.Location = new System.Drawing.Point(412, 98);
             this.LblPagina.Name = "LblPagina";
-            this.LblPagina.Size = new System.Drawing.Size(101, 19);
+            this.LblPagina.Size = new System.Drawing.Size(82, 13);
             this.LblPagina.TabIndex = 446;
             this.LblPagina.Text = "Página 1 de 10";
             // 
@@ -754,10 +731,11 @@
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.groupBox5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1108, 660);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Size = new System.Drawing.Size(829, 447);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Generar archivos";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -767,11 +745,9 @@
             this.groupBox2.Controls.Add(this.DtpFechaEnvioOSE);
             this.groupBox2.Controls.Add(this.BtnEnviarFacturaOSE);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(20, 372);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(15, 255);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(1030, 111);
+            this.groupBox2.Size = new System.Drawing.Size(772, 76);
             this.groupBox2.TabIndex = 433;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Enviar XML a OSE";
@@ -779,21 +755,19 @@
             // DtpFechaEnvioOSE
             // 
             this.DtpFechaEnvioOSE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaEnvioOSE.Location = new System.Drawing.Point(127, 41);
-            this.DtpFechaEnvioOSE.Margin = new System.Windows.Forms.Padding(4);
+            this.DtpFechaEnvioOSE.Location = new System.Drawing.Point(95, 28);
             this.DtpFechaEnvioOSE.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpFechaEnvioOSE.Name = "DtpFechaEnvioOSE";
-            this.DtpFechaEnvioOSE.Size = new System.Drawing.Size(107, 26);
+            this.DtpFechaEnvioOSE.Size = new System.Drawing.Size(81, 22);
             this.DtpFechaEnvioOSE.TabIndex = 421;
             // 
             // BtnEnviarFacturaOSE
             // 
             this.BtnEnviarFacturaOSE.Image = global::Halley.Presentacion.Properties.Resources.Aprobado_16x16;
             this.BtnEnviarFacturaOSE.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEnviarFacturaOSE.Location = new System.Drawing.Point(260, 30);
-            this.BtnEnviarFacturaOSE.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnEnviarFacturaOSE.Location = new System.Drawing.Point(195, 21);
             this.BtnEnviarFacturaOSE.Name = "BtnEnviarFacturaOSE";
-            this.BtnEnviarFacturaOSE.Size = new System.Drawing.Size(191, 52);
+            this.BtnEnviarFacturaOSE.Size = new System.Drawing.Size(143, 36);
             this.BtnEnviarFacturaOSE.TabIndex = 413;
             this.BtnEnviarFacturaOSE.Text = "Enviar documentos";
             this.BtnEnviarFacturaOSE.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -803,10 +777,9 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(26, 46);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(20, 31);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(84, 19);
+            this.label10.Size = new System.Drawing.Size(71, 13);
             this.label10.TabIndex = 415;
             this.label10.Text = "Fecha envio:";
             // 
@@ -819,11 +792,9 @@
             this.groupBox1.Controls.Add(this.TxtFechaBaja);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.BtnGenerarBajaBoletas);
-            this.groupBox1.Location = new System.Drawing.Point(20, 152);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(15, 104);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1030, 183);
+            this.groupBox1.Size = new System.Drawing.Size(772, 125);
             this.groupBox1.TabIndex = 432;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generar Resumen";
@@ -832,10 +803,9 @@
             // 
             this.BtnGenerarAltaBoletasContingencia.Image = global::Halley.Presentacion.Properties.Resources.Aprobado_16x16;
             this.BtnGenerarAltaBoletasContingencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGenerarAltaBoletasContingencia.Location = new System.Drawing.Point(235, 100);
-            this.BtnGenerarAltaBoletasContingencia.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerarAltaBoletasContingencia.Location = new System.Drawing.Point(176, 68);
             this.BtnGenerarAltaBoletasContingencia.Name = "BtnGenerarAltaBoletasContingencia";
-            this.BtnGenerarAltaBoletasContingencia.Size = new System.Drawing.Size(196, 48);
+            this.BtnGenerarAltaBoletasContingencia.Size = new System.Drawing.Size(147, 33);
             this.BtnGenerarAltaBoletasContingencia.TabIndex = 432;
             this.BtnGenerarAltaBoletasContingencia.Text = "Generar alta resumen diario boleta contingencia";
             this.BtnGenerarAltaBoletasContingencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -846,10 +816,9 @@
             // 
             this.BtnGenerarBajaBoletasContngencia.Image = global::Halley.Presentacion.Properties.Resources.Aprobado_16x16;
             this.BtnGenerarBajaBoletasContngencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGenerarBajaBoletasContngencia.Location = new System.Drawing.Point(439, 100);
-            this.BtnGenerarBajaBoletasContngencia.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerarBajaBoletasContngencia.Location = new System.Drawing.Point(329, 68);
             this.BtnGenerarBajaBoletasContngencia.Name = "BtnGenerarBajaBoletasContngencia";
-            this.BtnGenerarBajaBoletasContngencia.Size = new System.Drawing.Size(204, 48);
+            this.BtnGenerarBajaBoletasContngencia.Size = new System.Drawing.Size(153, 33);
             this.BtnGenerarBajaBoletasContngencia.TabIndex = 431;
             this.BtnGenerarBajaBoletasContngencia.Text = "Generar baja resumen diario boleta contingencia";
             this.BtnGenerarBajaBoletasContngencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -860,10 +829,9 @@
             // 
             this.BtnGenerarAltaBoletas.Image = global::Halley.Presentacion.Properties.Resources.Aprobado_16x16;
             this.BtnGenerarAltaBoletas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGenerarAltaBoletas.Location = new System.Drawing.Point(235, 26);
-            this.BtnGenerarAltaBoletas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerarAltaBoletas.Location = new System.Drawing.Point(176, 18);
             this.BtnGenerarAltaBoletas.Name = "BtnGenerarAltaBoletas";
-            this.BtnGenerarAltaBoletas.Size = new System.Drawing.Size(196, 48);
+            this.BtnGenerarAltaBoletas.Size = new System.Drawing.Size(147, 33);
             this.BtnGenerarAltaBoletas.TabIndex = 430;
             this.BtnGenerarAltaBoletas.Text = "Generar alta resumen diario boleta electrónica";
             this.BtnGenerarAltaBoletas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -873,29 +841,28 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(650, 26);
+            this.label9.Location = new System.Drawing.Point(488, 18);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(362, 76);
+            this.label9.Size = new System.Drawing.Size(306, 52);
             this.label9.TabIndex = 429;
             this.label9.Text = resources.GetString("label9.Text");
             // 
             // TxtFechaBaja
             // 
             this.TxtFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.TxtFechaBaja.Location = new System.Drawing.Point(120, 38);
-            this.TxtFechaBaja.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtFechaBaja.Location = new System.Drawing.Point(90, 26);
             this.TxtFechaBaja.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.TxtFechaBaja.Name = "TxtFechaBaja";
-            this.TxtFechaBaja.Size = new System.Drawing.Size(107, 26);
+            this.TxtFechaBaja.Size = new System.Drawing.Size(81, 22);
             this.TxtFechaBaja.TabIndex = 428;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 42);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(27, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 19);
+            this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 427;
             this.label2.Text = "Fecha baja:";
             // 
@@ -911,17 +878,16 @@
             this.c1cboCia.ColumnFooterHeight = 17;
             this.c1cboCia.ColumnHeaders = false;
             this.c1cboCia.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.c1cboCia.ContentHeight = 21;
+            this.c1cboCia.ContentHeight = 17;
             this.c1cboCia.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.c1cboCia.DisplayMember = "NomEmpresa";
             this.c1cboCia.EditorBackColor = System.Drawing.SystemColors.Window;
             this.c1cboCia.EditorFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.c1cboCia.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.c1cboCia.EditorHeight = 21;
+            this.c1cboCia.EditorHeight = 17;
             this.c1cboCia.Images.Add(((System.Drawing.Image)(resources.GetObject("c1cboCia.Images"))));
             this.c1cboCia.ItemHeight = 15;
-            this.c1cboCia.Location = new System.Drawing.Point(444, 16);
-            this.c1cboCia.Margin = new System.Windows.Forms.Padding(4);
+            this.c1cboCia.Location = new System.Drawing.Point(333, 11);
             this.c1cboCia.MatchEntryTimeout = ((long)(2000));
             this.c1cboCia.MaxDropDownItems = ((short)(10));
             this.c1cboCia.MaxLength = 32767;
@@ -930,7 +896,7 @@
             this.c1cboCia.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.c1cboCia.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.c1cboCia.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.c1cboCia.Size = new System.Drawing.Size(251, 27);
+            this.c1cboCia.Size = new System.Drawing.Size(358, 23);
             this.c1cboCia.TabIndex = 447;
             this.c1cboCia.ValueMember = "EmpresaID";
             this.c1cboCia.SelectedValueChanged += new System.EventHandler(this.c1cboCia_SelectedValueChanged);
@@ -940,24 +906,23 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(348, 16);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(261, 11);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(70, 19);
+            this.label14.Size = new System.Drawing.Size(54, 13);
             this.label14.TabIndex = 448;
             this.label14.Text = "Empresa:";
             // 
             // AdministrarFacturadorSunat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.c1cboCia);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "AdministrarFacturadorSunat";
-            this.Size = new System.Drawing.Size(1134, 782);
+            this.Size = new System.Drawing.Size(1124, 572);
             this.Load += new System.EventHandler(this.AdministrarFacturadorSunat_Load);
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.Controls.SetChildIndex(this.label5, 0);
@@ -1047,5 +1012,6 @@
         private C1.Win.C1Input.C1Button BtnGenerarAltaBoletasContingencia;
         private C1.Win.C1Input.C1Button BtnGenerarBajaBoletasContngencia;
         private C1.Win.C1Input.C1Button BtnEliminarGeneradas;
+        private C1.Win.C1Input.C1Button BtnValidez;
     }
 }

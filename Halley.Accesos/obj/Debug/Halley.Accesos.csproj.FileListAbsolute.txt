@@ -16,3 +16,12 @@ E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\bin\Debug\Halley.Configuracion.
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\obj\Debug\Halley.Accesos.csprojResolveAssemblyReference.cache
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\obj\Debug\Halley.Accesos.dll
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Accesos\obj\Debug\Halley.Accesos.pdb
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\bin\Debug\Halley.Accesos.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\bin\Debug\Halley.Accesos.pdb
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\bin\Debug\Halley.Configuracion.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\bin\Debug\Halley.Configuracion.pdb
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\obj\Debug\Halley.Accesos.csprojResolveAssemblyReference.cache
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\obj\Debug\Halley.Accesos.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Accesos\obj\Debug\Halley.Accesos.pdb

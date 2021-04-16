@@ -43,3 +43,7 @@ E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\bin\Debug\Halley.Entidad.dll
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\bin\Debug\Halley.Entidad.pdb
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\obj\Debug\Halley.Entidad.dll
 E:\erp\ERP_HALLEY-GRANJA_FACTURAE\Halley.Entidad\obj\Debug\Halley.Entidad.pdb
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.pdb
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.dll
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.pdb

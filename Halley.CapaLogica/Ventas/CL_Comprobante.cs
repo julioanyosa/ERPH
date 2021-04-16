@@ -450,7 +450,7 @@ namespace Halley.CapaLogica.Ventas
             objrespuesta.MensajeRespuesta = RespuestaSunat.MensajeRespuesta;
             objrespuesta.TramaZipCdr = RespuestaSunat.TramaZipCdr;
             objrespuesta.NroTicket = RespuestaSunat.NroTicket;
-            return objrespuesta; 
+            return objrespuesta;
         }
 
         public RespuestaComunConArchivo2 ConsultarTicketFE(string RutaWS, string usuario, string clave, string RucEmisor, string NroTicket,
@@ -467,7 +467,7 @@ namespace Halley.CapaLogica.Ventas
             objrespuesta.CodigoRespuesta = RespuestaSunat.CodigoRespuesta;
             objrespuesta.MensajeRespuesta = RespuestaSunat.MensajeRespuesta;
             objrespuesta.TramaZipCdr = RespuestaSunat.TramaZipCdr;
-            return objrespuesta; 
+            return objrespuesta;
         }
 
         public void ActualizarDesdeFacturadorSunat(string EmpresaID, string NumComprobante, int TipoComprobanteID, DateTime? fechaenvio,
@@ -497,6 +497,14 @@ namespace Halley.CapaLogica.Ventas
             return ObjCD_Comprobante.ObtenerEstadosSunat();
         }
 
+
+        public DataSet ConsultarValidez(string RUC, string ValidezId, string ValidezClave, string codComp, string numeroSerie, int numero, DateTime fechaEmision, decimal monto)
+        {
+            CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
+            return ObjCD_Comprobante.ConsultarValidez(RUC, ValidezId, ValidezClave, codComp, numeroSerie, numero, fechaEmision, monto);
+        }
+
+
         #region sqllyte
         public DataTable ObtenerFacturadorComprobantes(string EmpresaID)
         {
@@ -523,17 +531,17 @@ namespace Halley.CapaLogica.Ventas
             ObjCD_Comprobante.EliminarFacturadorComprobantes(nombrearchivo);
         }
 
-         public DataTable ActualizarTicketBaja(int id, string mensaje)
+        public DataTable ActualizarTicketBaja(int id, string mensaje)
         {
             CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
             return ObjCD_Comprobante.ActualizarTicketBaja(id, mensaje);
         }
 
-         public DataTable ObtenerComprobantesResumen(int id)
-         {
-             CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
-             return ObjCD_Comprobante.ObtenerComprobantesResumen(id);
-         }
+        public DataTable ObtenerComprobantesResumen(int id)
+        {
+            CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
+            return ObjCD_Comprobante.ObtenerComprobantesResumen(id);
+        }
         #endregion
     }
 }

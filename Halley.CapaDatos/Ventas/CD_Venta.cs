@@ -704,126 +704,123 @@ namespace Halley.CapaDatos.Ventas
             SqlClient.ExecuteNonQuery(SqlCommand);
         }
 
-         
-        public DataSet ObtenerDatosCliente(string RUC)
+        public DataSet ObtenerUrlSunat()
         {
+            DataSet ds = new DataSet();
+            SqlDatabase SqlClient = new SqlDatabase(connectionString);
+            DbCommand SqlCommand = SqlClient.GetStoredProcCommand("ventas.ObtenerUrlSunat");
+            ds = SqlClient.ExecuteDataSet(SqlCommand);
+            return ds;
+        }
+        public DataSet ObtenerDatosCliente(string RUC, string urldni, string urlsunat)
+        {
+        
             DataSet DS = new DataSet();
             try
             {
-                DataSet ds = new DataSet();
-                SqlDatabase SqlClient = new SqlDatabase(connectionString);
-                DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerDatosCliente");
-                SqlClient.AddInParameter(SqlCommand, "@RUC", SqlDbType.VarChar, RUC);
-                ds = SqlClient.ExecuteDataSet(SqlCommand);
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+                //System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)12288;
 
-                if (ds.Tables[0].Rows.Count == 0)
+                if (RUC.Length == 8)
                 {
-                    if (RUC.Length == 8)
+                    var url = urldni + RUC;
+                    var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
+
+                    using (var response = webrequest.GetResponse())
+                    using (var reader = new StreamReader(response.GetResponseStream()))
                     {
-                        var url = "https://www.sunat.gob.pe/ol-ti-itfisdenreg/itfisdenreg.htm?accion=obtenerDatosDni&numDocumento=" + RUC;
-                        var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
+                        var result = reader.ReadToEnd();
 
-                        using (var response = webrequest.GetResponse())
-                        using (var reader = new StreamReader(response.GetResponseStream()))
+                        dynamic data = JObject.Parse(result);
+
+                        if (data.lista != null)
                         {
-                            var result = reader.ReadToEnd();
 
-                            dynamic data = JObject.Parse(result);
+                            var json = JsonConvert.SerializeObject(data.lista);
+                            DataTable dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
 
-                            if (data.lista != null)
+
+
+                            dt.Columns.Add("FUENTE", typeof(string));
+                            dt.Rows[0]["FUENTE"] = "SUNAT";
+
+                            dt.Columns.Add("NroDocumento", typeof(string));
+                            dt.Columns.Add("DepartamentoId", typeof(int));
+                            dt.Columns.Add("ProvinciaId", typeof(int));
+                            dt.Columns.Add("DistritoId", typeof(int));
+                            dt.Columns.Add("ClienteID", typeof(int));
+
+                            dt.Rows[0]["NroDocumento"] = RUC;
+                            dt.Rows[0]["DepartamentoId"] = 25;
+                            dt.Rows[0]["ProvinciaId"] = 191;
+                            dt.Rows[0]["DistritoId"] = 1815;
+                            dt.Rows[0]["ClienteID"] = 0;
+
+                            DS.Tables.Add(dt);
+                        }
+
+
+                    }
+                }
+                else if (RUC.Length == 11)
+                {
+                    var url = urlsunat + RUC;
+                    var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
+
+                    using (var response = webrequest.GetResponse())
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        var result = reader.ReadToEnd();
+
+                        dynamic data = JObject.Parse(result);
+
+                        if (data.lista != null)
+                        {
+
+                            var json = JsonConvert.SerializeObject(data.lista);
+                            DataTable dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
+
+                            dt.Columns.Add("FUENTE", typeof(string));
+                            dt.Rows[0]["FUENTE"] = "SUNAT";
+
+                            DataTable dtTmp1 = new DataTable();
+                            SqlDatabase SqlClient1 = new SqlDatabase(connectionString);
+                            DbCommand SqlCommand1 = SqlClient1.GetStoredProcCommand("[VENTAS].[ObtenerUbigeo]");
+
+                            string ubigeo = dt.Rows[0]["iddepartamento"].ToString() + dt.Rows[0]["idprovincia"].ToString() + dt.Rows[0]["iddistrito"].ToString();
+                            SqlClient1.AddInParameter(SqlCommand1, "@ubigeo", SqlDbType.Char, ubigeo);
+                            dtTmp1.Load(SqlClient1.ExecuteReader(SqlCommand1));
+
+                            dt.Columns.Add("NroDocumento", typeof(string));
+                            dt.Columns.Add("DepartamentoId", typeof(int));
+                            dt.Columns.Add("ProvinciaId", typeof(int));
+                            dt.Columns.Add("DistritoId", typeof(int));
+                            dt.Columns.Add("ClienteID", typeof(int));
+
+
+                            dt.Rows[0]["NroDocumento"] = RUC;
+                            if (dtTmp1.Rows.Count > 0)
                             {
-
-                                var json = JsonConvert.SerializeObject(data.lista);
-                                DataTable dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
-
-
-                               
-                                dt.Columns.Add("FUENTE", typeof(string));
-                                dt.Rows[0]["FUENTE"] = "SUNAT";
-
-                                dt.Columns.Add("NroDocumento", typeof(string));
-                                dt.Columns.Add("DepartamentoId", typeof(int));
-                                dt.Columns.Add("ProvinciaId", typeof(int));
-                                dt.Columns.Add("DistritoId", typeof(int));
-                                dt.Columns.Add("ClienteID", typeof(int));
-
-                                dt.Rows[0]["NroDocumento"] = RUC;
+                                dt.Rows[0]["DepartamentoId"] = Convert.ToInt32(dtTmp1.Rows[0]["DepartamentoId"]);
+                                dt.Rows[0]["ProvinciaId"] = Convert.ToInt32(dtTmp1.Rows[0]["ProvinciaId"]);
+                                dt.Rows[0]["DistritoId"] = Convert.ToInt32(dtTmp1.Rows[0]["DistritoId"]);
+                            }
+                            else
+                            {
                                 dt.Rows[0]["DepartamentoId"] = 25;
                                 dt.Rows[0]["ProvinciaId"] = 191;
                                 dt.Rows[0]["DistritoId"] = 1815;
-                                dt.Rows[0]["ClienteID"] = 0;
-
-                                DS.Tables.Add(dt);
                             }
+                            dt.Rows[0]["ClienteID"] = 0;
 
-
+                            DS.Tables.Add(dt);
                         }
+
                     }
-                    else if (RUC.Length == 11)
-                    {
-                        var url = "https://www.sunat.gob.pe/ol-ti-itfisdenreg/itfisdenreg.htm?accion=obtenerDatosRuc&nroRuc=" + RUC;
-                        var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
-
-                        using (var response = webrequest.GetResponse())
-                        using (var reader = new StreamReader(response.GetResponseStream()))
-                        {
-                            var result = reader.ReadToEnd();
-
-                            dynamic data = JObject.Parse(result);
-
-                            if (data.lista != null)
-                            {
-
-                                var json = JsonConvert.SerializeObject(data.lista);
-                                DataTable dt = (DataTable)JsonConvert.DeserializeObject(json, (typeof(DataTable)));
-
-                                dt.Columns.Add("FUENTE", typeof(string));
-                                dt.Rows[0]["FUENTE"] = "SUNAT";
-
-                                DataTable dtTmp1 = new DataTable();
-                                SqlDatabase SqlClient1 = new SqlDatabase(connectionString);
-                                DbCommand SqlCommand1 = SqlClient1.GetStoredProcCommand("[VENTAS].[ObtenerUbigeo]");
-
-                                string ubigeo = dt.Rows[0]["iddepartamento"].ToString() + dt.Rows[0]["idprovincia"].ToString() + dt.Rows[0]["iddistrito"].ToString();
-                                SqlClient1.AddInParameter(SqlCommand1, "@ubigeo", SqlDbType.Char, ubigeo);
-                                dtTmp1.Load(SqlClient1.ExecuteReader(SqlCommand1));
-
-                                dt.Columns.Add("NroDocumento", typeof(string));
-                                dt.Columns.Add("DepartamentoId", typeof(int));
-                                dt.Columns.Add("ProvinciaId", typeof(int));
-                                dt.Columns.Add("DistritoId", typeof(int));
-                                dt.Columns.Add("ClienteID", typeof(int));
-
-
-                                dt.Rows[0]["NroDocumento"] = RUC;
-                                if (dtTmp1.Rows.Count > 0)
-                                {
-                                    dt.Rows[0]["DepartamentoId"] = Convert.ToInt32(dtTmp1.Rows[0]["DepartamentoId"]);
-                                    dt.Rows[0]["ProvinciaId"] = Convert.ToInt32(dtTmp1.Rows[0]["ProvinciaId"]);
-                                    dt.Rows[0]["DistritoId"] = Convert.ToInt32(dtTmp1.Rows[0]["DistritoId"]);
-                                }
-                                else
-                                {
-                                    dt.Rows[0]["DepartamentoId"] = 25;
-                                    dt.Rows[0]["ProvinciaId"] = 191;
-                                    dt.Rows[0]["DistritoId"] = 1815;
-                                }
-                                dt.Rows[0]["ClienteID"] = 0;
-
-                                DS.Tables.Add(dt);
-                            }
-
-                        }
-                    } 
-                }
-                else
-                {
-                    DS = ds;
                 }
 
-                if (DS.Tables.Count == 0)
-                    DS = ds;
-
+               
                 return DS;
 
             }
@@ -834,6 +831,7 @@ namespace Halley.CapaDatos.Ventas
                 DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerDatosCliente");
                 SqlClient.AddInParameter(SqlCommand, "@RUC", SqlDbType.VarChar, RUC);
                 ds = SqlClient.ExecuteDataSet(SqlCommand);
+
 
 
                 return ds;
@@ -891,5 +889,7 @@ namespace Halley.CapaDatos.Ventas
             dsPedido.Load(SqlClient.ExecuteReader(SqlCommand), LoadOption.PreserveChanges, "Comprobante", "DetalleComprobante");
             return dsPedido;
         }
+
+
     }
 }

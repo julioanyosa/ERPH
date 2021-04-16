@@ -75,7 +75,7 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                 if (CboAnno.SelectedIndex != -1 & CboPeriodo.SelectedIndex != -1 & CboTipoComprobante.SelectedIndex != -1)
                 {
                     FecInicial = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1);
-                    FecFinal = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1).AddMonths(1);
+                    FecFinal = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1).AddMonths(1).AddDays(-1);
 
                     DsConsolidado = ObjCL_Venta.GetConsolidadoDeVentas(FecInicial, FecFinal, Convert.ToInt16(CboTipoComprobante.SelectedValue), c1cboCia.SelectedValue.ToString());
                     DataTable Dt = new DataTable("Logo");

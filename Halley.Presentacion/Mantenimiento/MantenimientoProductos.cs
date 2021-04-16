@@ -33,7 +33,7 @@ namespace Halley.Presentacion.Mantenimiento
 
         private void Productos_Load(object sender, EventArgs e)
         {
-            
+
             Ds = ObjCL_Producto.GetCaracteristicasProducto();
             CboGenerico.HoldFields();
             CboGenerico.DataSource = Ds.Tables["Generico"];
@@ -101,7 +101,7 @@ namespace Halley.Presentacion.Mantenimiento
         private void c1cboCia_SelectedValueChanged(object sender, EventArgs e)
         {
             DataTable DtAlmacenUsuario = new DataTable();
-            if(c1cboCia.SelectedValue != null && CboSede.SelectedValue!=null)
+            if (c1cboCia.SelectedValue != null && CboSede.SelectedValue != null)
             {
                 //todos los almacenes
                 DtAlmacenUsuario = new CL_Almacen().ObtenerAlmacen2(c1cboCia.SelectedValue.ToString(), CboSede.SelectedValue.ToString());
@@ -159,7 +159,7 @@ namespace Halley.Presentacion.Mantenimiento
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void BtnUnidadMedida_Click(object sender, EventArgs e)
@@ -229,7 +229,7 @@ namespace Halley.Presentacion.Mantenimiento
             {
                 ErrProvider.Clear();
                 OcultarBotones(true, true, false, false, false, false);
-                validarControles();
+                //validarControles();
 
                 if (validarControles() == false)
                 {
@@ -268,7 +268,7 @@ namespace Halley.Presentacion.Mantenimiento
                 else if (TipoGuardar == "Actualizar")
                 {
                     ObjCL_Producto.UpdateProducto(ObjProducto, "A", PIDVentas);
-                    
+
                     //actualizar tabla
                     if (DtProductosBuscados.Rows.Count > 0)
                     {
@@ -289,7 +289,7 @@ namespace Halley.Presentacion.Mantenimiento
                         customerRow[0]["Balanza"] = ObjProducto.Balanza;
                         customerRow[0]["IDExistencia"] = ObjProducto.IDExistencia;
                         customerRow[0]["CoeficienteTransformacion"] = ObjProducto.CoeficienteTransformacion;
-                        if(ObjProducto.ProductoIDPrincipal == "SI")
+                        if (ObjProducto.ProductoIDPrincipal == "SI")
                             customerRow[0]["ProductoIDPrincipal"] = ObjProducto.ProductoID;
                         else
                             customerRow[0]["ProductoIDPrincipal"] = "";
@@ -316,7 +316,7 @@ namespace Halley.Presentacion.Mantenimiento
                 if (MessageBox.Show("¿Está seguro que desea eliminar el Producto?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     ObtenerDatosControles();
-                    ObjCL_Producto.UpdateProducto(ObjProducto, "E",TxtProductoIDVentas.Text);
+                    ObjCL_Producto.UpdateProducto(ObjProducto, "E", TxtProductoIDVentas.Text);
                     lblEstado.Text = "Se eliminó el Producto:  " + TxtAlias.Text + ".";
                     lblEstado.ForeColor = Color.Red;
                 }
@@ -377,11 +377,19 @@ namespace Halley.Presentacion.Mantenimiento
             if (CboTipoExistencia.SelectedIndex == -1) { ErrProvider.SetError(CboTipoExistencia, "Debe Seleccionar el tipo de existencia del producto."); return false; }
             if (txtCoeficienteTransformacion.Text == "") { ErrProvider.SetError(txtCoeficienteTransformacion, "Debe ingresar un número valido."); return false; }
             if (TxtPesoBatch.Text == "" & ChkFormulado.Checked) { ErrProvider.SetError(TxtPesoBatch, "Debe ingresar un número valido en caso de ser producto formulado."); return false; }
-            if (TxtPesoBatch.Text != "" & ChkFormulado.Checked & Convert.ToDecimal(TxtPesoBatch.Text) == 0) { ErrProvider.SetError(TxtPesoBatch, "Debe ingresar un número mayor a cero."); return false; }
+            if (TxtPesoBatch.Text != "" && ChkFormulado.Checked)
+            {
+                if (Convert.ToDecimal(TxtPesoBatch.Text) == 0)
+                {
+                    ErrProvider.SetError(TxtPesoBatch, "Debe ingresar un número mayor a cero.");
+                    return false;
+                }
+
+            }
             return true;
         }
 
-         
+
 
         private void ObtenerDatosControles()
         {
@@ -399,7 +407,7 @@ namespace Halley.Presentacion.Mantenimiento
             ObjProducto.DespachoPeso = ChkDespachoPeso.Checked;
             ObjProducto.Peso = Convert.ToDecimal(TxtPeso.Text);
             //este es un valor temporal, no se quedara con ese valor
-            if(ChkPrincipal.Checked == true)
+            if (ChkPrincipal.Checked == true)
                 ObjProducto.ProductoIDPrincipal = "SI";
             else
                 ObjProducto.ProductoIDPrincipal = "NO";
@@ -407,7 +415,9 @@ namespace Halley.Presentacion.Mantenimiento
             ObjProducto.IDExistencia = Convert.ToInt16(CboTipoExistencia.SelectedValue);
             ObjProducto.UsuarioID = AppSettings.UserID;
             ObjProducto.CoeficienteTransformacion = Convert.ToDecimal(txtCoeficienteTransformacion.Text);
-            ObjProducto.PesoBatch = Convert.ToDecimal(TxtPesoBatch.Text);
+
+            if (TxtPesoBatch.Text != "")
+                ObjProducto.PesoBatch = Convert.ToDecimal(TxtPesoBatch.Text);
         }
 
         private void LimpiarTextos()
@@ -449,7 +459,7 @@ namespace Halley.Presentacion.Mantenimiento
 
         private void CboGenerico_SelectedValueChanged(object sender, EventArgs e)
         {
-            if(CboGenerico.SelectedIndex != -1)
+            if (CboGenerico.SelectedIndex != -1)
                 TxtNomProducto.Text = CboGenerico.Columns["NomGenerico"].Value.ToString();
             else
                 TxtNomProducto.Text = "";
@@ -495,7 +505,7 @@ namespace Halley.Presentacion.Mantenimiento
                 Int32 FilasAfectadas = 0;
                 CL_Almacen ObjCL_Almacen = new CL_Almacen();
                 FilasAfectadas = ObjCL_Almacen.UpdateStockAlmacen(CboAlmacen.SelectedValue.ToString(), CboProducto.SelectedValue.ToString(), Convert.ToDecimal(TxtCantidad.Text), Convert.ToDecimal(TxtStockDisponible.Text), Convert.ToDecimal(TxtStockMinimo.Text), Convert.ToDecimal(TxtStockMaximo.Text), AppSettings.UserID);
-                if(FilasAfectadas ==1)
+                if (FilasAfectadas == 1)
                     MessageBox.Show("se grabo correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (FilasAfectadas == 0)//no actualizo nada
                     MessageBox.Show("No se actulizo ningun Producto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -568,7 +578,7 @@ namespace Halley.Presentacion.Mantenimiento
 
                 txtCoeficienteTransformacion.Text = tdgProductosBuscados.Columns["CoeficienteTransformacion"].Value.ToString();
                 TxtPesoBatch.Text = tdgProductosBuscados.Columns["PesoBatch"].Value.ToString();
-                
+
                 OcultarBotones(true, true, false, true, false, true);
             }
             ReadOnly(true);
@@ -585,7 +595,7 @@ namespace Halley.Presentacion.Mantenimiento
             ObjTextFunctions.ValidaNumero(sender, e, TxtPesoBatch);
         }
 
-       
+
 
     }
 }

@@ -11,6 +11,9 @@ using Halley.Entidad.Ventas;
 using Halley.Utilitario;
 using System.IO;
 using System.Data.SQLite;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Halley.CapaDatos.Ventas
 {
@@ -616,7 +619,7 @@ namespace Halley.CapaDatos.Ventas
             SQLiteConnection connection;
 
             String SQLSelect = "SELECT TIP_DOCU, NOM_ARCH FROM DOCUMENTO WHERE TIP_DOCU IN('01','03') AND IND_SITU = '02'";
-           
+
             connection = new SQLiteConnection(connectionString, true);
 
             // Abrimos la conexión
@@ -959,6 +962,213 @@ namespace Halley.CapaDatos.Ventas
                 dtTmp.Load(SqlClient.ExecuteReader(SqlCommand));
 
                 return dtTmp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        public DataSet ConsultarValidez(string RUC, string ValidezId, string ValidezClave, string codComp, string numeroSerie, int numero, DateTime fechaEmision, decimal monto)
+        {
+            DataSet DS = new DataSet();
+            try
+            {
+
+                //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+
+                //obtener el token
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+                var url = "https://api-seguridad.sunat.gob.pe/v1/clientesextranet/" + ValidezId + "/oauth2/token/?";
+                var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
+
+                string postData = "grant_type=client_credentials&scope=https://api.sunat.gob.pe/v1/contribuyente/contribuyentes&client_id=" + ValidezId + "&client_secret=" + ValidezClave;
+                webrequest.ContentType = "application/x-www-form-urlencoded";
+                byte[] data = Encoding.ASCII.GetBytes(postData);
+                webrequest.ContentLength = postData.Length;
+                webrequest.Method = "POST";
+
+                Stream requestStream = webrequest.GetRequestStream();
+                requestStream.Write(data, 0, data.Length);
+                requestStream.Close();
+
+                HttpWebResponse myHttpWebResponse = (HttpWebResponse)webrequest.GetResponse();
+
+                Stream responseStream = myHttpWebResponse.GetResponseStream();
+
+                StreamReader myStreamReader = new StreamReader(responseStream, Encoding.Default);
+
+                string pageContent = myStreamReader.ReadToEnd();
+
+                myStreamReader.Close();
+                responseStream.Close();
+
+                myHttpWebResponse.Close();
+
+                dynamic dataj = JObject.Parse(pageContent);
+                //var json = JsonConvert.SerializeObject(dataj);
+                string access_token = dataj.access_token;
+
+
+
+                //obtener la validez
+
+                var url2 = "https://api.sunat.gob.pe/v1/contribuyente/contribuyentes/" + RUC + "/validarcomprobante";
+                var webrequest2 = (HttpWebRequest)System.Net.WebRequest.Create(url2);
+                webrequest2.Headers.Add("Authorization", "Bearer " + access_token);
+
+                webrequest2.ContentType = "application/json";
+                webrequest2.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(webrequest2.GetRequestStream()))
+                {
+                    dynamic objReqParams = new System.Dynamic.ExpandoObject();
+                    objReqParams.numRuc = RUC;
+                    objReqParams.codComp = codComp;
+                    objReqParams.numeroSerie = numeroSerie;
+                    objReqParams.numero = numero.ToString();
+                    objReqParams.fechaEmision = fechaEmision.ToString("dd/MM/yyyy");
+                    objReqParams.monto = monto.ToString();
+
+                    string requestBody = Newtonsoft.Json.JsonConvert.SerializeObject(objReqParams);
+                    streamWriter.Write(requestBody);
+                }
+
+                DataTable dtrespuesta = new DataTable();
+                dtrespuesta.Columns.Add("respuesta", typeof(bool));
+
+                var httpResponse = (HttpWebResponse)webrequest2.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    dynamic dynResult = JObject.Parse(result);
+                    if (Convert.ToBoolean(dynResult.success))
+                    {
+                        DataRow DRRES = dtrespuesta.NewRow();
+                        DRRES["respuesta"] = true;
+                        dtrespuesta.Rows.Add(DRRES);
+
+                        var datar = dynResult.data;
+                        string estadoCp = datar.estadoCp;
+                        string estadoRuc = datar.estadoRuc;
+                        string condDomiRuc = datar.condDomiRuc;
+                       
+
+                        string estadoCpRes = "DESCONOCIDO";
+                        switch (estadoCp)
+                        {
+                            case "0":
+                                estadoCpRes = "NO EXISTE: Comprobante no informado";
+                                break;
+                            case "1":
+                                estadoCpRes = "ACEPTADO: Comprobante aceptado";
+                                break;
+                            case "2":
+                                estadoCpRes = "ANULADO: Comunicado en una baja";
+                                break;
+                            case "3":
+                                estadoCpRes = "AUTORIZADO: con autorización de imprenta";
+                                break;
+                            case "4":
+                                estadoCpRes = "NO AUTORIZADO: no autorizado por imprenta";
+                                break;
+                            default:
+                                break;
+                        }
+
+                        string estadoRucRes = "DESCONOCIDO";
+                        switch (estadoRuc)
+                        {
+                            case "00":
+                                estadoRucRes = "ACTIVO";
+                                break;
+                            case "01":
+                                estadoRucRes = "BAJA PROVISIONAL";
+                                break;
+                            case "02":
+                                estadoRucRes = "BAJA PROV. POR OFICIO";
+                                break;
+                            case "03":
+                                estadoRucRes = "SUSPENSION TEMPORAL";
+                                break;
+                            case "10":
+                                estadoRucRes = "BAJA DEFINITIVA";
+                                break;
+                            case "11":
+                                estadoRucRes = "BAJA DE OFICIO";
+                                break;
+                            case "22":
+                                estadoRucRes = "INHABILITADO-VENT.UNICA";
+                                break;
+                            default:
+                                break;
+                        }
+
+                        string condDomiRucRes = "DESCONOCIDO";
+                        switch (condDomiRuc)
+                        {
+                            case "00":
+                                condDomiRucRes = "HABIDO";
+                                break;
+                            case "09":
+                                condDomiRucRes = "PENDIENTE";
+                                break;
+                            case "11":
+                                condDomiRucRes = "POR VERIFICAR";
+                                break;
+                            case "12":
+                                condDomiRucRes = "NO HABIDO";
+                                break;
+                            case "20":
+                                condDomiRucRes = "NO HALLADO";
+                                break;
+                            default:
+                                break;
+                        }
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("estadoCp", typeof(string));
+                        dt.Columns.Add("estadoRuc", typeof(string));
+                        dt.Columns.Add("condDomiRuc", typeof(string));
+
+                        DataRow DRC = dt.NewRow();
+                        DRC["estadoCp"] = estadoCpRes;
+                        DRC["estadoRuc"] = estadoRucRes;
+                        DRC["condDomiRuc"] = condDomiRucRes;
+                        dt.Rows.Add(DRC);
+
+                        DataTable dtobs = new DataTable();
+                        dtobs.Columns.Add("observaciones", typeof(string));
+                        if (datar.observaciones != null)
+                        {
+                            foreach (string item in datar.observaciones)
+                            {
+                                DataRow DR = dtobs.NewRow();
+                                DR["observaciones"] = item;
+                                dtobs.Rows.Add(DR);
+                            }
+                        }
+
+                        DS.Tables.Add(dtrespuesta);
+                        DS.Tables.Add(dt);
+                        DS.Tables.Add(dtobs);
+                    }
+                    else
+                    {
+                        DataRow DRRES = dtrespuesta.NewRow();
+                        DRRES["respuesta"] = false;
+                        dtrespuesta.Rows.Add(DRRES);
+                        DS.Tables.Add(dtrespuesta);
+                    }
+
+                }
+
+
+                 
+                return DS;
+
             }
             catch (Exception ex)
             {

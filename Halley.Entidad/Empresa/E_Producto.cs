@@ -25,7 +25,7 @@ namespace Halley.Entidad.Empresa
         private int _IDExistencia;
         private decimal _CoeficienteTransformacion;
 
-        public decimal PesoBatch { get; set; }
+        public decimal? PesoBatch { get; set; }
 
         public string ProductoID
         {
