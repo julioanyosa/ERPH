@@ -98,6 +98,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.ChkSinRedondeo = new System.Windows.Forms.CheckBox();
             this.SttVentaManual = new C1.Win.C1SuperTooltip.C1SuperTooltip(this.components);
+            this.DtpHora = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.TxtVentaNeta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtIGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtValorVenta)).BeginInit();
@@ -214,14 +215,14 @@
             this.c1NELith.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.c1NELith.Calculator.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2007Black;
             this.c1NELith.DataType = typeof(int);
-            this.c1NELith.DisplayFormat.Inherit = ((C1.Win.C1Input.FormatInfoInheritFlags)(((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType | C1.Win.C1Input.FormatInfoInheritFlags.NullText)
-                        | C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull)
-                        | C1.Win.C1Input.FormatInfoInheritFlags.TrimStart)
-                        | C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd)));
-            this.c1NELith.EditFormat.Inherit = ((C1.Win.C1Input.FormatInfoInheritFlags)(((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType | C1.Win.C1Input.FormatInfoInheritFlags.NullText)
-                        | C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull)
-                        | C1.Win.C1Input.FormatInfoInheritFlags.TrimStart)
-                        | C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd)));
+            this.c1NELith.DisplayFormat.Inherit = ((C1.Win.C1Input.FormatInfoInheritFlags)(((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType | C1.Win.C1Input.FormatInfoInheritFlags.NullText) 
+            | C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) 
+            | C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) 
+            | C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd)));
+            this.c1NELith.EditFormat.Inherit = ((C1.Win.C1Input.FormatInfoInheritFlags)(((((C1.Win.C1Input.FormatInfoInheritFlags.FormatType | C1.Win.C1Input.FormatInfoInheritFlags.NullText) 
+            | C1.Win.C1Input.FormatInfoInheritFlags.EmptyAsNull) 
+            | C1.Win.C1Input.FormatInfoInheritFlags.TrimStart) 
+            | C1.Win.C1Input.FormatInfoInheritFlags.TrimEnd)));
             this.c1NELith.Location = new System.Drawing.Point(597, 102);
             this.c1NELith.Name = "c1NELith";
             this.c1NELith.Size = new System.Drawing.Size(77, 20);
@@ -254,7 +255,7 @@
             this.CboFormaPago});
             this.BarraVentas.Location = new System.Drawing.Point(226, 17);
             this.BarraVentas.Name = "BarraVentas";
-            this.BarraVentas.Size = new System.Drawing.Size(915, 25);
+            this.BarraVentas.Size = new System.Drawing.Size(914, 25);
             this.BarraVentas.TabIndex = 351;
             this.BarraVentas.Text = "TsImpresion";
             // 
@@ -330,7 +331,7 @@
             // Lbl4
             // 
             this.Lbl4.Name = "Lbl4";
-            this.Lbl4.Size = new System.Drawing.Size(64, 22);
+            this.Lbl4.Size = new System.Drawing.Size(63, 22);
             this.Lbl4.Text = "Tipo pago:";
             // 
             // CboTipoPago
@@ -564,7 +565,7 @@
             this.RbNormal.AutoSize = true;
             this.RbNormal.Location = new System.Drawing.Point(9, 20);
             this.RbNormal.Name = "RbNormal";
-            this.RbNormal.Size = new System.Drawing.Size(58, 17);
+            this.RbNormal.Size = new System.Drawing.Size(62, 17);
             this.RbNormal.TabIndex = 362;
             this.RbNormal.Text = "Normal";
             this.RbNormal.UseVisualStyleBackColor = true;
@@ -575,7 +576,7 @@
             this.RbReserva.AutoSize = true;
             this.RbReserva.Location = new System.Drawing.Point(9, 66);
             this.RbReserva.Name = "RbReserva";
-            this.RbReserva.Size = new System.Drawing.Size(65, 17);
+            this.RbReserva.Size = new System.Drawing.Size(64, 17);
             this.RbReserva.TabIndex = 363;
             this.RbReserva.Text = "Reserva";
             this.RbReserva.UseVisualStyleBackColor = true;
@@ -586,7 +587,7 @@
             this.RbDiferida.AutoSize = true;
             this.RbDiferida.Location = new System.Drawing.Point(9, 89);
             this.RbDiferida.Name = "RbDiferida";
-            this.RbDiferida.Size = new System.Drawing.Size(61, 17);
+            this.RbDiferida.Size = new System.Drawing.Size(67, 17);
             this.RbDiferida.TabIndex = 366;
             this.RbDiferida.Text = "Diferido";
             this.RbDiferida.UseVisualStyleBackColor = true;
@@ -597,7 +598,7 @@
             this.RbExterno.AutoSize = true;
             this.RbExterno.Location = new System.Drawing.Point(9, 43);
             this.RbExterno.Name = "RbExterno";
-            this.RbExterno.Size = new System.Drawing.Size(61, 17);
+            this.RbExterno.Size = new System.Drawing.Size(64, 17);
             this.RbExterno.TabIndex = 365;
             this.RbExterno.Text = "Externo";
             this.RbExterno.UseVisualStyleBackColor = true;
@@ -622,7 +623,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(841, 512);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 369;
             this.label1.Text = "Total:";
             // 
@@ -737,7 +738,7 @@
             this.LblB.AutoSize = true;
             this.LblB.Location = new System.Drawing.Point(164, 516);
             this.LblB.Name = "LblB";
-            this.LblB.Size = new System.Drawing.Size(46, 13);
+            this.LblB.Size = new System.Drawing.Size(45, 13);
             this.LblB.TabIndex = 402;
             this.LblB.Text = "Boleta :";
             // 
@@ -765,7 +766,7 @@
             this.LblVendedor.AutoSize = true;
             this.LblVendedor.Location = new System.Drawing.Point(670, 77);
             this.LblVendedor.Name = "LblVendedor";
-            this.LblVendedor.Size = new System.Drawing.Size(61, 13);
+            this.LblVendedor.Size = new System.Drawing.Size(60, 13);
             this.LblVendedor.TabIndex = 406;
             this.LblVendedor.Text = "Vendedor:";
             // 
@@ -797,7 +798,7 @@
             this.DtpFechaEmision.Location = new System.Drawing.Point(923, 186);
             this.DtpFechaEmision.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpFechaEmision.Name = "DtpFechaEmision";
-            this.DtpFechaEmision.Size = new System.Drawing.Size(81, 22);
+            this.DtpFechaEmision.Size = new System.Drawing.Size(107, 22);
             this.DtpFechaEmision.TabIndex = 425;
             // 
             // label3
@@ -878,10 +879,20 @@
             this.SttVentaManual.Images.Add(new C1.Win.C1SuperTooltip.ImageEntry("MantenimientoProducto_32x32.gif", ((System.Drawing.Image)(resources.GetObject("SttVentaManual.Images")))));
             this.SttVentaManual.IsBalloon = true;
             // 
+            // DtpHora
+            // 
+            this.DtpHora.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.DtpHora.Location = new System.Drawing.Point(1036, 186);
+            this.DtpHora.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.DtpHora.Name = "DtpHora";
+            this.DtpHora.Size = new System.Drawing.Size(87, 22);
+            this.DtpHora.TabIndex = 430;
+            // 
             // IngresoManualVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DtpHora);
             this.Controls.Add(this.ChkSinRedondeo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);
@@ -945,6 +956,7 @@
             this.Controls.SetChildIndex(this.label8, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.ChkSinRedondeo, 0);
+            this.Controls.SetChildIndex(this.DtpHora, 0);
             ((System.ComponentModel.ISupportInitialize)(this.TxtVentaNeta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtIGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtValorVenta)).EndInit();
@@ -1042,5 +1054,6 @@
         private System.Windows.Forms.CheckBox ChkSinRedondeo;
         private C1.Win.C1Input.C1Button BtnAgregar;
         private C1.Win.C1SuperTooltip.C1SuperTooltip SttVentaManual;
+        private System.Windows.Forms.DateTimePicker DtpHora;
     }
 }

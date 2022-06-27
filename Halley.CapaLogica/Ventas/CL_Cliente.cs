@@ -58,6 +58,16 @@ namespace Halley.CapaLogica.Ventas
             return ClienteID;
         }
 
+        public Int32 InsertClienteDesdeVenta(E_Cliente ObjCliente)
+        {
+            Int32 ClienteID = 0;
+            CD_Cliente objCD_Cliente = new CD_Cliente(AppSettings.GetConnectionString);
+            ClienteID = objCD_Cliente.InsertClienteDesdeVenta(ObjCliente);
+            return ClienteID;
+        }
+
+        
+
         public void UpdateCliente(E_Cliente ObjCliente, string Tipo)
         {
             CD_Cliente objCD_Cliente = new CD_Cliente(AppSettings.GetConnectionString);
@@ -81,12 +91,12 @@ namespace Halley.CapaLogica.Ventas
             return dtTMP;
         }
 
-        public DataTable GetComprobantesCliente(int ClienteID, DateTime FechaIni, DateTime FechaFin, int TipoVentaID)
+        public DataTable GetComprobantesCliente(int ClienteID, DateTime FechaIni, DateTime FechaFin, int TipoVentaID, int FormaPagoID)
         {
             CD_Cliente objCD_Cliente = new CD_Cliente(AppSettings.GetConnectionString);
             DataTable dtTMP = new DataTable();
 
-            dtTMP = objCD_Cliente.GetComprobantesCliente(ClienteID, FechaIni, FechaFin, TipoVentaID);
+            dtTMP = objCD_Cliente.GetComprobantesCliente(ClienteID, FechaIni, FechaFin, TipoVentaID, FormaPagoID);
             return dtTMP;
         }
     }

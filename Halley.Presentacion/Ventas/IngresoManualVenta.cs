@@ -358,7 +358,10 @@ namespace Halley.Presentacion.Ventas
                                 return;
                             }
 
-                            new CL_Comprobante().InsertComprobanteManual(NumComprobante, ObjComprobante, DtDetalleComprobanteInsert, 0, "D", DtValesConsumo, DtpFechaEmision.Value, DtBoucher);
+                            DateTime nuevo = new DateTime(DtpFechaEmision.Value.Year, DtpFechaEmision.Value.Month, DtpFechaEmision.Value.Day,
+                                DtpHora.Value.Hour, DtpHora.Value.Minute, DtpHora.Value.Second);
+
+                            new CL_Comprobante().InsertComprobanteManual(NumComprobante, ObjComprobante, DtDetalleComprobanteInsert, 0, "D", DtValesConsumo, nuevo, DtBoucher);
 
                                 
                             //MessageBox.Show("El comprobante se generó correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

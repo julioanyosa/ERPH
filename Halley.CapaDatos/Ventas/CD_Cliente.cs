@@ -131,6 +131,51 @@ namespace Halley.CapaDatos.Ventas
 
         }
 
+        public Int32 InsertClienteDesdeVenta(E_Cliente ObjCliente)
+        {
+            try
+            {
+                Int32 ClienteID = 0;
+                SqlDatabase SqlClient = new SqlDatabase(connectionString);
+                DbCommand SqlCommand = SqlClient.GetStoredProcCommand("ventas.Usp_InsertClienteDesdeVenta");
+                SqlClient.AddInParameter(SqlCommand, "@TipoClienteID", SqlDbType.Int, ObjCliente.TipoClienteID);
+                SqlClient.AddInParameter(SqlCommand, "@IDTipoDocumento", SqlDbType.Int, ObjCliente.IDTipoDocumento);
+                SqlClient.AddInParameter(SqlCommand, "@NroDocumento", SqlDbType.VarChar, ObjCliente.NroDocumento);
+                SqlClient.AddInParameter(SqlCommand, "@RazonSocial", SqlDbType.VarChar, ObjCliente.RazonSocial);
+                SqlClient.AddInParameter(SqlCommand, "@Alias", SqlDbType.VarChar, ObjCliente.Alias);
+                SqlClient.AddInParameter(SqlCommand, "@Contacto", SqlDbType.VarChar, ObjCliente.Contacto);
+                SqlClient.AddInParameter(SqlCommand, "@TelefonoFijo", SqlDbType.VarChar, ObjCliente.TelefonoFijo);
+                SqlClient.AddInParameter(SqlCommand, "@TelefonoMovil", SqlDbType.VarChar, ObjCliente.TelefonoMovil);
+                SqlClient.AddInParameter(SqlCommand, "@Fax", SqlDbType.VarChar, ObjCliente.Fax);
+                SqlClient.AddInParameter(SqlCommand, "@Email", SqlDbType.VarChar, ObjCliente.Email);
+                SqlClient.AddInParameter(SqlCommand, "@Direccion", SqlDbType.VarChar, ObjCliente.Direccion);
+                SqlClient.AddInParameter(SqlCommand, "@DistritoId", SqlDbType.Int, ObjCliente.DistritoId);
+                SqlClient.AddInParameter(SqlCommand, "@ProvinciaId", SqlDbType.Int, ObjCliente.ProvinciaId);
+                SqlClient.AddInParameter(SqlCommand, "@DepartamentoId", SqlDbType.Int, ObjCliente.DepartamentoId);
+                SqlClient.AddInParameter(SqlCommand, "@Nombre1", SqlDbType.VarChar, ObjCliente.Nombre1);
+                SqlClient.AddInParameter(SqlCommand, "@Nombre2", SqlDbType.VarChar, ObjCliente.Nombre2);
+                SqlClient.AddInParameter(SqlCommand, "@Apellido1", SqlDbType.VarChar, ObjCliente.Apellido1);
+                SqlClient.AddInParameter(SqlCommand, "@Apellido2", SqlDbType.VarChar, ObjCliente.Apellido2);
+                SqlClient.AddInParameter(SqlCommand, "@PaisId", SqlDbType.Int, ObjCliente.PaisId);
+                SqlClient.AddInParameter(SqlCommand, "@NombreVia", SqlDbType.VarChar, ObjCliente.NombreVia);
+                SqlClient.AddInParameter(SqlCommand, "@DireccionViaId", SqlDbType.Int, ObjCliente.DireccionViaId);
+                SqlClient.AddInParameter(SqlCommand, "@DireccionNumero", SqlDbType.VarChar, ObjCliente.DireccionNumero);
+                SqlClient.AddInParameter(SqlCommand, "@DireccionInterior", SqlDbType.VarChar, ObjCliente.DireccionInterior);
+                SqlClient.AddInParameter(SqlCommand, "@Observaciones", SqlDbType.VarChar, ObjCliente.Observaciones);
+                SqlClient.AddInParameter(SqlCommand, "@UsuarioID", SqlDbType.Int, ObjCliente.UsuarioID);
+
+                SqlCommand.CommandTimeout = 180;
+                ClienteID = Convert.ToInt32(SqlClient.ExecuteScalar(SqlCommand));
+                return ClienteID;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public void UpdateCliente(E_Cliente ObjCliente, string Tipo)
         {
 
@@ -194,7 +239,7 @@ namespace Halley.CapaDatos.Ventas
             return dtTmp;
         }
 
-        public DataTable GetComprobantesCliente(int ClienteID, DateTime FechaIni, DateTime FechaFin, int TipoVentaID)
+        public DataTable GetComprobantesCliente(int ClienteID, DateTime FechaIni, DateTime FechaFin, int TipoVentaID, int FormaPagoID)
         {
             DataTable dtTmp = new DataTable();
             SqlDatabase SqlClient = new SqlDatabase(connectionString);
@@ -203,6 +248,8 @@ namespace Halley.CapaDatos.Ventas
             SqlClient.AddInParameter(SqlCommand, "@FechaIni", SqlDbType.SmallDateTime, FechaIni);
             SqlClient.AddInParameter(SqlCommand, "@FechaFin", SqlDbType.SmallDateTime, FechaFin);
             SqlClient.AddInParameter(SqlCommand, "@TipoVentaID", SqlDbType.Int, TipoVentaID);
+            SqlClient.AddInParameter(SqlCommand, "@FormaPagoID", SqlDbType.Int, FormaPagoID);
+            
             dtTmp.Load(SqlClient.ExecuteReader(SqlCommand));
             return dtTmp;
         }

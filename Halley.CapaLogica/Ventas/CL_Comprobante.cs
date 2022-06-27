@@ -100,7 +100,7 @@ namespace Halley.CapaLogica.Ventas
         }
 
         public DataTable InsertComprobante(E_Comprobante ObjComprobante, DataTable dtComprobante,
-            int NumPedido, string Tipo, DataTable DTValesConsumo, DataTable DtBoucher, DataTable DtNotaIngreso)
+            int NumPedido, string Tipo, DataTable DTValesConsumo, DataTable DtBoucher, DataTable DtNotaIngreso, DataTable DtCuotas)
         {
             string xml, xmlDetalle;
             CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
@@ -109,7 +109,7 @@ namespace Halley.CapaLogica.Ventas
             xmlDetalle = xml.Replace("Table", "Comprobante");
 
 
-            DataTable DT = ObjCD_Comprobante.InsertComprobante(ObjComprobante, xmlDetalle, NumPedido, Tipo, DTValesConsumo, DtBoucher, DtNotaIngreso);
+            DataTable DT = ObjCD_Comprobante.InsertComprobante(ObjComprobante, xmlDetalle, NumPedido, Tipo, DTValesConsumo, DtBoucher, DtNotaIngreso, DtCuotas);
             string tipo = "";
             if (ObjComprobante.TipoComprobanteID == 5)
                 tipo = "01";
@@ -381,6 +381,13 @@ namespace Halley.CapaLogica.Ventas
             CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
             ObjCD_Comprobante.AnularComprobante(NumComprobante, TipoComprobanteID, UsuarioID, SedeIDE);
         }
+        public void GenerarNotaCredito(string NumComprobante, int TipoComprobanteID, string EmpresaID, int UsuarioID, string motivo)
+        {
+            CD_Comprobante ObjCD_Comprobante = new CD_Comprobante(AppSettings.GetConnectionString);
+            ObjCD_Comprobante.GenerarNotaCredito(NumComprobante, TipoComprobanteID, EmpresaID, UsuarioID, motivo);
+        }
+ 
+
 
         public void InsertSerieGuia(string EmpresaSede, int TipoDocumento, string Serie, Int32 Numero, int UsuarioID, string NroAutorizacion, string SerieEticketera)
         {

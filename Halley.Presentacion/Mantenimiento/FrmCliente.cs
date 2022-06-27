@@ -244,6 +244,7 @@ namespace Halley.Presentacion.Mantenimiento
                 TxtClienteID.Value = DtCliente.Rows[0]["ClienteID"];
                 TxtNroDocumento.Value = DtCliente.Rows[0]["NroDocumento"];
                 TxtRazonSocial.Value = DtCliente.Rows[0]["RazonSocial"];
+                TxtEmail.Value = DtCliente.Rows[0]["Email"];
                 TxtAlias.Value = DtCliente.Rows[0]["Alias"];
                 //TxtContacto.Value = DtCliente.Rows[0]["Contacto"];
                 //TxtTelefonoFijo.Value = DtCliente.Rows[0]["TelefonoFijo"];
@@ -331,6 +332,7 @@ namespace Halley.Presentacion.Mantenimiento
             TxtClienteID.Text = "";
             TxtNroDocumento.Text = "";
             TxtRazonSocial.Text = "";
+            TxtEmail.Text = "";
             TxtAlias.Text = "";
             //TxtContacto.Text = "";
             //TxtTelefonoFijo.Text = "";
@@ -362,6 +364,7 @@ namespace Halley.Presentacion.Mantenimiento
             TxtClienteID.ReadOnly = Valor;
             TxtNroDocumento.ReadOnly = Valor;
             TxtRazonSocial.ReadOnly = Valor;
+            TxtEmail.ReadOnly = Valor;
             TxtAlias.ReadOnly = Valor;
             //TxtContacto.ReadOnly = Valor;
             //TxtTelefonoFijo.ReadOnly = Valor;
@@ -426,6 +429,7 @@ namespace Halley.Presentacion.Mantenimiento
             ObjCliente.DireccionInterior = TxtDireccionInterior.Text;
             //ObjCliente.Observaciones = TxtObservacion.Text;
             ObjCliente.UsuarioID = AppSettings.UserID;
+            ObjCliente.Email = TxtEmail.Text;
         }
 
         private void TxtNroDocumento_KeyPress(object sender, KeyPressEventArgs e)

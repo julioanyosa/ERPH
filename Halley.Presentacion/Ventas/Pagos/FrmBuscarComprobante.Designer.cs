@@ -40,6 +40,7 @@
             this.CboTipoVenta = new C1.Win.C1List.C1Combo();
             this.label3 = new System.Windows.Forms.Label();
             this.ErrProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.TdgComprobantes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CboTipoVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrProvider)).BeginInit();
@@ -48,7 +49,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(146, 154);
+            this.label2.Location = new System.Drawing.Point(146, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(12, 13);
             this.label2.TabIndex = 362;
@@ -57,7 +58,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 156);
+            this.label1.Location = new System.Drawing.Point(14, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 361;
@@ -66,7 +67,7 @@
             // DtpFechaFin
             // 
             this.DtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaFin.Location = new System.Drawing.Point(162, 149);
+            this.DtpFechaFin.Location = new System.Drawing.Point(162, 150);
             this.DtpFechaFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpFechaFin.Name = "DtpFechaFin";
             this.DtpFechaFin.Size = new System.Drawing.Size(81, 22);
@@ -75,7 +76,7 @@
             // DtpFechaIni
             // 
             this.DtpFechaIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaIni.Location = new System.Drawing.Point(57, 149);
+            this.DtpFechaIni.Location = new System.Drawing.Point(57, 150);
             this.DtpFechaIni.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpFechaIni.Name = "DtpFechaIni";
             this.DtpFechaIni.Size = new System.Drawing.Size(81, 22);
@@ -85,7 +86,7 @@
             // 
             this.BtnMostrar.Image = global::Halley.Presentacion.Properties.Resources.Aceptar_16x16;
             this.BtnMostrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnMostrar.Location = new System.Drawing.Point(249, 149);
+            this.BtnMostrar.Location = new System.Drawing.Point(584, 150);
             this.BtnMostrar.Name = "BtnMostrar";
             this.BtnMostrar.Size = new System.Drawing.Size(82, 23);
             this.BtnMostrar.TabIndex = 358;
@@ -97,7 +98,7 @@
             // TdgComprobantes
             // 
             this.TdgComprobantes.AllowUpdate = false;
-            this.TdgComprobantes.Caption = "COMPROBANTES EN CONTRADOS CON ESTE CRITERIO";
+            this.TdgComprobantes.Caption = "COMPROBANTES ENCONTRADOS CON ESTE CRITERIO";
             this.TdgComprobantes.CaptionHeight = 17;
             this.TdgComprobantes.CausesValidation = false;
             this.TdgComprobantes.ColumnFooters = true;
@@ -106,15 +107,15 @@
             this.TdgComprobantes.ExtendRightColumn = true;
             this.TdgComprobantes.GroupByCaption = "Drag a column header here to group by that column";
             this.TdgComprobantes.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgComprobantes.Images"))));
-            this.TdgComprobantes.Location = new System.Drawing.Point(12, 187);
+            this.TdgComprobantes.Location = new System.Drawing.Point(12, 217);
             this.TdgComprobantes.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightRow;
             this.TdgComprobantes.Name = "TdgComprobantes";
             this.TdgComprobantes.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.TdgComprobantes.PreviewInfo.Size = new System.Drawing.Size(0, 0);
             this.TdgComprobantes.PreviewInfo.ZoomFactor = 75D;
-            this.TdgComprobantes.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("TdgPreciosBuscados.PrintInfo.PageSettings")));
+            this.TdgComprobantes.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("TdgComprobantes.PrintInfo.PageSettings")));
             this.TdgComprobantes.RowHeight = 18;
-            this.TdgComprobantes.Size = new System.Drawing.Size(554, 166);
+            this.TdgComprobantes.Size = new System.Drawing.Size(654, 166);
             this.TdgComprobantes.TabIndex = 421;
             this.TdgComprobantes.Text = "Productos Genéricos";
             this.TdgComprobantes.VisualStyle = C1.Win.C1TrueDBGrid.VisualStyle.Office2007Blue;
@@ -148,7 +149,7 @@
             this.CboTipoVenta.ExtendRightColumn = true;
             this.CboTipoVenta.Images.Add(((System.Drawing.Image)(resources.GetObject("CboTipoVenta.Images"))));
             this.CboTipoVenta.ItemHeight = 15;
-            this.CboTipoVenta.Location = new System.Drawing.Point(418, 147);
+            this.CboTipoVenta.Location = new System.Drawing.Point(330, 150);
             this.CboTipoVenta.MatchEntryTimeout = ((long)(2000));
             this.CboTipoVenta.MaxDropDownItems = ((short)(5));
             this.CboTipoVenta.MaxLength = 32767;
@@ -157,7 +158,7 @@
             this.CboTipoVenta.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.CboTipoVenta.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboTipoVenta.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboTipoVenta.Size = new System.Drawing.Size(148, 23);
+            this.CboTipoVenta.Size = new System.Drawing.Size(236, 23);
             this.CboTipoVenta.TabIndex = 422;
             this.CboTipoVenta.VisualStyle = C1.Win.C1List.VisualStyle.Office2007Blue;
             this.CboTipoVenta.PropBag = resources.GetString("CboTipoVenta.PropBag");
@@ -165,9 +166,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(349, 154);
+            this.label3.Location = new System.Drawing.Point(261, 155);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 423;
             this.label3.Text = "Tipo venta:";
             // 
@@ -175,11 +176,23 @@
             // 
             this.ErrProvider.ContainerControl = this;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label4.Location = new System.Drawing.Point(346, 197);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(308, 17);
+            this.label4.TabIndex = 424;
+            this.label4.Text = "Hacer doble clic sobre el comprobante a cobrar";
+            // 
             // FrmBuscarComprobante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 361);
+            this.ClientSize = new System.Drawing.Size(678, 395);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.CboTipoVenta);
             this.Controls.Add(this.TdgComprobantes);
@@ -216,5 +229,6 @@
         private C1.Win.C1List.C1Combo CboTipoVenta;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ErrorProvider ErrProvider;
+        private System.Windows.Forms.Label label4;
     }
 }

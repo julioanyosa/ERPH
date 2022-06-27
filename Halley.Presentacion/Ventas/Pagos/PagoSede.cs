@@ -284,11 +284,12 @@ namespace Halley.Presentacion.Ventas.Pagos
 
                             if (printDocument1.PrinterSettings.PrinterName != "")
                             {
-                                FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, LstCreditos.Columns["NomCampanha"].Value.ToString(), AppSettings.NomSede, RUC, AppSettings.Usuario, Convert.ToDecimal(TxtPagar.Text), NomCaja);
+                                FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, LstCreditos.Columns["NomCampanha"].Value.ToString(), AppSettings.NomSede, RUC,
+                                    AppSettings.Usuario, Convert.ToDecimal(TxtPagar.Text), NomCaja, TxtObservacion.Text);
                                 //MessageBox.Show(FormatoImpresion, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 Int32 NotaIngresoID = 0;
-                                NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, EstadoID);
+                                NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, EstadoID,0);
                                 MessageBox.Show("Se registro correctamente el pago", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 
                                 printDocument1.Print();

@@ -111,7 +111,7 @@ namespace Halley.Presentacion.Ventas
                     ObjE_NotaIngreso.Observacion = "Inicio dia";
                     ObjE_NotaIngreso.LugarPago = AppSettings.SedeID;
 
-                    NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, 12);
+                    NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, 12,0);
                     MessageBox.Show("Se registro correctamente El ingreso de caja", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -192,7 +192,7 @@ namespace Halley.Presentacion.Ventas
                     if (DV.Count > 0)
                     {
 
-                        NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, 12);
+                        NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, 12,0);
 
                         printDocument1.PrinterSettings.PrinterName = DV[0]["Data"].ToString();
                         printDocument1.Print();

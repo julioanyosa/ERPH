@@ -97,7 +97,7 @@ namespace Halley.Presentacion.Ventas
                     {
 
                 
-                        NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, 12);
+                        NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, 12,0);
 
                         printDocument1.PrinterSettings.PrinterName = DV[0]["Data"].ToString();
                         printDocument1.Print();

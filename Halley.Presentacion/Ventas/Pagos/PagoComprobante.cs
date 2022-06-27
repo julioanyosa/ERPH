@@ -66,9 +66,14 @@ namespace Halley.Presentacion.Ventas.Pagos
 
         DataTable Dtempresas = new DataTable();
         DataTable DtserieGuias = new DataTable();
+        DataTable DtCuotas = new DataTable();
 
         DataTable DtDatosSede;
         int hojaimpresa = 1;
+
+        int int_FormaPago = 0;
+
+
         #endregion
 
         #region constructor
@@ -121,8 +126,8 @@ namespace Halley.Presentacion.Ventas.Pagos
                         DtDatosSede = ObjCL_Venta.ObtenerDatosSucursal(EmpresaID, AppSettings.SedeID);
 
                         CboTipoComprobante.Enabled = true;
-                        cbTipoPago.Enabled = true;
                         cbFormaPago.Enabled = true;
+                        CboTipoPago.Enabled = true;
                         /*}*/
 
                         IGV = (int)dsPedido.Tables["Pedido"].Rows[0]["IGV"];
@@ -167,8 +172,8 @@ namespace Halley.Presentacion.Ventas.Pagos
                             CboTipoComprobante.SelectedValue = 3;
                         }
 
-                        cbTipoPago.SelectedValue = 2;
-                        cbFormaPago.SelectedValue = 1;
+                        cbFormaPago.SelectedValue = 2;
+                        CboTipoPago.SelectedValue = 1;
 
                         ValidarTipoFactura();
                     }
@@ -194,8 +199,8 @@ namespace Halley.Presentacion.Ventas.Pagos
             btnRegistrar.Enabled = false;
             #region varios
             CboTipoComprobante.SelectedValue = 3;
-            cbTipoPago.SelectedValue = 2;
-            cbFormaPago.SelectedValue = 1;
+            cbFormaPago.SelectedValue = 2;
+            CboTipoPago.SelectedValue = 1;
             #endregion
 
             //agregar empresa
@@ -378,37 +383,10 @@ namespace Halley.Presentacion.Ventas.Pagos
             Limpiar();
         }
 
-        private void cbTipoPago_SelectedValueChanged(object sender, EventArgs e)
-        {
-            DtCreditos = new DataTable();
-            if (cbTipoPago.SelectedValue != null)
-            {
-                if (cbTipoPago.SelectedValue.ToString() == "1")
-                {
-                    cbFormaPago.Text = "";
-                    cbFormaPago.Enabled = false;
-                    PnlCreditos.Visible = true;
-
-                    //traer créditos
-                    DtCreditos = ObjCL_Credito.GetCreditosCliente(ClienteID, "A");
-                    LstCreditos.HoldFields();
-                    LstCreditos.DataSource = DtCreditos;
-                }
-                else
-                {
-                    cbFormaPago.Visible = true;
-                    PnlCreditos.Visible = false;
-                    cbFormaPago.Text = "[Seleccionar]";
-                    cbFormaPago.Enabled = true;
-                }
-            }
-        }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-
             Generar();
-
         }
 
         #endregion
@@ -420,6 +398,9 @@ namespace Halley.Presentacion.Ventas.Pagos
             try
             {
 
+                int_FormaPago = Convert.ToInt32(cbFormaPago.SelectedValue);
+
+
                 if (Convert.ToInt16(CboTipoComprobante.SelectedValue) == 3)
                 {
                     if (ChkEsTicketFactura.Checked == true)
@@ -430,18 +411,34 @@ namespace Halley.Presentacion.Ventas.Pagos
                 else
                     TipoTicket = null;
 
-
-                if (IsNumeric(TxtMontoPagado.Text) == false || Convert.ToDecimal(TxtMontoPagado.Text) < TotalPagar)
+ 
+                //contado
+                if (int_FormaPago == 2)
                 {
-                    MessageBox.Show("Ingrese monto a pagar válido y que sea mayor o igual al monto a pagar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    TxtMontoPagado.Focus();
-                    return;
+                    if (IsNumeric(TxtMontoPagado.Text) == false || Convert.ToDecimal(TxtMontoPagado.Text) < TotalPagar)
+                    {
+                        MessageBox.Show("Ingrese monto a pagar válido y que sea mayor o igual al monto a pagar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TxtMontoPagado.Focus();
+                        return;
+                    }
                 }
+
                 if (ClienteID == 1 | ClienteID == 204 | ClienteID == 241 | ClienteID == 3032)
                     ConCliente = false;
                 else
                     ConCliente = true;
 
+
+                //CREDITO
+                if (int_FormaPago == 1)
+                {
+                    if (ClienteID == 1 | ClienteID == 204 | ClienteID == 241 | ClienteID == 3032)
+                    {
+                        MessageBox.Show("Si es venta al crédito, debe exigir datos que identifiquen al cliente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                
 
                 if (CboTipoComprobante.SelectedValue.ToString() == "2" & (ClienteID == 1 | ClienteID == 204 | ClienteID == 241 | ClienteID == 3032))
                 {
@@ -457,10 +454,10 @@ namespace Halley.Presentacion.Ventas.Pagos
                 if (CboTipoComprobante.SelectedValue == null) { errValidar.SetError(CboTipoComprobante, "Seleccione el Comprobante"); validarCheck = true; }
                 if (CboSerieGuia.SelectedValue == null) { errValidar.SetError(CboSerieGuia, "Seleccione la serie"); validarCheck = true; }
                 if (LblCaja.Text == "") { errValidar.SetError(LblCaja, "No esta amarrado a una caja"); validarCheck = true; }
-                if (cbTipoPago.SelectedValue == null) { errValidar.SetError(cbTipoPago, "Seleccione el tipo de pago"); validarCheck = true; }
-                else if (cbFormaPago.SelectedValue == null && cbTipoPago.SelectedValue.ToString() != "1")
+                if (cbFormaPago.SelectedValue == null) { errValidar.SetError(cbFormaPago, "Seleccione el tipo de pago"); validarCheck = true; }
+                else if (CboTipoPago.SelectedValue == null && cbFormaPago.SelectedValue.ToString() != "1")
                 {
-                    errValidar.SetError(cbFormaPago, "Seleccione la forma de pago");
+                    errValidar.SetError(CboTipoPago, "Seleccione la forma de pago");
                     validarCheck = true;
                 }
 
@@ -468,15 +465,15 @@ namespace Halley.Presentacion.Ventas.Pagos
                 else { validarCheck = false; }
 
 
-                if (cbTipoPago.SelectedValue.ToString().Equals("1"))
+                if (cbFormaPago.SelectedValue.ToString().Equals("1"))
                     estadoID = (int)Enums.Comprobante.Pendiente;
                 else
                     estadoID = (int)Enums.Comprobante.Pagado;
 
-                if (cbFormaPago.SelectedValue == null)
+                if (CboTipoPago.SelectedValue == null)
                     formaPago = null;
                 else
-                    formaPago = Convert.ToInt32(cbFormaPago.SelectedValue);
+                    formaPago = Convert.ToInt32(CboTipoPago.SelectedValue);
 
                 E_Comprobante ObjComprobante = new E_Comprobante();
                 E_Pago ObjPago = new E_Pago();
@@ -499,7 +496,7 @@ namespace Halley.Presentacion.Ventas.Pagos
                 ObjComprobante.ClienteID = ClienteID;
                 ObjComprobante.Direccion = lblDireccion.Text;
                 ObjComprobante.TipoVentaID = TipoVentaID;
-                ObjComprobante.TipoPagoId = Convert.ToInt32(cbTipoPago.SelectedValue);
+                ObjComprobante.TipoPagoId = int_FormaPago;
                 ObjComprobante.FormaPagoID = formaPago;
                 ObjComprobante.NumCaja = NumCaja;
                 ObjComprobante.IGV = IGV;
@@ -510,34 +507,67 @@ namespace Halley.Presentacion.Ventas.Pagos
                 ObjComprobante.Serie = CboSerieGuia.Text;
                 ObjComprobante.TipoTicket = TipoTicket;
 
-                if (cbTipoPago.SelectedValue.ToString() == "1")//es credito
-                {
-                    if (LstCreditos.SelectedIndex != -1)
-                    {
-                        ObjComprobante.CreditoID = Convert.ToInt32(LstCreditos.Columns["CreditoID"].Value);
-                        estadoID = 14;//comprobante pendiente de pago
 
-                        //validar que el credito disponible sea mayor o igual al monto de la compra
-                        if (Convert.ToDecimal(LstCreditos.Columns["CreditoDisponible"].Value) < (subTotal + TotalIGV))
-                        {
-                            MessageBox.Show("El total del comprobante no debe ser mayor al crédito disponible.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            Cursor = Cursors.Default;
-                            btnRegistrar.Enabled = true;
-                            return;
-                        }
-                    }
-                    else
+                //inicio dividir en cuotas (ventas al credito)-----------------------------------------------------------------
+                DtCuotas = new DataTable();
+                if (int_FormaPago == 1)
+                {
+                    FrmCuotas ObjFrmCuotas = new FrmCuotas();
+                    ObjFrmCuotas.dec_MontoCuota = Total;
+                    ObjFrmCuotas.ShowDialog();
+                    DtCuotas = ObjFrmCuotas.dtcuota;
+                    if (!ObjFrmCuotas.paso)
                     {
-                        MessageBox.Show("Para la opción 'Venta Credito' el cliente debe tener un crédito y este crédito debe estar seleccionado en la lista 'Crédito'", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        btnRegistrar.Enabled = true;
-                        Cursor = Cursors.Default;
                         return;
                     }
+
+                    DataView DVA = new DataView(DtCuotas, "int_NroCuota = 0 and dec_MontoCuota > 0", "", DataViewRowState.CurrentRows);
+                    if (DVA.Count > 0)
+                        TxtMontoPagado.Text = DVA[0]["dec_MontoCuota"].ToString();
+                    else
+                        TxtMontoPagado.Text = "0";
                 }
-                else if (cbTipoPago.SelectedValue.ToString() == "2")//es contado
+                //fin dividir en cuotas -----------------------------------------------------------------
+
+
+
+                if (int_FormaPago == 1)//es credito
+                {
+                    ObjComprobante.CreditoID = 0;
+                    //si hay un pago el estado sería ""
+                    DataView DVC = new DataView(DtCuotas, "int_NroCuota=0 and dec_MontoCuota > 0", "", DataViewRowState.CurrentRows);
+                    if (DVC.Count > 0)
+                        estadoID = 13;//PAGO PARCIAL                     
+                    else
+                        estadoID = 14;//PENDIENTE DE PAGO
+
+                    //if (LstCreditos.SelectedIndex != -1)
+                    //{
+                    //    ObjComprobante.CreditoID = Convert.ToInt32(LstCreditos.Columns["CreditoID"].Value);
+                    //    estadoID = 14;//comprobante pendiente de pago
+
+                    //validar que el credito disponible sea mayor o igual al monto de la compra
+                    //if (Convert.ToDecimal(LstCreditos.Columns["CreditoDisponible"].Value) < (subTotal + TotalIGV))
+                    //{
+                    //    MessageBox.Show("El total del comprobante no debe ser mayor al crédito disponible.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //    Cursor = Cursors.Default;
+                    //    btnRegistrar.Enabled = true;
+                    //    return;
+                    //}
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Para la opción 'Venta Credito' el cliente debe tener un crédito y este crédito debe estar seleccionado en la lista 'Crédito'", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //    btnRegistrar.Enabled = true;
+                    //    Cursor = Cursors.Default;
+                    //    return;
+                    //}
+                }
+                else if (int_FormaPago == 2)//es contado
                 {
                     estadoID = 12;//comprobante pagado
                 }
+
                 decimal descuento = 0;
                 DataView DVDESCUENTO = new DataView(dsPedido.Tables["detallePedido"], "ProductoID = '00267000102.7'", "", DataViewRowState.CurrentRows);
                 if (DVDESCUENTO.Count > 0)
@@ -553,8 +583,8 @@ namespace Halley.Presentacion.Ventas.Pagos
                 ObjComprobante.MontoPagado = TotalPagar;
                 ObjComprobante.Descuento = descuento;
                 ObjComprobante.MontoTotal = Total;
-                
-                       
+
+
 
                 //validar impresora
                 string EMPRESA_ID = EmpresaID;
@@ -597,9 +627,11 @@ namespace Halley.Presentacion.Ventas.Pagos
                 }
                 else
                 {
+
+
                     DataTable dt = new DataTable();
 
-                    dt = new CL_Comprobante().InsertComprobante(ObjComprobante, dsPedido.Tables["detallePedido"], NumPedido, "D", DtValesConsumo, DtBoucher, DtNotaIngreso);
+                    dt = new CL_Comprobante().InsertComprobante(ObjComprobante, dsPedido.Tables["detallePedido"], NumPedido, "D", DtValesConsumo, DtBoucher, DtNotaIngreso, DtCuotas);
                     if (dt.Rows[0]["respuesta"].ToString() != "OK")
                         MessageBox.Show(dt.Rows[0]["respuesta"].ToString(), "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -687,20 +719,21 @@ namespace Halley.Presentacion.Ventas.Pagos
             lblTotPagar.Text = "0";
 
             CboTipoComprobante.SelectedValue = 3;
-            cbTipoPago.SelectedValue = 2;
-            cbFormaPago.SelectedValue = 1;
+            cbFormaPago.SelectedValue = 2;
+            CboTipoPago.SelectedValue = 1;
             DescontarporValesConsumo = 0;
             DtValesConsumo.Rows.Clear();// limpiar los vales
             DtNotaIngreso.Rows.Clear();//limpia los adelantos
             DtBoucher.Rows.Clear();// limpiar los vales
+            DataTable DtCuotas = new DataTable();
         }
 
         private void Cargar()
         {
             DtTipoComprobante = new CL_Comprobante().getTipoComprobante();
             c1Combo.FillC1Combo1(CboTipoComprobante, DtTipoComprobante, "NomTipoComprobante", "TipoComprobanteID");
-            c1Combo.FillC1Combo1(cbTipoPago, new CL_Comprobante().getTipoPago(), "NomTipoPago", "TipoPagoID");
-            c1Combo.FillC1Combo1(cbFormaPago, new CL_Comprobante().getFormaPago(), "NomFormaPago", "FormaPagoID");
+            c1Combo.FillC1Combo1(cbFormaPago, new CL_Comprobante().getTipoPago(), "NomTipoPago", "TipoPagoID");
+            c1Combo.FillC1Combo1(CboTipoPago, new CL_Comprobante().getFormaPago(), "NomFormaPago", "FormaPagoID");
 
             #region optener Nro IP
             String NombreHost;
@@ -741,7 +774,7 @@ namespace Halley.Presentacion.Ventas.Pagos
             }
 
             dtSerie = ObjComprobante.GetSerieGuiasT(AppSettings.SedeID);//las series
-            cbTipoPago.SelectedIndex = 1;
+            cbFormaPago.SelectedIndex = 1;
 
             //traer servicios otros
             DtServicios = ObjCL_Venta.GetServicios();
@@ -862,13 +895,13 @@ namespace Halley.Presentacion.Ventas.Pagos
                 {
                     if (Convert.ToInt16(CboTipoComprobante.SelectedValue) == 4)//es boleta
                     {
-//                        Formatoticketanterior = ObjCL_Venta.FormatoTicketFEAnterior(NomEmpresa, AppSettings.NomSede, NumComprobante.Substring(2),
-//"BOLETA ELECTRONICA: ", dsPedido.Tables["detallePedido"], RUC, AppSettings.Usuario, TotalPagar, NomCaja, SerieEticketera,
-//NroAutorizacion, TotalPagarLetras, dsPedido.Tables["Pedido"].Rows[0]["RazonSocial"].ToString(),
-//dsPedido.Tables["Pedido"].Rows[0]["NroDocumento"].ToString(), dsPedido.Tables["Pedido"].Rows[0]["Direccion"].ToString(),
-//"", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), TotalIGV, "B", Total, montoimpuestobolsa);
-//                        e.Graphics.DrawString(Formatoticketanterior, TxtFormatoticketera.Font, Brushes.Black, 0, 0); //total pagar en letras 
-//                        return;
+                        //                        Formatoticketanterior = ObjCL_Venta.FormatoTicketFEAnterior(NomEmpresa, AppSettings.NomSede, NumComprobante.Substring(2),
+                        //"BOLETA ELECTRONICA: ", dsPedido.Tables["detallePedido"], RUC, AppSettings.Usuario, TotalPagar, NomCaja, SerieEticketera,
+                        //NroAutorizacion, TotalPagarLetras, dsPedido.Tables["Pedido"].Rows[0]["RazonSocial"].ToString(),
+                        //dsPedido.Tables["Pedido"].Rows[0]["NroDocumento"].ToString(), dsPedido.Tables["Pedido"].Rows[0]["Direccion"].ToString(),
+                        //"", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), TotalIGV, "B", Total, montoimpuestobolsa);
+                        //                        e.Graphics.DrawString(Formatoticketanterior, TxtFormatoticketera.Font, Brushes.Black, 0, 0); //total pagar en letras 
+                        //                        return;
 
 
                         Formatoticket = ObjCL_Venta.FormatoTicketFE(NomEmpresa, AppSettings.NomSede, NumComprobante.Substring(2),
@@ -876,7 +909,9 @@ namespace Halley.Presentacion.Ventas.Pagos
                         NroAutorizacion, TotalPagarLetras, dsPedido.Tables["Pedido"].Rows[0]["RazonSocial"].ToString(),
                         dsPedido.Tables["Pedido"].Rows[0]["NroDocumento"].ToString(), dsPedido.Tables["Pedido"].Rows[0]["Direccion"].ToString(),
                         "", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), TotalIGV, "B",
-                        DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Total, montoimpuestobolsa);
+                        DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Total, montoimpuestobolsa,
+                        Convert.ToInt32(cbFormaPago.SelectedValue), DtCuotas, null);
+
                         e.Graphics.DrawString(Formatoticket[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
 
 
@@ -903,7 +938,9 @@ namespace Halley.Presentacion.Ventas.Pagos
                         NroAutorizacion, TotalPagarLetras, dsPedido.Tables["Pedido"].Rows[0]["RazonSocial"].ToString(),
                         dsPedido.Tables["Pedido"].Rows[0]["NroDocumento"].ToString(), dsPedido.Tables["Pedido"].Rows[0]["Direccion"].ToString(),
                         "", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), TotalIGV, "F",
-                        DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Total, montoimpuestobolsa);
+                        DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Total,
+                        montoimpuestobolsa, Convert.ToInt32(cbFormaPago.SelectedValue), DtCuotas, null);
+
                         e.Graphics.DrawString(Formatoticket[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
                     }
 
@@ -954,7 +991,9 @@ namespace Halley.Presentacion.Ventas.Pagos
                         "BOLETA ELECTRONICA: ", dsPedido.Tables["detallePedido"], RUC, AppSettings.Usuario, TotalPagar, NomCaja, SerieEticketera,
                         NroAutorizacion, TotalPagarLetras, dsPedido.Tables["Pedido"].Rows[0]["RazonSocial"].ToString(),
                         dsPedido.Tables["Pedido"].Rows[0]["NroDocumento"].ToString(), dsPedido.Tables["Pedido"].Rows[0]["Direccion"].ToString(),
-                        "", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), Convert.ToDecimal(TotalIGV), "B", Total, montoimpuestobolsa);
+                        "", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), Convert.ToDecimal(TotalIGV), "B",
+                        Total, montoimpuestobolsa, Convert.ToInt32(cbFormaPago.SelectedValue), DtCuotas, null);
+
                         e.Graphics.DrawString(Formatoticket2[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
 
 
@@ -971,7 +1010,9 @@ namespace Halley.Presentacion.Ventas.Pagos
                         "FACTURA ELECTRONICA: ", dsPedido.Tables["detallePedido"], RUC, AppSettings.Usuario, Convert.ToDecimal(Total), NomCaja, SerieEticketera,
                         NroAutorizacion, TotalPagarLetras, dsPedido.Tables["Pedido"].Rows[0]["RazonSocial"].ToString(),
                         dsPedido.Tables["Pedido"].Rows[0]["NroDocumento"].ToString(), dsPedido.Tables["Pedido"].Rows[0]["Direccion"].ToString(),
-                        "", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), Convert.ToDecimal(TotalIGV), "F", Total, montoimpuestobolsa);
+                        "", ConCliente, FECHA_IMPRESION, Convert.ToDecimal(TxtMontoPagado.Text), Convert.ToDecimal(TotalIGV), "F",
+                        Total, montoimpuestobolsa, Convert.ToInt32(cbFormaPago.SelectedValue), DtCuotas, null);
+
                         e.Graphics.DrawString(Formatoticket2[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
                         //e.Graphics.DrawString(Convert.ToChar(27) + "i", TxtPrecio.Font, Brushes.Black, 0, 0); //total pagar en letras
 
@@ -1155,38 +1196,7 @@ namespace Halley.Presentacion.Ventas.Pagos
         }
 
 
-        private void cbFormaPago_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cbFormaPago.SelectedIndex != -1 && cbFormaPago.SelectedValue.ToString() == "5")//es vale
-            {
-                //aca aparece la ventana de los vales
-                FrmValesConsumo ObjFrmValesConsumo = new FrmValesConsumo();
-                ObjFrmValesConsumo.ShowDialog();
-                if (ObjFrmValesConsumo.DtValesConsumo != null && ObjFrmValesConsumo.DtValesConsumo.Rows.Count > 0)
-                    DtValesConsumo = ObjFrmValesConsumo.DtValesConsumo.Copy();
-            }
-            else if (cbFormaPago.SelectedIndex != -1 && cbFormaPago.SelectedValue.ToString() == "3")//es boucher
-            {
-                //aca aparece la ventana de los vales
-                FrmBoucher ObjFrmBoucher = new FrmBoucher();
-                ObjFrmBoucher.ShowDialog();
-                if (ObjFrmBoucher.DtBoucher != null && ObjFrmBoucher.DtBoucher.Rows.Count > 0)
-                    DtBoucher = ObjFrmBoucher.DtBoucher.Copy();
-            }
-            else
-            {
-                if (DtValesConsumo.Rows.Count > 0)
-                {
-                    MessageBox.Show("Se elimino los vales ingresados, en caso de que decida\npagar con vales vuelva a ingresarlos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                if (DtBoucher.Rows.Count > 0)
-                {
-                    MessageBox.Show("Se elimino los boucher, en caso de que decida\npagar con boucher vuelva a ingresarlos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                DtValesConsumo.Rows.Clear();
-                DtBoucher.Rows.Clear();
-            }
-        }
+
 
         private void BtnEgreso_Click(object sender, EventArgs e)
         {
@@ -1348,8 +1358,66 @@ namespace Halley.Presentacion.Ventas.Pagos
             return false;
         }
 
+        private void cbFormaPago_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DtCreditos = new DataTable();
+            if (cbFormaPago.SelectedValue != null)
+            {
+                if (cbFormaPago.SelectedValue.ToString() == "1")
+                {
+                    CboTipoPago.Text = "";
+                    CboTipoPago.Enabled = false;
+                    PnlCreditos.Visible = true;
 
+                    //traer créditos
+                    DtCreditos = ObjCL_Credito.GetCreditosCliente(ClienteID, "A");
+                    LstCreditos.HoldFields();
+                    LstCreditos.DataSource = DtCreditos;
+                }
+                else
+                {
+                    CboTipoPago.Visible = true;
+                    PnlCreditos.Visible = false;
+                    CboTipoPago.Text = "[Seleccionar]";
+                    CboTipoPago.Enabled = true;
+                }
+            }
+        }
 
+        private void CboTipoPago_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+            if (CboTipoPago.SelectedIndex != -1 && CboTipoPago.SelectedValue.ToString() == "5")//es vale
+            {
+                //aca aparece la ventana de los vales
+                FrmValesConsumo ObjFrmValesConsumo = new FrmValesConsumo();
+                ObjFrmValesConsumo.ShowDialog();
+                if (ObjFrmValesConsumo.DtValesConsumo != null && ObjFrmValesConsumo.DtValesConsumo.Rows.Count > 0)
+                    DtValesConsumo = ObjFrmValesConsumo.DtValesConsumo.Copy();
+            }
+            else if (CboTipoPago.SelectedIndex != -1 && CboTipoPago.SelectedValue.ToString() == "3")//es boucher
+            {
+                //aca aparece la ventana de los vales
+                FrmBoucher ObjFrmBoucher = new FrmBoucher();
+                ObjFrmBoucher.ShowDialog();
+                if (ObjFrmBoucher.DtBoucher != null && ObjFrmBoucher.DtBoucher.Rows.Count > 0)
+                    DtBoucher = ObjFrmBoucher.DtBoucher.Copy();
+            }
+            else
+            {
+                if (DtValesConsumo.Rows.Count > 0)
+                {
+                    MessageBox.Show("Se elimino los vales ingresados, en caso de que decida\npagar con vales vuelva a ingresarlos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                if (DtBoucher.Rows.Count > 0)
+                {
+                    MessageBox.Show("Se elimino los boucher, en caso de que decida\npagar con boucher vuelva a ingresarlos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                DtValesConsumo.Rows.Clear();
+                DtBoucher.Rows.Clear();
+            }
+
+        }
 
     }
 }

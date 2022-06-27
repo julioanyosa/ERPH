@@ -53,8 +53,22 @@ namespace Halley.Presentacion.Ventas.Reporte
                 Dthora.Rows.Add(DR);
             }
 
+            DataTable Dtmin = new DataTable();
+            Dtmin.Columns.Add("codigo", typeof(string));
+            Dtmin.Columns.Add("descripcion", typeof(string));
+            for (int i = 0; i <= 59; i++)
+            {
+                DataRow DR;
+                DR = Dtmin.NewRow();
+                DR["codigo"] = i.ToString().PadLeft(2, '0');
+                DR["descripcion"] = i.ToString().PadLeft(2, '0');
+                Dtmin.Rows.Add(DR);
+            }
+
             c1Combo.FillC1Combo(this.CboHoraIni, Dthora, "descripcion", "codigo");
             c1Combo.FillC1Combo(this.CboHoraFin, Dthora.Copy(), "descripcion", "codigo");
+            c1Combo.FillC1Combo(this.CboMinIni, Dtmin, "descripcion", "codigo");
+            c1Combo.FillC1Combo(this.CboMinFin, Dtmin.Copy(), "descripcion", "codigo");
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -64,9 +78,9 @@ namespace Halley.Presentacion.Ventas.Reporte
             {
                 if (DtpFechaIni.Value != null & DtpFechaFin.Value != null)
                 {
-                   
-                    Fecinicio = new DateTime(DtpFechaIni.Value.Year,DtpFechaIni.Value.Month,DtpFechaIni.Value.Day,Convert.ToInt32(CboHoraIni.SelectedValue),0,0);
-                    FecFin = new DateTime(DtpFechaFin.Value.Year, DtpFechaFin.Value.Month, DtpFechaFin.Value.Day, Convert.ToInt32(CboHoraFin.SelectedValue), 59, 59);
+
+                    Fecinicio = new DateTime(DtpFechaIni.Value.Year, DtpFechaIni.Value.Month, DtpFechaIni.Value.Day, Convert.ToInt32(CboHoraIni.SelectedValue), Convert.ToInt32(CboMinIni.SelectedValue), 0);
+                    FecFin = new DateTime(DtpFechaFin.Value.Year, DtpFechaFin.Value.Month, DtpFechaFin.Value.Day, Convert.ToInt32(CboHoraFin.SelectedValue), Convert.ToInt32(CboMinFin.SelectedValue), 59);
                  
 
                     if (RbDetallado.Checked == true)

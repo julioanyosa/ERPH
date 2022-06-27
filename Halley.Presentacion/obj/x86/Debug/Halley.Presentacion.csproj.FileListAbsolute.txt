@@ -1969,6 +1969,7 @@ D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Prese
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Contabilidad.Reportes.ConsolidadoVentas.resources
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Mantenimiento.FrmClienteAnterior.resources
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Ventas.FrmCierre.resources
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Ventas.FrmCuotas.resources
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Ventas.Pagos.FrmConfigurarImpresoraant.resources
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Ventas.Reporte.FrmCierre.resources
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Almacen.Reportes.FrmHojaDespachocs.resources
@@ -2079,3 +2080,4 @@ D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Prese
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.application
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.exe
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.pdb
+D:\janyosa\personal\SISTEMAS\ERPH\Halley.Presentacion\obj\x86\Debug\Halley.Presentacion.Ventas.Administracion.NotaCredito_ant.resources

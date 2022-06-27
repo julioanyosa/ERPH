@@ -716,8 +716,15 @@ namespace Halley.CapaDatos.Ventas
         {
         
             DataSet DS = new DataSet();
+            DataSet DSLOCAL = new DataSet();
             try
             {
+         
+                SqlDatabase SqlClient = new SqlDatabase(connectionString);
+                DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerDatosCliente");
+                SqlClient.AddInParameter(SqlCommand, "@RUC", SqlDbType.VarChar, RUC);
+                DSLOCAL = SqlClient.ExecuteDataSet(SqlCommand);
+
                 //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
                 //System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)12288;
@@ -726,7 +733,7 @@ namespace Halley.CapaDatos.Ventas
                 {
                     var url = urldni + RUC;
                     var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
-
+                    webrequest.Timeout = (20 * 1000);
                     using (var response = webrequest.GetResponse())
                     using (var reader = new StreamReader(response.GetResponseStream()))
                     {
@@ -750,12 +757,18 @@ namespace Halley.CapaDatos.Ventas
                             dt.Columns.Add("ProvinciaId", typeof(int));
                             dt.Columns.Add("DistritoId", typeof(int));
                             dt.Columns.Add("ClienteID", typeof(int));
+                            dt.Columns.Add("Email", typeof(string));
 
                             dt.Rows[0]["NroDocumento"] = RUC;
                             dt.Rows[0]["DepartamentoId"] = 25;
                             dt.Rows[0]["ProvinciaId"] = 191;
                             dt.Rows[0]["DistritoId"] = 1815;
                             dt.Rows[0]["ClienteID"] = 0;
+
+                            if (DSLOCAL.Tables[0].Rows.Count > 0)
+                                dt.Rows[0]["Email"] = DSLOCAL.Tables[0].Rows[0]["Email"].ToString();
+                            else
+                                dt.Rows[0]["Email"] = "";
 
                             DS.Tables.Add(dt);
                         }
@@ -767,7 +780,7 @@ namespace Halley.CapaDatos.Ventas
                 {
                     var url = urlsunat + RUC;
                     var webrequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
-
+                    webrequest.Timeout = (20 * 1000);
                     using (var response = webrequest.GetResponse())
                     using (var reader = new StreamReader(response.GetResponseStream()))
                     {
@@ -797,7 +810,9 @@ namespace Halley.CapaDatos.Ventas
                             dt.Columns.Add("ProvinciaId", typeof(int));
                             dt.Columns.Add("DistritoId", typeof(int));
                             dt.Columns.Add("ClienteID", typeof(int));
+                            dt.Columns.Add("Email", typeof(string));
 
+                            
 
                             dt.Rows[0]["NroDocumento"] = RUC;
                             if (dtTmp1.Rows.Count > 0)
@@ -814,6 +829,12 @@ namespace Halley.CapaDatos.Ventas
                             }
                             dt.Rows[0]["ClienteID"] = 0;
 
+
+                            if (DSLOCAL.Tables[0].Rows.Count > 0)
+                                dt.Rows[0]["Email"] = DSLOCAL.Tables[0].Rows[0]["Email"].ToString();
+                            else
+                                dt.Rows[0]["Email"] = "";
+
                             DS.Tables.Add(dt);
                         }
 
@@ -826,15 +847,9 @@ namespace Halley.CapaDatos.Ventas
             }
             catch (Exception ex)
             {
-                DataSet ds = new DataSet();
-                SqlDatabase SqlClient = new SqlDatabase(connectionString);
-                DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerDatosCliente");
-                SqlClient.AddInParameter(SqlCommand, "@RUC", SqlDbType.VarChar, RUC);
-                ds = SqlClient.ExecuteDataSet(SqlCommand);
-
-
-
-                return ds;
+                //throw new Exception(ex.Message);
+                DS = DSLOCAL;
+                return DS;
             }
 
         }
@@ -886,10 +901,35 @@ namespace Halley.CapaDatos.Ventas
             DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerParaImpresion");
             SqlClient.AddInParameter(SqlCommand, "@ComprobanteId", SqlDbType.BigInt, ComprobanteId);
 
-            dsPedido.Load(SqlClient.ExecuteReader(SqlCommand), LoadOption.PreserveChanges, "Comprobante", "DetalleComprobante");
+            dsPedido.Load(SqlClient.ExecuteReader(SqlCommand), LoadOption.PreserveChanges, "Comprobante", "DetalleComprobante", "Cuotas");
             return dsPedido;
         }
 
+        public DataSet ObtenerParaImpresionNc(Int64 ComprobanteId)
+        {
+            DataSet dsPedido = new DataSet();
+            SqlDatabase SqlClient = new SqlDatabase(connectionString);
+            DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerParaImpresionNc");
+            SqlClient.AddInParameter(SqlCommand, "@ComprobanteId", SqlDbType.BigInt, ComprobanteId);
+
+            dsPedido.Load(SqlClient.ExecuteReader(SqlCommand), LoadOption.PreserveChanges, "Comprobante", "DetalleComprobante", "Cuotas");
+            return dsPedido;
+        }
+
+
+        public DataTable ListarNotaCredito(DateTime FechaIni, DateTime FechaFin, int TipoComprobanteID, string EmpresaID)
+        {
+            DataTable dtTmp = new DataTable();
+            SqlDatabase SqlClient = new SqlDatabase(connectionString);
+            DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.Usp_GetListarNotaCredito");
+            SqlClient.AddInParameter(SqlCommand, "@FechaIni", SqlDbType.Date, FechaIni);
+            SqlClient.AddInParameter(SqlCommand, "@FechaFin", SqlDbType.Date, FechaFin);
+            SqlClient.AddInParameter(SqlCommand, "@TipoComprobanteID", SqlDbType.Int, TipoComprobanteID);
+            SqlClient.AddInParameter(SqlCommand, "@EmpresaID", SqlDbType.Char, EmpresaID);
+            SqlCommand.CommandTimeout = 150;
+            dtTmp.Load(SqlClient.ExecuteReader(SqlCommand));
+            return dtTmp;
+        }
 
     }
 }

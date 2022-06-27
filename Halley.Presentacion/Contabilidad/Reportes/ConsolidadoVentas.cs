@@ -33,6 +33,7 @@ namespace Halley.Presentacion.Contabilidad.Reportes
         DataSet DS;
         DataTable dtcabecera;
         DataTable dtdetalle;
+        DataTable DtCuotas;
         Boolean ConCliente = true;
 
         DataTable DtDatosSede;
@@ -211,10 +212,10 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                     using (ZipFile zip = new ZipFile())
                     {
                         zip.AddFile(ruta + ds.Tables[0].Rows[0]["Cabecera"].ToString(), "");
-                        zip.Save(ruta + ds.Tables[0].Rows[0]["Cabecera"].ToString().Replace(".txt",".zip"));
+                        zip.Save(ruta + ds.Tables[0].Rows[0]["Cabecera"].ToString().Replace(".txt", ".zip"));
                         System.IO.File.Delete(ruta + ds.Tables[0].Rows[0]["Cabecera"].ToString());
                     }
-                 
+
                     MessageBox.Show("Se creo el archivo", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -231,6 +232,7 @@ namespace Halley.Presentacion.Contabilidad.Reportes
             {
                 if (TdgComprobantes.RowCount > 0)
                 {
+
                     string NumComprobante = this.TdgComprobantes.Columns["NumComprobante"].Value.ToString();
                     string SERIE = this.TdgComprobantes.Columns["SERIE"].Value.ToString();
                     string NUMERO = this.TdgComprobantes.Columns["NUMERO"].Value.ToString();
@@ -242,6 +244,8 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                         DS = objVenta.ObtenerParaImpresion(ComprobanteId);
                         dtcabecera = DS.Tables[0];
                         dtdetalle = DS.Tables[1];
+                        DtCuotas = DS.Tables[2];
+
 
                         //seleccionar impresora
 
@@ -288,8 +292,25 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                         }
                         else
                         {
-                            MessageBox.Show("No existe una impresora configurada, por favor agregela \n(seleccionar impresora ticket en venta)", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            return;
+                            string impresora = "";
+                            if (printDialog1.ShowDialog() == DialogResult.OK)
+                                impresora = printDialog1.PrinterSettings.PrinterName;
+
+
+                            if (impresora != "")
+                            {
+                                printDocument1.PrinterSettings.PrinterName = impresora;
+                                printDocument1.Print();
+                            }
+                            else
+                            {
+                                MessageBox.Show("no ha seleccionado la impresora.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                Cursor = Cursors.Default;
+                                return;
+                            }
+
+                            //MessageBox.Show("No existe una impresora configurada, por favor agregela \n(seleccionar impresora ticket en venta)", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            //return;
                         }
 
 
@@ -376,7 +397,7 @@ namespace Halley.Presentacion.Contabilidad.Reportes
 
             if (hojaimpresa == 1)
             {
-
+               
                 if (Convert.ToInt16(dtcabecera.Rows[0]["TipoComprobanteID"]) == 4)//es boleta
                 {
 
@@ -384,8 +405,11 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                     "BOLETA ELECTRONICA: ", dtdetalle, RUC, AppSettings.Usuario, Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]), dtcabecera.Rows[0]["NomCaja"].ToString(), SerieEticketera,
                     NroAutorizacion, TotalPagarLetras, dtcabecera.Rows[0]["RazonSocialCliente"].ToString(),
                     dtcabecera.Rows[0]["NroDocumentoCliente"].ToString(), dtcabecera.Rows[0]["DireccionCliente"].ToString(),
-                    "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "B",
-                       DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]));
+                    "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]),
+                    Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "B",
+                       DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]),
+                       Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]), Convert.ToInt32(dtcabecera.Rows[0]["TipoPagoID"]), DtCuotas, null);
+
                     e.Graphics.DrawString(Formatoticket[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
 
 
@@ -402,7 +426,10 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                     NroAutorizacion, TotalPagarLetras, dtcabecera.Rows[0]["RazonSocialCliente"].ToString(),
                     dtcabecera.Rows[0]["NroDocumentoCliente"].ToString(), dtcabecera.Rows[0]["DireccionCliente"].ToString(),
                     "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "F",
-                       DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]));
+                       DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(),
+                       Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]), 
+                       Convert.ToInt32(dtcabecera.Rows[0]["TipoPagoID"]), DtCuotas, null);
+
                     e.Graphics.DrawString(Formatoticket[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
                     //e.Graphics.DrawString(Convert.ToChar(27) + "i", TxtPrecio.Font, Brushes.Black, 0, 0); //total pagar en letras
 
@@ -445,7 +472,7 @@ namespace Halley.Presentacion.Contabilidad.Reportes
 
             else if (hojaimpresa == 2)
             {
-                decimal total = Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]) + Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]) + Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]);
+                decimal total = Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]);
 
                 if (Convert.ToInt16(dtcabecera.Rows[0]["TipoComprobanteID"]) == 4)//es boleta
                 {
@@ -455,7 +482,9 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                     NroAutorizacion, TotalPagarLetras, dtcabecera.Rows[0]["RazonSocialCliente"].ToString(),
                     dtcabecera.Rows[0]["NroDocumentoCliente"].ToString(), dtcabecera.Rows[0]["DireccionCliente"].ToString(),
                     "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]),
-                    Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "B", total, Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]));
+                    Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "B", total, Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]),
+                    Convert.ToInt32(dtcabecera.Rows[0]["TipoPagoID"]), DtCuotas, null);
+
                     e.Graphics.DrawString(Formatoticket2[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
 
                 }
@@ -472,7 +501,9 @@ namespace Halley.Presentacion.Contabilidad.Reportes
                     NroAutorizacion, TotalPagarLetras, dtcabecera.Rows[0]["RazonSocialCliente"].ToString(),
                     dtcabecera.Rows[0]["NroDocumentoCliente"].ToString(), dtcabecera.Rows[0]["DireccionCliente"].ToString(),
                     "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]),
-                    Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "F", total, Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]));
+                    Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "F", total, Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]), 
+                    Convert.ToInt32(dtcabecera.Rows[0]["TipoPagoID"]), DtCuotas, null);
+
                     e.Graphics.DrawString(Formatoticket2[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
                     //e.Graphics.DrawString(Convert.ToChar(27) + "i", TxtPrecio.Font, Brushes.Black, 0, 0); //total pagar en letras
 
@@ -489,7 +520,7 @@ namespace Halley.Presentacion.Contabilidad.Reportes
         {
             if (c1cboCia.SelectedIndex != -1)
             {
-                string EmpresaID = c1cboCia.SelectedValue.ToString(); 
+                string EmpresaID = c1cboCia.SelectedValue.ToString();
                 DtDatosSede = objVenta.ObtenerDatosSucursal(EmpresaID, AppSettings.SedeID);
             }
         }

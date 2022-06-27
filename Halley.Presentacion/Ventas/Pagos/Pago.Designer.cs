@@ -63,6 +63,8 @@
             this.fff = new System.Windows.Forms.Label();
             this.TxtPagadoComprobante = new C1.Win.C1Input.C1TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.LblCuotaSeleccionada = new System.Windows.Forms.Label();
+            this.ChkImprimir = new System.Windows.Forms.CheckBox();
             this.useCliente1 = new Halley.Presentacion.Ventas.UseCliente();
             this.RbCampanha = new System.Windows.Forms.RadioButton();
             this.RbComprobante = new System.Windows.Forms.RadioButton();
@@ -70,14 +72,14 @@
             this.BtnMultiplesPagos = new C1.Win.C1Input.C1Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PnComprobante = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.TdgCuotas = new C1.Win.C1TrueDBGrid.C1TrueDBGrid();
             this.BtnBuscar = new C1.Win.C1Input.C1Button();
             this.ErrProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.BtnImpresora = new C1.Win.C1Input.C1Button();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.LblCaja = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.ChkImprimir = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.LstComprobantes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LstCreditos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1cboCia)).BeginInit();
@@ -99,6 +101,7 @@
             this.PnCampanha.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.PnComprobante.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TdgCuotas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,7 +171,7 @@
             this.c1cboCia.EditorHeight = 17;
             this.c1cboCia.Images.Add(((System.Drawing.Image)(resources.GetObject("c1cboCia.Images"))));
             this.c1cboCia.ItemHeight = 15;
-            this.c1cboCia.Location = new System.Drawing.Point(137, 16);
+            this.c1cboCia.Location = new System.Drawing.Point(117, 5);
             this.c1cboCia.MatchEntryTimeout = ((long)(2000));
             this.c1cboCia.MaxDropDownItems = ((short)(10));
             this.c1cboCia.MaxLength = 32767;
@@ -185,7 +188,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(69, 26);
+            this.label14.Location = new System.Drawing.Point(7, 10);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(53, 13);
             this.label14.TabIndex = 387;
@@ -193,8 +196,8 @@
             // 
             // TxtComprobante
             // 
-            this.TxtComprobante.Location = new System.Drawing.Point(137, 91);
-            this.TxtComprobante.MaxLength = 11;
+            this.TxtComprobante.Location = new System.Drawing.Point(117, 58);
+            this.TxtComprobante.MaxLength = 13;
             this.TxtComprobante.Name = "TxtComprobante";
             this.TxtComprobante.Size = new System.Drawing.Size(142, 22);
             this.TxtComprobante.TabIndex = 390;
@@ -203,7 +206,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 101);
+            this.label1.Location = new System.Drawing.Point(7, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 13);
             this.label1.TabIndex = 391;
@@ -213,7 +216,7 @@
             // 
             this.BtnConsultar.Image = global::Halley.Presentacion.Properties.Resources.Aceptar_16x16;
             this.BtnConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnConsultar.Location = new System.Drawing.Point(285, 91);
+            this.BtnConsultar.Location = new System.Drawing.Point(265, 57);
             this.BtnConsultar.Name = "BtnConsultar";
             this.BtnConsultar.Size = new System.Drawing.Size(82, 23);
             this.BtnConsultar.TabIndex = 20;
@@ -225,7 +228,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 60);
+            this.label4.Location = new System.Drawing.Point(7, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 392;
@@ -251,7 +254,7 @@
             this.cbComprobante.ExtendRightColumn = true;
             this.cbComprobante.Images.Add(((System.Drawing.Image)(resources.GetObject("cbComprobante.Images"))));
             this.cbComprobante.ItemHeight = 15;
-            this.cbComprobante.Location = new System.Drawing.Point(137, 55);
+            this.cbComprobante.Location = new System.Drawing.Point(117, 31);
             this.cbComprobante.MatchEntryTimeout = ((long)(2000));
             this.cbComprobante.MaxDropDownItems = ((short)(5));
             this.cbComprobante.MaxLength = 32767;
@@ -272,7 +275,7 @@
             this.TdgPagosRealizados.EmptyRows = true;
             this.TdgPagosRealizados.GroupByCaption = "Drag a column header here to group by that column";
             this.TdgPagosRealizados.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgPagosRealizados.Images"))));
-            this.TdgPagosRealizados.Location = new System.Drawing.Point(11, 27);
+            this.TdgPagosRealizados.Location = new System.Drawing.Point(6, 94);
             this.TdgPagosRealizados.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightRow;
             this.TdgPagosRealizados.Name = "TdgPagosRealizados";
             this.TdgPagosRealizados.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -342,7 +345,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(67, 33);
+            this.label6.Location = new System.Drawing.Point(69, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 13);
             this.label6.TabIndex = 401;
@@ -368,7 +371,7 @@
             this.cbFormaPago.ExtendRightColumn = true;
             this.cbFormaPago.Images.Add(((System.Drawing.Image)(resources.GetObject("cbFormaPago.Images"))));
             this.cbFormaPago.ItemHeight = 15;
-            this.cbFormaPago.Location = new System.Drawing.Point(149, 29);
+            this.cbFormaPago.Location = new System.Drawing.Point(151, 44);
             this.cbFormaPago.MatchEntryTimeout = ((long)(2000));
             this.cbFormaPago.MaxDropDownItems = ((short)(5));
             this.cbFormaPago.MaxLength = 32767;
@@ -385,7 +388,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 92);
+            this.label7.Location = new System.Drawing.Point(13, 107);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 404;
@@ -393,18 +396,18 @@
             // 
             // TxtObservacion
             // 
-            this.TxtObservacion.Location = new System.Drawing.Point(14, 108);
+            this.TxtObservacion.Location = new System.Drawing.Point(14, 128);
             this.TxtObservacion.MaxLength = 200;
             this.TxtObservacion.Multiline = true;
             this.TxtObservacion.Name = "TxtObservacion";
-            this.TxtObservacion.Size = new System.Drawing.Size(332, 63);
+            this.TxtObservacion.Size = new System.Drawing.Size(332, 43);
             this.TxtObservacion.TabIndex = 403;
             this.TxtObservacion.Tag = null;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 61);
+            this.label8.Location = new System.Drawing.Point(13, 76);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(130, 13);
             this.label8.TabIndex = 406;
@@ -412,9 +415,9 @@
             // 
             // TxtPagar
             // 
-            this.TxtPagar.Location = new System.Drawing.Point(149, 58);
+            this.TxtPagar.Location = new System.Drawing.Point(151, 73);
             this.TxtPagar.Name = "TxtPagar";
-            this.TxtPagar.Size = new System.Drawing.Size(160, 22);
+            this.TxtPagar.Size = new System.Drawing.Size(185, 22);
             this.TxtPagar.TabIndex = 405;
             this.TxtPagar.Tag = null;
             this.TxtPagar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -454,7 +457,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(243, 142);
+            this.label11.Location = new System.Drawing.Point(238, 15);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(99, 13);
             this.label11.TabIndex = 414;
@@ -462,7 +465,7 @@
             // 
             // TxtFechaEmision
             // 
-            this.TxtFechaEmision.Location = new System.Drawing.Point(348, 137);
+            this.TxtFechaEmision.Location = new System.Drawing.Point(343, 10);
             this.TxtFechaEmision.Name = "TxtFechaEmision";
             this.TxtFechaEmision.Size = new System.Drawing.Size(163, 22);
             this.TxtFechaEmision.TabIndex = 413;
@@ -471,7 +474,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(578, 198);
+            this.label10.Location = new System.Drawing.Point(573, 71);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(86, 13);
             this.label10.TabIndex = 412;
@@ -479,7 +482,7 @@
             // 
             // TxtPorPagarComprobante
             // 
-            this.TxtPorPagarComprobante.Location = new System.Drawing.Point(672, 193);
+            this.TxtPorPagarComprobante.Location = new System.Drawing.Point(667, 66);
             this.TxtPorPagarComprobante.Name = "TxtPorPagarComprobante";
             this.TxtPorPagarComprobante.Size = new System.Drawing.Size(115, 22);
             this.TxtPorPagarComprobante.TabIndex = 411;
@@ -489,7 +492,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(536, 142);
+            this.label9.Location = new System.Drawing.Point(531, 15);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 13);
             this.label9.TabIndex = 410;
@@ -497,7 +500,7 @@
             // 
             // TxtImporteComprobante
             // 
-            this.TxtImporteComprobante.Location = new System.Drawing.Point(672, 137);
+            this.TxtImporteComprobante.Location = new System.Drawing.Point(667, 10);
             this.TxtImporteComprobante.Name = "TxtImporteComprobante";
             this.TxtImporteComprobante.Size = new System.Drawing.Size(115, 22);
             this.TxtImporteComprobante.TabIndex = 409;
@@ -507,7 +510,7 @@
             // fff
             // 
             this.fff.AutoSize = true;
-            this.fff.Location = new System.Drawing.Point(587, 170);
+            this.fff.Location = new System.Drawing.Point(582, 43);
             this.fff.Name = "fff";
             this.fff.Size = new System.Drawing.Size(77, 13);
             this.fff.TabIndex = 408;
@@ -515,7 +518,7 @@
             // 
             // TxtPagadoComprobante
             // 
-            this.TxtPagadoComprobante.Location = new System.Drawing.Point(672, 166);
+            this.TxtPagadoComprobante.Location = new System.Drawing.Point(667, 39);
             this.TxtPagadoComprobante.Name = "TxtPagadoComprobante";
             this.TxtPagadoComprobante.Size = new System.Drawing.Size(115, 22);
             this.TxtPagadoComprobante.TabIndex = 407;
@@ -524,6 +527,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.LblCuotaSeleccionada);
             this.groupBox4.Controls.Add(this.ChkImprimir);
             this.groupBox4.Controls.Add(this.BtnPagar);
             this.groupBox4.Controls.Add(this.label8);
@@ -539,6 +543,29 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Pago";
             // 
+            // LblCuotaSeleccionada
+            // 
+            this.LblCuotaSeleccionada.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCuotaSeleccionada.ForeColor = System.Drawing.Color.DarkGreen;
+            this.LblCuotaSeleccionada.Location = new System.Drawing.Point(16, 18);
+            this.LblCuotaSeleccionada.Name = "LblCuotaSeleccionada";
+            this.LblCuotaSeleccionada.Size = new System.Drawing.Size(320, 17);
+            this.LblCuotaSeleccionada.TabIndex = 426;
+            this.LblCuotaSeleccionada.Text = "Seleccione cuota";
+            this.LblCuotaSeleccionada.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ChkImprimir
+            // 
+            this.ChkImprimir.AutoSize = true;
+            this.ChkImprimir.Checked = true;
+            this.ChkImprimir.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChkImprimir.Location = new System.Drawing.Point(14, 189);
+            this.ChkImprimir.Name = "ChkImprimir";
+            this.ChkImprimir.Size = new System.Drawing.Size(99, 17);
+            this.ChkImprimir.TabIndex = 408;
+            this.ChkImprimir.Text = "Imprimir ticket";
+            this.ChkImprimir.UseVisualStyleBackColor = true;
+            // 
             // useCliente1
             // 
             this.useCliente1.Location = new System.Drawing.Point(9, 14);
@@ -550,12 +577,11 @@
             // RbCampanha
             // 
             this.RbCampanha.AutoSize = true;
-            this.RbCampanha.Checked = true;
+            this.RbCampanha.Enabled = false;
             this.RbCampanha.Location = new System.Drawing.Point(14, 8);
             this.RbCampanha.Name = "RbCampanha";
             this.RbCampanha.Size = new System.Drawing.Size(73, 17);
             this.RbCampanha.TabIndex = 412;
-            this.RbCampanha.TabStop = true;
             this.RbCampanha.Text = "Campaña";
             this.RbCampanha.UseVisualStyleBackColor = true;
             this.RbCampanha.CheckedChanged += new System.EventHandler(this.RbCampanha_CheckedChanged);
@@ -563,10 +589,12 @@
             // RbComprobante
             // 
             this.RbComprobante.AutoSize = true;
+            this.RbComprobante.Checked = true;
             this.RbComprobante.Location = new System.Drawing.Point(114, 8);
             this.RbComprobante.Name = "RbComprobante";
             this.RbComprobante.Size = new System.Drawing.Size(96, 17);
             this.RbComprobante.TabIndex = 413;
+            this.RbComprobante.TabStop = true;
             this.RbComprobante.Text = "Comprobante";
             this.RbComprobante.UseVisualStyleBackColor = true;
             this.RbComprobante.CheckedChanged += new System.EventHandler(this.RbCampanha_CheckedChanged);
@@ -613,6 +641,8 @@
             // 
             // PnComprobante
             // 
+            this.PnComprobante.Controls.Add(this.label12);
+            this.PnComprobante.Controls.Add(this.TdgCuotas);
             this.PnComprobante.Controls.Add(this.BtnBuscar);
             this.PnComprobante.Controls.Add(this.label4);
             this.PnComprobante.Controls.Add(this.BtnConsultar);
@@ -621,18 +651,50 @@
             this.PnComprobante.Controls.Add(this.label1);
             this.PnComprobante.Controls.Add(this.c1cboCia);
             this.PnComprobante.Controls.Add(this.label14);
-            this.PnComprobante.Location = new System.Drawing.Point(3, 35);
+            this.PnComprobante.Location = new System.Drawing.Point(3, 31);
             this.PnComprobante.Name = "PnComprobante";
-            this.PnComprobante.Size = new System.Drawing.Size(538, 127);
+            this.PnComprobante.Size = new System.Drawing.Size(804, 245);
             this.PnComprobante.TabIndex = 415;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label12.Location = new System.Drawing.Point(474, 108);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(256, 17);
+            this.label12.TabIndex = 425;
+            this.label12.Text = "Hacer doble clic sobre la cuota a pagar";
+            // 
+            // TdgCuotas
+            // 
+            this.TdgCuotas.AllowUpdate = false;
+            this.TdgCuotas.CaptionHeight = 17;
+            this.TdgCuotas.EmptyRows = true;
+            this.TdgCuotas.GroupByCaption = "Drag a column header here to group by that column";
+            this.TdgCuotas.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgCuotas.Images"))));
+            this.TdgCuotas.Location = new System.Drawing.Point(10, 134);
+            this.TdgCuotas.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightRow;
+            this.TdgCuotas.Name = "TdgCuotas";
+            this.TdgCuotas.PreviewInfo.Location = new System.Drawing.Point(0, 0);
+            this.TdgCuotas.PreviewInfo.Size = new System.Drawing.Size(0, 0);
+            this.TdgCuotas.PreviewInfo.ZoomFactor = 75D;
+            this.TdgCuotas.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("TdgCuotas.PrintInfo.PageSettings")));
+            this.TdgCuotas.RowHeight = 18;
+            this.TdgCuotas.Size = new System.Drawing.Size(776, 100);
+            this.TdgCuotas.TabIndex = 396;
+            this.TdgCuotas.Text = "c1TrueDBGrid1";
+            this.TdgCuotas.DoubleClick += new System.EventHandler(this.TdgCuotas_DoubleClick);
+            this.TdgCuotas.PropBag = resources.GetString("TdgCuotas.PropBag");
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Image = global::Halley.Presentacion.Properties.Resources.find_16x16;
+            this.BtnBuscar.Image = global::Halley.Presentacion.Properties.Resources.BusquedaTracking_32x32;
             this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBuscar.Location = new System.Drawing.Point(429, 92);
+            this.BtnBuscar.Location = new System.Drawing.Point(353, 5);
             this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(82, 23);
+            this.BtnBuscar.Size = new System.Drawing.Size(91, 49);
             this.BtnBuscar.TabIndex = 395;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -646,19 +708,6 @@
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // BtnImpresora
-            // 
-            this.BtnImpresora.Image = global::Halley.Presentacion.Properties.Resources.printView_16x16;
-            this.BtnImpresora.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImpresora.Location = new System.Drawing.Point(453, 6);
-            this.BtnImpresora.Name = "BtnImpresora";
-            this.BtnImpresora.Size = new System.Drawing.Size(82, 23);
-            this.BtnImpresora.TabIndex = 418;
-            this.BtnImpresora.Text = "Impresora";
-            this.BtnImpresora.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnImpresora.UseVisualStyleBackColor = true;
-            this.BtnImpresora.Click += new System.EventHandler(this.BtnImpresora_Click);
             // 
             // printDialog1
             // 
@@ -683,25 +732,12 @@
             this.label16.TabIndex = 420;
             this.label16.Text = "Caja :";
             // 
-            // ChkImprimir
-            // 
-            this.ChkImprimir.AutoSize = true;
-            this.ChkImprimir.Checked = true;
-            this.ChkImprimir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkImprimir.Location = new System.Drawing.Point(14, 189);
-            this.ChkImprimir.Name = "ChkImprimir";
-            this.ChkImprimir.Size = new System.Drawing.Size(99, 17);
-            this.ChkImprimir.TabIndex = 408;
-            this.ChkImprimir.Text = "Imprimir ticket";
-            this.ChkImprimir.UseVisualStyleBackColor = true;
-            // 
             // Pago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LblCaja);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.BtnImpresora);
             this.Controls.Add(this.PnComprobante);
             this.Controls.Add(this.RbComprobante);
             this.Controls.Add(this.RbCampanha);
@@ -717,7 +753,6 @@
             this.Controls.SetChildIndex(this.RbCampanha, 0);
             this.Controls.SetChildIndex(this.RbComprobante, 0);
             this.Controls.SetChildIndex(this.PnComprobante, 0);
-            this.Controls.SetChildIndex(this.BtnImpresora, 0);
             this.Controls.SetChildIndex(this.label16, 0);
             this.Controls.SetChildIndex(this.LblCaja, 0);
             ((System.ComponentModel.ISupportInitialize)(this.LstComprobantes)).EndInit();
@@ -745,6 +780,7 @@
             this.groupBox1.PerformLayout();
             this.PnComprobante.ResumeLayout(false);
             this.PnComprobante.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TdgCuotas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ErrProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -795,11 +831,13 @@
         private System.Windows.Forms.ErrorProvider ErrProvider;
         private C1.Win.C1Input.C1Button BtnMultiplesPagos;
         private System.Drawing.Printing.PrintDocument printDocument1;
-        private C1.Win.C1Input.C1Button BtnImpresora;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.Label LblCaja;
         private System.Windows.Forms.Label label16;
         private C1.Win.C1Input.C1Button BtnBuscar;
         private System.Windows.Forms.CheckBox ChkImprimir;
+        private C1.Win.C1TrueDBGrid.C1TrueDBGrid TdgCuotas;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LblCuotaSeleccionada;
     }
 }

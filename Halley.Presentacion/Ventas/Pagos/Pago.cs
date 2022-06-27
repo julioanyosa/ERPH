@@ -22,7 +22,7 @@ namespace Halley.Presentacion.Ventas.Pagos
         CL_Credito ObjCL_Credito = new CL_Credito();
         CL_Pago ObjCL_Pago = new CL_Pago();
         CL_Comprobante ObjComprobante = new CL_Comprobante();
-        string ImpresoraPago = AppSettings.ImpresoraPago;
+
 
         private TextFunctions ObjTextFunctions = new TextFunctions();
         DataTable DtPagosComprobante = new DataTable();
@@ -31,12 +31,18 @@ namespace Halley.Presentacion.Ventas.Pagos
         DataTable DtCajas = new DataTable();
         DataTable DtEmpresas = new DataTable();
         DataTable DtClientes = new DataTable();
+        DataTable dtCuota = new DataTable();
+
 
         decimal ImporteComprobante = 0;
         decimal PorPagarComprobante = 0;
         decimal TotalPagadoComprobante = 0;
         int EstadoID = 0;//estado del comprobante
         string FormatoImpresion = "";
+        string NumComprobante = "";
+        Int64 ComprobanteId = 0;
+        int int_IdCuota = 0;
+
 
         int NumCaja;
         string NomCaja = "";
@@ -113,6 +119,10 @@ namespace Halley.Presentacion.Ventas.Pagos
 
             LblCaja.Text = NomCaja;
             #endregion
+
+            RbCampanha_CheckedChanged(null, null);
+
+            BtnBuscar_Click(null, null);
         }
 
         private void GetCreditosCompra(int ClienteID)
@@ -127,7 +137,7 @@ namespace Halley.Presentacion.Ventas.Pagos
             DataTable DtCreditosTotal = new DataTable();
             DtCreditosTotal = ObjCL_Pago.GetCreditosTotal(ClienteID);
 
-            decimal TotalCredito=0, TotalPagado=0, DeudaTotal=0;
+            decimal TotalCredito = 0, TotalPagado = 0, DeudaTotal = 0;
 
             TotalCredito = Convert.ToDecimal(DtCreditosTotal.Rows[0]["TotalCredito"]);
             TotalPagado = Convert.ToDecimal(DtCreditosTotal.Rows[0]["TotalPagado"]);
@@ -172,11 +182,54 @@ namespace Halley.Presentacion.Ventas.Pagos
 
         private void BtnConsultar_Click(object sender, EventArgs e)
         {
-            if(c1cboCia.SelectedIndex != -1 & TxtComprobante.Text != "" & cbComprobante.SelectedIndex != -1)
-                DetallePago(c1cboCia.SelectedValue.ToString() + TxtComprobante.Text, Convert.ToInt32(cbComprobante.Columns["TipoComprobanteID"].Value));
+            try
+            {
+                if (c1cboCia.SelectedIndex != -1 & TxtComprobante.Text != "" & cbComprobante.SelectedIndex != -1)
+                {
+                    string[] comp = TxtComprobante.Text.Split(new char[] { '-', ' ' });
+
+                    if (comp.Length == 2)
+                    {
+                        string letra = "";
+                        switch (cbComprobante.SelectedValue.ToString())
+                        {
+                            case "4":
+                                letra = "B";
+                                break;
+                            case "5":
+                                letra = "F";
+                                break;
+                            default:
+                                letra = "";
+                                break;
+                        }
+
+                        NumComprobante = c1cboCia.SelectedValue + comp[0].Replace("B", "").Replace("F", "").PadLeft(3, '0') + "-" + Convert.ToInt32(comp[1]).ToString().PadLeft(7, '0');
+                        TxtComprobante.Text = letra + comp[0].Replace("B", "").Replace("F", "").PadLeft(3, '0') + "-" + comp[1].PadLeft(8, '0');
+
+                        DetallePago(NumComprobante, Convert.ToInt32(cbComprobante.Columns["TipoComprobanteID"].Value));
+                        GetCuotas(NumComprobante, Convert.ToInt32(cbComprobante.Columns["TipoComprobanteID"].Value));
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    if (c1cboCia.SelectedIndex == -1) { ErrProvider.SetError(c1cboCia, "Debe seleccionar una empresa"); }
+                    if (TxtComprobante.Text == "") { ErrProvider.SetError(TxtComprobante, "Ingrese un comprobante válido"); }
+                    if (cbComprobante.SelectedIndex == -1) { ErrProvider.SetError(cbComprobante, "seleccione un tipo de comprobante"); }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Verifique que el comprobante esté ingresado correctamente. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
-        private void DetallePago(string NumComprobante, int TipoComprobanteID)
+        private void DetallePago(string NumComprobantee, int TipoComprobanteID)
         {
 
             //limpiar
@@ -186,22 +239,22 @@ namespace Halley.Presentacion.Ventas.Pagos
 
             DtPagosComprobante = new DataTable();
             DataSet Ds = new DataSet();
-            Ds= ObjCL_Pago.GetPagosBoleta(NumComprobante, TipoComprobanteID);
+            Ds = ObjCL_Pago.GetPagosBoleta(NumComprobantee, TipoComprobanteID);
             DtPagosComprobante = Ds.Tables["Pago"];
             TdgPagosRealizados.SetDataBinding(DtPagosComprobante, "", true);
 
             //Mostrar Total Pagar por boleta
 
             TxtImporteComprobante.ReadOnly = false;
-            if(Ds.Tables["Comprobante"].Rows.Count>0)
+            if (Ds.Tables["Comprobante"].Rows.Count > 0)
                 ImporteComprobante = Convert.ToDecimal(Ds.Tables["Comprobante"].Rows[0]["TotalPagar"].ToString());
             TxtImporteComprobante.Text = ImporteComprobante.ToString("C");
             TxtImporteComprobante.ReadOnly = true;
 
             //calcular totales
-            
+
             TxtPagadoComprobante.ReadOnly = false;
-            if(DtPagosComprobante.Rows.Count > 0)
+            if (DtPagosComprobante.Rows.Count > 0)
                 TotalPagadoComprobante = Convert.ToDecimal(DtPagosComprobante.Compute("sum(Importe)", ""));//suma de créditos
             TxtPagadoComprobante.Text = TotalPagadoComprobante.ToString("C");
             TxtPagadoComprobante.ReadOnly = true;
@@ -218,117 +271,132 @@ namespace Halley.Presentacion.Ventas.Pagos
             TxtFechaEmision.ReadOnly = true;
         }
 
+        private void GetCuotas(string NumComprobantee, int TipoComprobanteID)
+        {
+            DataSet Ds = new DataSet();
+            Ds = ObjCL_Pago.GetCuotas(NumComprobantee, TipoComprobanteID);
+            dtCuota = Ds.Tables["Cuotas"];
+            TdgCuotas.SetDataBinding(dtCuota, "", true);
+        }
+
         private void BtnPagar_Click(object sender, EventArgs e)
         {
             try
+            {
+                ErrProvider.Clear();
+                Int32 TipoComprobanteID = 0;
+
+                decimal Pagar = 0;
+                if (TxtPagar.Text != "" & TxtPagar.Text != ".")
+                    Pagar = Convert.ToDecimal(TxtPagar.Text);
+
+                if (RbCampanha.Checked == true & LstComprobantes.ListCount > 0)
                 {
-                    ErrProvider.Clear();
-                    string NumComprobante = "";
-                    Int32 TipoComprobanteID = 0;
+                    NumComprobante = LstComprobantes.Columns["NumComprobante"].Value.ToString();
+                    TipoComprobanteID = Convert.ToInt32(LstComprobantes.Columns["TipoComprobanteID"].Value);
+                }
+                else if (RbComprobante.Checked == true & cbComprobante.SelectedIndex != -1 & c1cboCia.SelectedIndex != -1 & TxtComprobante.Text != "")
+                {
+                    //NumComprobante = c1cboCia.SelectedValue.ToString() + TxtComprobante.Text;
+                    TipoComprobanteID = Convert.ToInt32(cbComprobante.Columns["TipoComprobanteID"].Value);
+                }
 
-                    decimal Pagar = 0;
-                    if(TxtPagar.Text !="" & TxtPagar.Text != ".")
-                        Pagar=Convert.ToDecimal(TxtPagar.Text);
+                if (cbFormaPago.SelectedIndex != -1 & Pagar > 0 & NumComprobante != "" & TipoComprobanteID != 0 & PorPagarComprobante > 0 & PorPagarComprobante >= Pagar & NumCaja != 0)
+                {
+                    if (MessageBox.Show("¿Seguro que desea registrar el pago?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        //obtener datos de la empresa
+                        DataView DV = new DataView(DtEmpresas);
+                        string EmpresaID = NumComprobante.Substring(0, 2);
+                        DV.RowFilter = "EmpresaID = '" + EmpresaID + "'";
+                        string NomEmpresa = DV[0]["NomEmpresa"].ToString();
+                        string RUC = DV[0]["RUC"].ToString();
 
-                    if (RbCampanha.Checked == true & LstComprobantes.ListCount > 0)
-                    {
-                        NumComprobante = LstComprobantes.Columns["NumComprobante"].Value.ToString();
-                        TipoComprobanteID = Convert.ToInt32(LstComprobantes.Columns["TipoComprobanteID"].Value);
-                    }
-                    else if (RbComprobante.Checked == true & cbComprobante.SelectedIndex != -1 & c1cboCia.SelectedIndex != -1 & TxtComprobante.Text != "")
-                    {
-                        NumComprobante = c1cboCia.SelectedValue.ToString() + TxtComprobante.Text;
-                        TipoComprobanteID = Convert.ToInt32(cbComprobante.Columns["TipoComprobanteID"].Value);
-                    }
+                        //llenar el objPago
+                        E_Pago ObjE_Pago = new E_Pago();
+                        ObjE_Pago.PagoID = 0;
+                        ObjE_Pago.NumComprobante = NumComprobante;
+                        ObjE_Pago.TipoComprobanteID = TipoComprobanteID;
+                        ObjE_Pago.Importe = Convert.ToDecimal(TxtPagar.Text);
+                        ObjE_Pago.FormaPagoID = Convert.ToInt32(cbFormaPago.SelectedValue);
+                        ObjE_Pago.UsuarioID = AppSettings.UserID;
 
-                    if (cbFormaPago.SelectedIndex != -1 & Pagar > 0 & NumComprobante != "" & TipoComprobanteID != 0 & PorPagarComprobante > 0 & PorPagarComprobante >= Pagar & NumCaja != 0)
-                    {
-                        if (MessageBox.Show("¿Seguro que desea registrar el pago?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        //llenar la nota de ingreso
+                        E_NotaIngreso ObjE_NotaIngreso = new E_NotaIngreso();
+                        ObjE_NotaIngreso.Tipo = "I";
+                        ObjE_NotaIngreso.Numcaja = NumCaja;
+                        ObjE_NotaIngreso.EmpresaID = AppSettings.EmpresaID;
+                        ObjE_NotaIngreso.Observacion = TxtObservacion.Text;
+                        ObjE_NotaIngreso.LugarPago = AppSettings.SedeID;
+
+                        //calcular el estado del comporbante
+                        if (PorPagarComprobante > Pagar)//todavia resta
+                            EstadoID = 13;
+                        else if (PorPagarComprobante == Pagar)//es el total de la deuda del comprobante
+                            EstadoID = 12;
+
+                        Int32 CreditoID = 0;
+
+                        if (RbCampanha.Checked == true)
+                            CreditoID = Convert.ToInt32(LstCreditos.Columns["CreditoID"].Value);
+
+                        string EMPRESA_ID = c1cboCia.SelectedValue.ToString();
+                        printDocument1.PrinterSettings.PrinterName = "";
+                        DataView DV2 = new DataView(UTI_Datatables.Dt_Configuracion, "Codigo ='" + "IMP_" + EMPRESA_ID + "_" + "TI" + "'", "", DataViewRowState.CurrentRows);
+                        if (DV2.Count > 0)
                         {
-                            //obtener datos de la empresa
-                            DataView DV = new DataView(DtEmpresas);
-                            string EmpresaID = NumComprobante.Substring(0,2);
-                            DV.RowFilter = "EmpresaID = '" + EmpresaID + "'";
-                            string NomEmpresa = DV[0]["NomEmpresa"].ToString();
-                            string RUC = DV[0]["RUC"].ToString();
+                            printDocument1.PrinterSettings.PrinterName = DV2[0]["Data"].ToString();
+                        }
 
-                            //llenar el objPago
-                            E_Pago ObjE_Pago = new E_Pago();
-                            ObjE_Pago.PagoID = 0;
-                            ObjE_Pago.NumComprobante = NumComprobante;
-                            ObjE_Pago.TipoComprobanteID = TipoComprobanteID;
-                            ObjE_Pago.Importe = Convert.ToDecimal(TxtPagar.Text);
-                            ObjE_Pago.FormaPagoID = Convert.ToInt32(cbFormaPago.SelectedValue);
-                            ObjE_Pago.UsuarioID = AppSettings.UserID;
-
-                            //llenar la nota de ingreso
-                            E_NotaIngreso ObjE_NotaIngreso = new E_NotaIngreso();
-                            ObjE_NotaIngreso.Tipo = "I";
-                            ObjE_NotaIngreso.Numcaja = NumCaja;
-                            ObjE_NotaIngreso.EmpresaID = AppSettings.EmpresaID;
-                            ObjE_NotaIngreso.Observacion = TxtObservacion.Text;
-                            ObjE_NotaIngreso.LugarPago = AppSettings.SedeID;
-
-                            //calcular el estado del comporbante
-                            if (PorPagarComprobante > Pagar)//todavia resta
-                                EstadoID = 13;
-                            else if (PorPagarComprobante == Pagar)//es el total de la deuda del comprobante
-                                EstadoID = 12;
-
-                            Int32 CreditoID=0;
-
-                            if(RbCampanha.Checked ==true)
-                                CreditoID = Convert.ToInt32(LstCreditos.Columns["CreditoID"].Value);
-
-                            printDocument1.PrinterSettings.PrinterName = ImpresoraPago;
-
-                               //validar la impresion
-                            if (ChkImprimir.Checked == true)
+                        //validar la impresion
+                        if (ChkImprimir.Checked == true)
+                        {
+                            if (printDocument1.PrinterSettings.PrinterName != "")
                             {
-                                if (printDocument1.PrinterSettings.PrinterName != "")
-                                {
-                                    FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, LstCreditos.Columns["NomCampanha"].Value.ToString(), AppSettings.NomSede, RUC, AppSettings.Usuario, Convert.ToDecimal(TxtPagar.Text), NomCaja);
-                                    //MessageBox.Show(FormatoImpresion, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                    Int32 NotaIngresoID = 0;
-                                    NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, EstadoID);
-                                    MessageBox.Show("Se registro correctamente el pago", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                                    printDocument1.Print();
-                                    LimpiarTodo();
-
-                                }
-                                else
-                                    MessageBox.Show("Debe seleccionar una impresora valida. no se guardara el pago.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            else
-                            {
-                                FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, LstCreditos.Columns["NomCampanha"].Value.ToString(), AppSettings.NomSede, RUC, AppSettings.Usuario, Convert.ToDecimal(TxtPagar.Text), NomCaja);
-                                
+                                FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, LstCreditos.Columns["NomCampanha"].Value.ToString(),
+                                    AppSettings.NomSede, RUC, AppSettings.Usuario, Convert.ToDecimal(TxtPagar.Text), NomCaja, TxtObservacion.Text);
+                                //MessageBox.Show(FormatoImpresion, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 Int32 NotaIngresoID = 0;
-                                NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, EstadoID);
+                                NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, EstadoID, int_IdCuota);
                                 MessageBox.Show("Se registro correctamente el pago", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                MessageBox.Show(FormatoImpresion, "Formato", MessageBoxButtons.OK, MessageBoxIcon.Information);                          
+
+                                printDocument1.Print();
                                 LimpiarTodo();
 
                             }
+                            else
+                                MessageBox.Show("Debe seleccionar una impresora valida. no se guardara el pago.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, LstCreditos.Columns["NomCampanha"].Value.ToString(),
+                                AppSettings.NomSede, RUC, AppSettings.Usuario, Convert.ToDecimal(TxtPagar.Text), NomCaja, TxtObservacion.Text);
+
+
+                            Int32 NotaIngresoID = 0;
+                            NotaIngresoID = ObjCL_Pago.InsertPago(ObjE_Pago, ObjE_NotaIngreso, EstadoID, int_IdCuota);
+                            MessageBox.Show("Se registro correctamente el pago", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            MessageBox.Show(FormatoImpresion, "Formato", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LimpiarTodo();
+
                         }
                     }
-                    else
-                    {
-                        if (NumCaja == 0) { ErrProvider.SetError(LblCaja, "Debe seleccionar una caja"); }
-                        if (cbFormaPago.SelectedIndex == -1) {ErrProvider.SetError(cbFormaPago,"Debe seleccionar un tipo de pago");}
-                        if (TxtPagar.Text == "" | TxtPagar.Text == ".") { ErrProvider.SetError(TxtPagar, "Debe ingresar un pago válido"); }
-                        if (Pagar > PorPagarComprobante) { MessageBox.Show("Ha ingresado un pago mayor a la deuda","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning); }
-                    }
-                    /*else if (Pagar == 0)
-                        MessageBox.Show("No ha ingresado el monto a pagar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    else if (PorPagarComprobante == 0)
-                        MessageBox.Show("El comprobante ya esta pagado o no existe o no ha sido consultado todavia", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
-                     * */
+                }
+                else
+                {
+                    if (NumCaja == 0) { ErrProvider.SetError(LblCaja, "Debe seleccionar una caja"); }
+                    if (cbFormaPago.SelectedIndex == -1) { ErrProvider.SetError(cbFormaPago, "Debe seleccionar un tipo de pago"); }
+                    if (TxtPagar.Text == "" | TxtPagar.Text == ".") { ErrProvider.SetError(TxtPagar, "Debe ingresar un pago válido"); }
+                    if (Pagar > PorPagarComprobante) { MessageBox.Show("Ha ingresado un pago mayor a la deuda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                }
+                /*else if (Pagar == 0)
+                    MessageBox.Show("No ha ingresado el monto a pagar", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (PorPagarComprobante == 0)
+                    MessageBox.Show("El comprobante ya esta pagado o no existe o no ha sido consultado todavia", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
+                 * */
             }
             catch (Exception ex)
             {
@@ -339,14 +407,16 @@ namespace Halley.Presentacion.Ventas.Pagos
         private void LimpiarTodo()
         {
             //limpiar
-            RbCampanha.Checked = true;
+            PnCampanha.Visible = true;
             useCliente1.cbCliente.SelectedIndex = -1;
             useCliente1.cbNombre.SelectedIndex = -1;
             useCliente1.txtDireccion.ReadOnly = false;
             useCliente1.txtDireccion.Text = "";
             useCliente1.txtDireccion.ReadOnly = true;
             DtPagosComprobante.Rows.Clear();
+            dtCuota.Rows.Clear();
             DtComprobanteCredito.Rows.Clear();
+
             TxtDeudaTotal.ReadOnly = false;
             TxtDeudaTotal.Text = "";
             TxtDeudaTotal.ReadOnly = true;
@@ -372,6 +442,9 @@ namespace Halley.Presentacion.Ventas.Pagos
             TxtPagar.Text = "";
             cbFormaPago.SelectedValue = 1;
             FormatoImpresion = "";
+            RbCampanha_CheckedChanged(null, null);
+            LblCuotaSeleccionada.Text = "Seleccione cuota";
+            BtnConsultar_Click(null, null);
         }
         private void RbCampanha_CheckedChanged(object sender, EventArgs e)
         {
@@ -451,45 +524,42 @@ namespace Halley.Presentacion.Ventas.Pagos
             //obtener la cadena del total a pagar
             //string TotalPagarLetras = ObjTextFunctions.enletras(TotalPagar.ToString());
 
-            e.Graphics.DrawString(FormatoImpresion, TxtFechaEmision.Font, Brushes.Black,1,1); //total pagar en letras
+            e.Graphics.DrawString(FormatoImpresion, TxtFechaEmision.Font, Brushes.Black, 1, 1); //total pagar en letras
 
         }
 
-        private void BtnImpresora_Click(object sender, EventArgs e)
-        {
-           printDialog1.Document = printDocument1;
-            //printDialog1.AllowSelection = true;
-            //printDialog1.AllowSomePages = true;
 
-            if (printDialog1.ShowDialog() == DialogResult.OK)
-            {
-                ImpresoraPago = printDialog1.PrinterSettings.PrinterName;
-                //*****************guardar la configuracion de la impresora en el appconfig**************
-                if (ImpresoraPago != AppSettings.ImpresoraPago & ImpresoraPago != "")
-                {
-                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                    AppSettingsSection appSettings = config.AppSettings;
-
-                    KeyValueConfigurationElement setting = appSettings.Settings["ImpresoraPago"];
-                    setting.Value = ImpresoraPago;
-                    config.Save(ConfigurationSaveMode.Modified);
-                    ConfigurationManager.RefreshSection("appSettings");
-                }
-                //************************ fin guardar configuracion ***************************************
-            }
-        }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             FrmBuscarComprobante ObjFrmBuscarComprobante = new FrmBuscarComprobante();
             ObjFrmBuscarComprobante.DtClientes = DtClientes.Copy();
+            ObjFrmBuscarComprobante.FormaPagoID = 1; //credito
             ObjFrmBuscarComprobante.ShowDialog();
             if (ObjFrmBuscarComprobante.TipoComprobanteID != 0)
             {
                 c1cboCia.SelectedValue = ObjFrmBuscarComprobante.EmpresaID;
                 cbComprobante.SelectedValue = ObjFrmBuscarComprobante.TipoComprobanteID;
-                TxtComprobante.Text = ObjFrmBuscarComprobante.NumComprobante;
+                TxtComprobante.Text = ObjFrmBuscarComprobante.str_ID;
+                NumComprobante = ObjFrmBuscarComprobante.NumComprobante;
+                ComprobanteId = ObjFrmBuscarComprobante.ComprobanteId;
                 BtnConsultar_Click(null, null);
+            }
+        }
+
+        private void TdgCuotas_DoubleClick(object sender, EventArgs e)
+        {
+            if (TdgCuotas.RowCount > 0)
+            {
+                if (TdgCuotas.Columns["bit_Pagado"].Value.ToString() == "0")
+                {
+                    TxtPagar.Value = TdgCuotas.Columns["dec_MontoCuota"].Value;
+                    int_IdCuota = Convert.ToInt32(TdgCuotas.Columns["int_IdCuota"].Value);
+                    TxtObservacion.Text = "Pago de la cuota : " + TdgCuotas.Columns["int_NroCuota"].Value.ToString();
+                    LblCuotaSeleccionada.Text = "Cuta seleccionada: " + TdgCuotas.Columns["int_NroCuota"].Value.ToString();
+                }
+
+
             }
         }
 

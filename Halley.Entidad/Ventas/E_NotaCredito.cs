@@ -69,5 +69,11 @@ namespace Halley.Entidad.Ventas
             get { return _SedeID; }
             set { _SedeID = value; }
         }
+
+        public string str_TipoDocumentoVinculante { get; set; }
+        public string str_ID_DocumentoVinculante { get; set; }
+        public string str_CodigoTipoNotaCredito { get; set; }
+        public string str_DescripcionTipoNotaCredito { get; set; }
+        public string str_Motivo { get; set; }
     }
 }

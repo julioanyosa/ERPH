@@ -411,6 +411,12 @@
     <Compile Include="Mantenimiento\FrmClienteAnterior.Designer.cs">
       <DependentUpon>FrmClienteAnterior.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ventas\Administracion\NotaCredito.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ventas\Administracion\NotaCredito.Designer.cs">
+      <DependentUpon>NotaCredito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ventas\CrystalReports\Copia de CrVentasComprobante.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -512,6 +518,12 @@
     </Compile>
     <Compile Include="Ventas\FrmCierre.Designer.cs">
       <DependentUpon>FrmCierre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\FrmCuotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\FrmCuotas.Designer.cs">
+      <DependentUpon>FrmCuotas.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventas\Pagos\FrmConfigurarImpresoraant.cs">
       <SubType>Form</SubType>
@@ -865,11 +877,11 @@
     <Compile Include="Ventas\IngresoManualVenta.Designer.cs">
       <DependentUpon>IngresoManualVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ventas\Administracion\NotaCredito.cs">
+    <Compile Include="Ventas\Administracion\NotaCredito_ant.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ventas\Administracion\NotaCredito.Designer.cs">
-      <DependentUpon>NotaCredito.cs</DependentUpon>
+    <Compile Include="Ventas\Administracion\NotaCredito_ant.Designer.cs">
+      <DependentUpon>NotaCredito_ant.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventas\DatasetReportes\DsPagosCredito.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1306,6 +1318,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Ventas\Administracion\NotaCredito.resx">
+      <DependentUpon>NotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ventas\CrystalReports\Copia de CrVentasComprobante.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Copia de CrVentasComprobante.cs</LastGenOutput>
@@ -1324,6 +1339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\FrmCierre.resx">
       <DependentUpon>FrmCierre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\FrmCuotas.resx">
+      <DependentUpon>FrmCuotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\Pagos\FrmConfigurarImpresoraant.resx">
       <DependentUpon>FrmConfigurarImpresoraant.cs</DependentUpon>
@@ -1584,8 +1602,8 @@
     <EmbeddedResource Include="Ventas\Administracion\Credito.resx">
       <DependentUpon>Credito.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ventas\Administracion\NotaCredito.resx">
-      <DependentUpon>NotaCredito.cs</DependentUpon>
+    <EmbeddedResource Include="Ventas\Administracion\NotaCredito_ant.resx">
+      <DependentUpon>NotaCredito_ant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\CrystalReports\CrPagosCredito.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2318,6 +2336,7 @@
     <None Include="Resources\Credito_32x32.gif" />
     <None Include="Resources\Despacho_32x32.gif" />
     <None Include="Resources\Default16x16.gif" />
+    <None Include="Resources\Credito_16x16.png" />
     <Content Include="Resources\desperdicio_32x32.gif" />
     <None Include="Resources\guia_32x32.gif" />
     <None Include="Resources\PagoLiquidacion_32x32.gif" />

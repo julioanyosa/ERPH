@@ -55,6 +55,11 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="C1.Win.C1FlexGrid.2" version="2.6.20082.380" publicKeyToken="79882D576C6336DA" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="C1.Win.C1TrueDBGrid.2" version="2.0.20082.61142" publicKeyToken="75AE3FB0E2B1E0DA" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
@@ -347,31 +352,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Kzn03tyBOsGzj9Hght4V2sC8/1I=</dsig:DigestValue>
+        <dsig:DigestValue>yJ4BtteaKbz+pdDEdXAokkb3/UM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.CapaDatos.dll" size="175616">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.CapaDatos.dll" size="178688">
       <assemblyIdentity name="Halley.CapaDatos" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>q2WrVJ5eumjPLPFWcDcJbiV+3G4=</dsig:DigestValue>
+        <dsig:DigestValue>JE9+WbebiPHeuWAraHA2bh8SwuU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.CapaLogica.dll" size="184832">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.CapaLogica.dll" size="188928">
       <assemblyIdentity name="Halley.CapaLogica" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>PLMjttpxaGYFFJVxq5AL031PgLU=</dsig:DigestValue>
+        <dsig:DigestValue>+6jYjxAjhTeJ/wF4r6BBP/JS0Mw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -383,43 +388,43 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>FCkmEs2xKcVirHMjSRxNSWhr0EY=</dsig:DigestValue>
+        <dsig:DigestValue>Aoq/hAueZxX3vS9514LgTPEc6Uc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Entidad.dll" size="58880">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Entidad.dll" size="59904">
       <assemblyIdentity name="Halley.Entidad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>HzwrPWb9N6dAtB+5ZF7Fw1Lzr4I=</dsig:DigestValue>
+        <dsig:DigestValue>+YIRvpJiipf/wtTb8/Im4tBBxCs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Presentacion.exe" size="10745856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Presentacion.exe" size="10988032">
       <assemblyIdentity name="Halley.Presentacion" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>sCexqq5LFuab/YWGjuIVJlcRkEw=</dsig:DigestValue>
+        <dsig:DigestValue>ssNNBY7Q2MLzHCnRJxkx0EMCgyI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Utilitario.dll" size="67072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Halley.Utilitario.dll" size="74240">
       <assemblyIdentity name="Halley.Utilitario" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>nAln5VcH/RQ8vlkm3rIgQVfyufE=</dsig:DigestValue>
+        <dsig:DigestValue>x+C1zPFWqzpOVFlm6IacMTKsc44=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -528,13 +533,13 @@
       <dsig:DigestValue>6Hoy+pN7CxFnHIAnVGb9LDmALac=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Halley.Presentacion.exe.config" size="5523">
+  <file name="Halley.Presentacion.exe.config" size="5530">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>658HZAi4cz4A+ry9JZHGuGPuLdg=</dsig:DigestValue>
+      <dsig:DigestValue>DrGQTLWnapDI1XLeRJ9iQKrISYA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Ionic.Zip.dll" size="462336">

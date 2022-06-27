@@ -200,7 +200,7 @@ namespace Halley.Presentacion.Ventas.Pagos
                                     MessageBox.Show("Se almaceno los pagos correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     #region formato de etiquetera
-                                    FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, NomCampanha, AppSettings.NomSede, RUC, AppSettings.Usuario.ToString(), TotalPagar, NomCaja);
+                                    FormatoImpresion = ObjCL_Pago.FormatoTicketPago(NomEmpresa, CreditoID, NomCampanha, AppSettings.NomSede, RUC, AppSettings.Usuario.ToString(), TotalPagar, NomCaja, TxtObservacion.Text);
                                     //MessageBox.Show(FormatoImpresion, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     #endregion
                                     printDocument1.Print();

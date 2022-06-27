@@ -342,7 +342,8 @@ namespace Halley.Presentacion.Ventas.VentasPavo
 
                 //es provisional
                 DataTable dt = new DataTable();
-                dt = new CL_Comprobante().InsertComprobante(ObjComprobante, dsPedido.Tables["detallePedido"], NumPedido, "N", DtValesConsumo, DtBoucher, dt);
+                DataTable DtCuotas = new DataTable();
+                dt = new CL_Comprobante().InsertComprobante(ObjComprobante, dsPedido.Tables["detallePedido"], NumPedido, "N", DtValesConsumo, DtBoucher, dt, DtCuotas);
                 NumComprobante = dt.Rows[0]["NumComprobante"].ToString();
                 FECHA_IMPRESION = Convert.ToDateTime(dt.Rows[0]["FECHA_ACTUAL"].ToString());
                 DtValesConsumo.Rows.Clear();// limpiar los vales

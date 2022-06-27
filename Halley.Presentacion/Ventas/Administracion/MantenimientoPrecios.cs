@@ -248,17 +248,19 @@ namespace Halley.Presentacion.Ventas.Administracion
 
         private void BtnAnular_Click(object sender, EventArgs e)
         {
+            ErrProvider.Clear();
             try
             {
                 Cursor = Cursors.WaitCursor;
-                if (Cboempresa2.SelectedIndex != -1 & cbComprobante.SelectedValue != null && TxtComprobante.Text != "")
+                if (Cboempresa2.SelectedIndex != -1 & cbComprobante.SelectedValue != null && TxtSerieAnulacion.Text != "" && TxtNumeroAnulacion.Text != ""
+                     && TxtSerieAnulacion.Text.Length == 4)
                 {
-                    if (MessageBox.Show("¿Seguro que desea anular el Comprobante Nro: " + TxtComprobante.Text + "?. Si se anula este comprobante no aparecera en el reporte de ventas del día.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    if (MessageBox.Show("¿Seguro que desea anular el Comprobante Nro: " + TxtSerieAnulacion.Text + "-" + TxtNumeroAnulacion.Text + "?. Si se anula este comprobante no aparecera en el reporte de ventas del día.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
                         //if (Cboempresa2.SelectedValue.ToString() == "IH")
-                            //ObjCL_Venta.EnviarBaja(Convert.ToInt32(cbComprobante.SelectedValue), Cboempresa2.SelectedValue.ToString() + TxtComprobante.Text, Cboempresa2.SelectedValue.ToString(), "RA", AppSettings.UserID, TxtMotivoEliminacion.Text);
-
-                        ObjCL_Comprobante.AnularComprobante(Cboempresa2.SelectedValue.ToString() + TxtComprobante.Text, Convert.ToInt32(cbComprobante.SelectedValue), AppSettings.UserID, AppSettings.SedeID);
+                        //ObjCL_Venta.EnviarBaja(Convert.ToInt32(cbComprobante.SelectedValue), Cboempresa2.SelectedValue.ToString() + TxtComprobante.Text, Cboempresa2.SelectedValue.ToString(), "RA", AppSettings.UserID, TxtMotivoEliminacion.Text);
+                        string nrocomprobante = Cboempresa2.SelectedValue.ToString() + TxtSerieAnulacion.Text.Substring(1, 3) + "-" + TxtNumeroAnulacion.Text.PadLeft(7, '0');
+                        ObjCL_Comprobante.AnularComprobante(nrocomprobante, Convert.ToInt32(cbComprobante.SelectedValue), AppSettings.UserID, AppSettings.SedeID);
                         MessageBox.Show("Se anulo el comprobante", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Cursor = Cursors.Default;
                     }
@@ -266,8 +268,10 @@ namespace Halley.Presentacion.Ventas.Administracion
                 else
                 {
                     if (cbComprobante.SelectedIndex == -1) ErrProvider.SetError(cbComprobante, "Seleccione un tipo de comprobante.");
-                    if (TxtComprobante.Text == "") ErrProvider.SetError(TxtComprobante, "ingrese un comprobante.");
+                    if (TxtSerieAnulacion.Text == "") ErrProvider.SetError(TxtSerieAnulacion, "ingrese una serie.");
+                    if (TxtNumeroAnulacion.Text == "") ErrProvider.SetError(TxtNumeroAnulacion, "ingrese una número del comprobante.");
                     if (Cboempresa2.SelectedIndex == -1) ErrProvider.SetError(Cboempresa2, "Seleccione una empresa.");
+                    if (TxtSerieAnulacion.Text.Length != 4) ErrProvider.SetError(TxtSerieAnulacion, "Ingrese serie correcta.");
                 }
                 Cursor = Cursors.Default;
             }
@@ -484,27 +488,58 @@ namespace Halley.Presentacion.Ventas.Administracion
 
         private void BtnNotaCredito_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    Cursor = Cursors.WaitCursor;
+            //    if (Cboempresa2.SelectedIndex != -1 & cbComprobante.SelectedValue != null && TxtComprobante.Text != "")
+            //    {
+            //        if (MessageBox.Show("¿Seguro que desea Generar la nota de crédito con el Comprobante Nro: " + TxtComprobante.Text + "?.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            //        {
+            //            string valor = ObjCL_Comprobante.GenerarSunat(Convert.ToInt32(cbComprobante.SelectedValue), Cboempresa2.SelectedValue.ToString() + TxtComprobante.Text, Cboempresa2.SelectedValue.ToString(), "07", "01", TxtMotivoEliminacion.Text);
+
+
+            //            MessageBox.Show("Se Genero la nota de crédito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //            Cursor = Cursors.Default;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (cbComprobante.SelectedIndex == -1) ErrProvider.SetError(cbComprobante, "Seleccione un tipo de comprobante.");
+            //        if (TxtComprobante.Text == "") ErrProvider.SetError(TxtComprobante, "ingrese un comprobante.");
+            //        if (Cboempresa2.SelectedIndex == -1) ErrProvider.SetError(Cboempresa2, "Seleccione una empresa.");
+            //    }
+            //    Cursor = Cursors.Default;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    Cursor = Cursors.Default;
+            //}
+            ErrProvider.Clear();
             try
             {
                 Cursor = Cursors.WaitCursor;
-                if (Cboempresa2.SelectedIndex != -1 & cbComprobante.SelectedValue != null && TxtComprobante.Text != "")
+                if (Cboempresa2.SelectedIndex != -1 & cbComprobante.SelectedValue != null && TxtSerieAnulacion.Text != "" && TxtNumeroAnulacion.Text != ""
+                    && TxtMotivoEliminacion.Text != "" && TxtSerieAnulacion.Text.Length == 4)
                 {
-                    if (MessageBox.Show("¿Seguro que desea Generar la nota de crédito con el Comprobante Nro: " + TxtComprobante.Text + "?.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    if (MessageBox.Show("¿Seguro que desea generar una nota de crédito para el Comprobante Nro: " + TxtSerieAnulacion.Text + "-" + TxtNumeroAnulacion.Text + "?.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
-                        string valor = ObjCL_Comprobante.GenerarSunat(Convert.ToInt32(cbComprobante.SelectedValue), Cboempresa2.SelectedValue.ToString() + TxtComprobante.Text, Cboempresa2.SelectedValue.ToString(), "07", "01", TxtMotivoEliminacion.Text);
-                        if (valor != "OK")
-                            MessageBox.Show(valor, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        else
-                            MessageBox.Show("Se anulo el comprobante", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string nrocomprobante = Cboempresa2.SelectedValue.ToString() + TxtSerieAnulacion.Text.Substring(1, 3) + "-" + TxtNumeroAnulacion.Text.PadLeft(7, '0');
 
+                        ObjCL_Comprobante.GenerarNotaCredito(nrocomprobante, Convert.ToInt32(cbComprobante.SelectedValue), Cboempresa2.SelectedValue.ToString(), AppSettings.UserID, TxtMotivoEliminacion.Text);
+                        MessageBox.Show("Se genero la nota de crédito", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Cursor = Cursors.Default;
                     }
                 }
                 else
                 {
                     if (cbComprobante.SelectedIndex == -1) ErrProvider.SetError(cbComprobante, "Seleccione un tipo de comprobante.");
-                    if (TxtComprobante.Text == "") ErrProvider.SetError(TxtComprobante, "ingrese un comprobante.");
+                    if (TxtSerieAnulacion.Text == "") ErrProvider.SetError(TxtSerieAnulacion, "Ingrese la serie del comprobante.");
+                    if (TxtNumeroAnulacion.Text == "") ErrProvider.SetError(TxtNumeroAnulacion, "Ingrese el número del comprobante.");
                     if (Cboempresa2.SelectedIndex == -1) ErrProvider.SetError(Cboempresa2, "Seleccione una empresa.");
+                    if (TxtMotivoEliminacion.Text == "") ErrProvider.SetError(TxtMotivoEliminacion, "Ingrese el motivo de la nota de crédito.");
+                    if (TxtSerieAnulacion.Text.Length != 4) ErrProvider.SetError(TxtSerieAnulacion, "Ingrese serie correcta.");
                 }
                 Cursor = Cursors.Default;
             }

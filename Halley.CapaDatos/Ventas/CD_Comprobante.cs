@@ -120,7 +120,8 @@ namespace Halley.CapaDatos.Ventas
 
 
 
-        public DataTable InsertComprobante(E_Comprobante ObjComprobante, string XMLDetalle, int NumPedido, string Tipo, DataTable DTValesConsumo, DataTable DtBoucher, DataTable DtNotaIngreso)
+        public DataTable InsertComprobante(E_Comprobante ObjComprobante, string XMLDetalle, int NumPedido, string Tipo, DataTable DTValesConsumo, DataTable DtBoucher,
+            DataTable DtNotaIngreso, DataTable DtCuotas)
         {
             SqlDatabase SqlClient = new SqlDatabase(connectionString);
             DbConnection tCnn;
@@ -139,8 +140,8 @@ namespace Halley.CapaDatos.Ventas
                 SqlClient.AddInParameter(SqlCommandComprobante, "@ClienteID", SqlDbType.Int, ObjComprobante.ClienteID);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@Direccion", SqlDbType.VarChar, ObjComprobante.Direccion);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@TipoVentaID", SqlDbType.TinyInt, ObjComprobante.TipoVentaID);
-                SqlClient.AddInParameter(SqlCommandComprobante, "@TipoPagoID", SqlDbType.TinyInt, ObjComprobante.TipoPagoId);
-                SqlClient.AddInParameter(SqlCommandComprobante, "@FormaPagoID", SqlDbType.TinyInt, ObjComprobante.FormaPagoID);
+                SqlClient.AddInParameter(SqlCommandComprobante, "@TipoPagoID", SqlDbType.TinyInt, ObjComprobante.TipoPagoId); //este es forma de pago
+                SqlClient.AddInParameter(SqlCommandComprobante, "@FormaPagoID", SqlDbType.TinyInt, ObjComprobante.FormaPagoID); ///este es tipo de pago
                 SqlClient.AddInParameter(SqlCommandComprobante, "@NumCaja", SqlDbType.Int, ObjComprobante.NumCaja);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@NroGuia", SqlDbType.VarChar, ObjComprobante.NumGuia);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@IGV", SqlDbType.Decimal, ObjComprobante.IGV);
@@ -166,6 +167,44 @@ namespace Halley.CapaDatos.Ventas
                 DataTable DT = new DataTable();
                 DT.Load(SqlClient.ExecuteReader(SqlCommandComprobante, tran));
                 NumComprobante = DT.Rows[0]["NumComprobante"].ToString();
+                Int64 ComprobanteId = Convert.ToInt64(DT.Rows[0]["ComprobanteId"]);
+
+                //insertar cuotas
+                if (DtCuotas != null && DtCuotas.Rows.Count > 0)
+                {
+                    DtCuotas.TableName = "Cuota";
+                    string xml = new BaseFunctions().GetXML(DtCuotas).Replace("NewDataSet", "DocumentElement");
+                    xml = xml.Replace("Table", "Cuota");
+
+                    DbCommand SqlCommandCuota = SqlClient.GetStoredProcCommand("ventas.Usp_AdministrarCuota");
+                    SqlClient.AddInParameter(SqlCommandCuota, "@EmpresaID", SqlDbType.Char, ObjComprobante.EmpresaID);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@bint_IdComprobante", SqlDbType.BigInt, ComprobanteId);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@int_IdUsuario", SqlDbType.Int, ObjComprobante.Cajero);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@int_IdCliente", SqlDbType.Int, ObjComprobante.ClienteID);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@XMLDetalle", SqlDbType.Xml, xml);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@NumComprobante", SqlDbType.Char, NumComprobante);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@TipoComprobanteID", SqlDbType.TinyInt, ObjComprobante.TipoComprobanteID);
+                    SqlClient.AddInParameter(SqlCommandCuota, "@FormaPagoID", SqlDbType.Int, ObjComprobante.FormaPagoID);
+                    SqlClient.ExecuteNonQuery(SqlCommandCuota, tran);
+
+
+                    //si hay un pago inicial se inserta
+                    DataView DVC = new DataView(DtCuotas, "int_NroCuota=0 and dec_MontoCuota > 0", "", DataViewRowState.CurrentRows);
+                    if (DVC.Count>0)
+                    {
+                        //insertar el pago que falta
+                        DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.Usp_Insert_PagoNavideño");
+                        SqlClient.AddInParameter(SqlCommand, "@NumComprobante", SqlDbType.Char, NumComprobante);
+                        SqlClient.AddInParameter(SqlCommand, "@TipoComprobante", SqlDbType.TinyInt, ObjComprobante.TipoComprobanteID);
+                        SqlClient.AddInParameter(SqlCommand, "@Importe", SqlDbType.Decimal, Convert.ToDecimal(DVC[0]["dec_MontoCuota"]));
+                        SqlClient.AddInParameter(SqlCommand, "@FormaPago", SqlDbType.Int, 1);// seria al contado
+                        SqlClient.AddInParameter(SqlCommand, "@UsuarioID", SqlDbType.Int, ObjComprobante.Cajero);
+
+                        SqlClient.ExecuteNonQuery(SqlCommand, tran);
+                        SqlCommand.Dispose();
+                    }
+
+                }
 
                 //insertar pago
                 decimal TotalValeConsumo = 0;
@@ -260,6 +299,9 @@ namespace Halley.CapaDatos.Ventas
                     SqlCommand.Dispose();
                 }
 
+
+              
+
                 SqlCommandComprobante.Dispose();
 
                 tran.Commit();
@@ -311,7 +353,7 @@ namespace Halley.CapaDatos.Ventas
                 SqlClient.AddInParameter(SqlCommandComprobante, "@XMLDetalle", SqlDbType.Xml, XMLDetalle);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@NumPedido", SqlDbType.Int, NumPedido);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@Tipo", SqlDbType.Char, Tipo);
-                SqlClient.AddInParameter(SqlCommandComprobante, "@AudCrea", SqlDbType.SmallDateTime, AudCrea);
+                SqlClient.AddInParameter(SqlCommandComprobante, "@AudCrea", SqlDbType.DateTime, AudCrea);
 
                 SqlClient.ExecuteNonQuery(SqlCommandComprobante, tran);
 
@@ -424,6 +466,38 @@ namespace Halley.CapaDatos.Ventas
                 SqlClient.AddInParameter(SqlCommandComprobante, "@TipoComprobanteID", SqlDbType.TinyInt, TipoComprobanteID);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@UsuarioID", SqlDbType.Int, UsuarioID);
                 SqlClient.AddInParameter(SqlCommandComprobante, "@SedeIDE", SqlDbType.Char, SedeIDE);
+
+                SqlClient.ExecuteNonQuery(SqlCommandComprobante, tran);
+                SqlCommandComprobante.Dispose();
+
+                tran.Commit();
+                tCnn.Close();
+                tCnn.Dispose();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void GenerarNotaCredito(string NumComprobante, int TipoComprobanteID, string EmpresaID, int UsuarioID, string motivo)
+        {
+            SqlDatabase SqlClient = new SqlDatabase(connectionString);
+            DbConnection tCnn;
+            tCnn = SqlClient.CreateConnection();
+            tCnn.Open();
+            DbTransaction tran = tCnn.BeginTransaction();
+
+
+            try
+            {
+                DbCommand SqlCommandComprobante = SqlClient.GetStoredProcCommand("ventas.usp_GenerarNotaCredito");
+                SqlClient.AddInParameter(SqlCommandComprobante, "@NumComprobante", SqlDbType.Char, NumComprobante);
+                SqlClient.AddInParameter(SqlCommandComprobante, "@EmpresaID", SqlDbType.Char, EmpresaID);
+                SqlClient.AddInParameter(SqlCommandComprobante, "@TipoComprobanteID", SqlDbType.TinyInt, TipoComprobanteID);
+                SqlClient.AddInParameter(SqlCommandComprobante, "@motivo", SqlDbType.VarChar, motivo);
+                SqlClient.AddInParameter(SqlCommandComprobante, "@UsuarioID", SqlDbType.Int, UsuarioID);
 
                 SqlClient.ExecuteNonQuery(SqlCommandComprobante, tran);
                 SqlCommandComprobante.Dispose();
@@ -1054,7 +1128,7 @@ namespace Halley.CapaDatos.Ventas
                         string estadoCp = datar.estadoCp;
                         string estadoRuc = datar.estadoRuc;
                         string condDomiRuc = datar.condDomiRuc;
-                       
+
 
                         string estadoCpRes = "DESCONOCIDO";
                         switch (estadoCp)
@@ -1166,7 +1240,7 @@ namespace Halley.CapaDatos.Ventas
                 }
 
 
-                 
+
                 return DS;
 
             }

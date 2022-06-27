@@ -33,5 +33,25 @@ namespace Halley.Entidad.Ventas
         public decimal TotalICBPER { get; set; }
         public decimal Descuento { get; set; }
         public decimal MontoTotal { get; set; }
+        //public List<cuota> cuotas { get; set; }
     }
+
+
+    //public class cuota
+    //{
+    //    public int int_IdCuota { get; set; }
+    //    public int int_IdEmpresa { get; set; }
+    //    public long bint_IdComprobante { get; set; }
+    //    public int int_NroCuota { get; set; }
+    //    public decimal dec_MontoCuota { get; set; }
+    //    public DateTime? dat_FechaPagar { get; set; }
+    //    public int bit_Activo { get; set; }
+    //    public int int_IdUsuario { get; set; }
+    //    public DateTime? datt_FechaRegistro { get; set; }
+    //    public int bit_Pagado { get; set; }
+    //    public int int_IdUsuarioPago { get; set; }
+    //    public DateTime? dat_FechaPago { get; set; }
+    //    public int int_IdCliente { get; set; }
+    //}
+
 }

@@ -42,6 +42,16 @@ namespace Halley.CapaLogica.Ventas
             return Ds;
         }
 
+
+        public DataSet GetCuotas(string NumComprobante, Int32 TipoComprobanteID)
+        {
+            CD_Pago objCD_Pago = new CD_Pago(AppSettings.GetConnectionString);
+            DataSet Ds = new DataSet();
+
+            Ds = objCD_Pago.GetCuotas(NumComprobante, TipoComprobanteID);
+            return Ds;
+        }       
+
         public DataTable GetCreditosTotal(Int32 ClienteID)
         {
             CD_Pago objCD_Pago = new CD_Pago(AppSettings.GetConnectionString);
@@ -59,11 +69,11 @@ namespace Halley.CapaLogica.Ventas
             return PagoID;
         }
 
-        public Int32 InsertPago(E_Pago ObjPago, E_NotaIngreso ObjNotaIngreso, int EstadoID)
+        public Int32 InsertPago(E_Pago ObjPago, E_NotaIngreso ObjNotaIngreso, int EstadoID, int int_IdCuota)
         {
             CD_Pago objCD_Pago = new CD_Pago(AppSettings.GetConnectionString);
             Int32 NotaIngresoID = 0;
-            NotaIngresoID = objCD_Pago.InsertPago(ObjPago, ObjNotaIngreso, EstadoID);
+            NotaIngresoID = objCD_Pago.InsertPago(ObjPago, ObjNotaIngreso, EstadoID, int_IdCuota);
             return NotaIngresoID;
         }
 
@@ -116,7 +126,7 @@ namespace Halley.CapaLogica.Ventas
 
 
 
-        public string FormatoTicketPago(string NomEmpresa, Int32 CreditoID, string NomCampanha, string NomSede, string RUC, string Usuario, decimal Pagado, string Nomcaja)
+        public string FormatoTicketPago(string NomEmpresa, Int32 CreditoID, string NomCampanha, string NomSede, string RUC, string Usuario, decimal Pagado, string Nomcaja, string observacion)
         {
             #region formato de etiquetera
             StringBuilder Stb = new StringBuilder();
@@ -135,13 +145,42 @@ namespace Halley.CapaLogica.Ventas
             else
                 Stb.Append(Usuario + "\n");
             Stb.Append(DateTime.Now.ToString() + "\n");
-            Stb.Append("----------------------------------\n\n");
-            Stb.Append("Pago de la campaña:\n");
-            Stb.Append("Nro del Credito: " + CreditoID.ToString() + "\n");
-            if (NomCampanha.Length > 35)
-                Stb.Append("Campaña: " + NomCampanha.Substring(0, 35) + "\n");
-            else
-                Stb.Append("Campaña: " + NomCampanha + "\n");
+           
+
+            if (CreditoID != 0) {
+                Stb.Append("----------------------------------\n");
+                Stb.Append("Pago de la campaña:\n");
+                Stb.Append("Nro del Credito: " + CreditoID.ToString() + "\n");
+                if (NomCampanha.Length > 35)
+                    Stb.Append("Campaña: " + NomCampanha.Substring(0, 35) + "\n");
+                else
+                    Stb.Append("Campaña: " + NomCampanha + "\n");
+            }
+
+            if (observacion.Trim() != "")
+            {
+                Stb.Append("----------------------------------\n");
+                Stb.Append("Observación:\n");
+                string acumulado = "";
+                int longi = 0;
+                while (observacion.Length != 0)
+                {
+                    acumulado += observacion.Substring(0, 1);
+                    observacion = observacion.Substring(1, observacion.Length -1);
+                    longi += 1;
+                    if (longi == 35) {
+                        longi = 0;
+                        Stb.Append(acumulado + "\n");
+                        acumulado = "";
+                    }
+                }
+
+                if (acumulado.Length > 0)
+                {
+                    Stb.Append(acumulado + "\n");
+                }
+            }
+            Stb.Append("----------------------------------\n");
             Stb.Append("Importe: " + Pagado.ToString("C") + "\n\n");
             //Stb.Append("Vuelto: " + MontoDevolver.ToString("C") + "\n\n");
             Stb.Append("Por favor conserve su comprobante\n");

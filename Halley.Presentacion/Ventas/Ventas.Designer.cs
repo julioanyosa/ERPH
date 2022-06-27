@@ -64,10 +64,10 @@
             this.BtnDefault = new System.Windows.Forms.ToolStripButton();
             this.s4 = new System.Windows.Forms.ToolStripSeparator();
             this.Lbl4 = new System.Windows.Forms.ToolStripLabel();
-            this.CboTipoPago = new System.Windows.Forms.ToolStripComboBox();
+            this.CboFormaPago = new System.Windows.Forms.ToolStripComboBox();
             this.s5 = new System.Windows.Forms.ToolStripSeparator();
             this.Lbl5 = new System.Windows.Forms.ToolStripLabel();
-            this.CboFormaPago = new System.Windows.Forms.ToolStripComboBox();
+            this.CboTipoPago = new System.Windows.Forms.ToolStripComboBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.LblCanasta = new System.Windows.Forms.Label();
             this.TxtCanasta = new C1.Win.C1Input.C1TextBox();
@@ -133,6 +133,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.TxtICBPER = new C1.Win.C1Input.C1TextBox();
             this.TxtFormatoticketera = new C1.Win.C1Input.C1TextBox();
+            this.TxtCorreo = new C1.Win.C1Input.C1TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.TxtVentaNeta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtIGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtValorVenta)).BeginInit();
@@ -163,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TdgClientes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtICBPER)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtFormatoticketera)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCorreo)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnImprimir
@@ -312,13 +315,13 @@
             this.BtnDefault,
             this.s4,
             this.Lbl4,
-            this.CboTipoPago,
+            this.CboFormaPago,
             this.s5,
             this.Lbl5,
-            this.CboFormaPago});
+            this.CboTipoPago});
             this.BarraVentas.Location = new System.Drawing.Point(171, 6);
             this.BarraVentas.Name = "BarraVentas";
-            this.BarraVentas.Size = new System.Drawing.Size(1027, 25);
+            this.BarraVentas.Size = new System.Drawing.Size(996, 25);
             this.BarraVentas.TabIndex = 351;
             this.BarraVentas.Text = "TsImpresion";
             // 
@@ -477,14 +480,14 @@
             // Lbl4
             // 
             this.Lbl4.Name = "Lbl4";
-            this.Lbl4.Size = new System.Drawing.Size(63, 22);
-            this.Lbl4.Text = "Tipo pago:";
+            this.Lbl4.Size = new System.Drawing.Size(74, 22);
+            this.Lbl4.Text = "Forma pago:";
             // 
-            // CboTipoPago
+            // CboFormaPago
             // 
-            this.CboTipoPago.Name = "CboTipoPago";
-            this.CboTipoPago.Size = new System.Drawing.Size(100, 25);
-            this.CboTipoPago.SelectedIndexChanged += new System.EventHandler(this.CboTipoPago_SelectedIndexChanged);
+            this.CboFormaPago.Name = "CboFormaPago";
+            this.CboFormaPago.Size = new System.Drawing.Size(100, 25);
+            this.CboFormaPago.SelectedIndexChanged += new System.EventHandler(this.CboTipoPago_SelectedIndexChanged);
             // 
             // s5
             // 
@@ -494,14 +497,14 @@
             // Lbl5
             // 
             this.Lbl5.Name = "Lbl5";
-            this.Lbl5.Size = new System.Drawing.Size(74, 22);
-            this.Lbl5.Text = "Forma pago:";
+            this.Lbl5.Size = new System.Drawing.Size(63, 22);
+            this.Lbl5.Text = "Tipo pago:";
             // 
-            // CboFormaPago
+            // CboTipoPago
             // 
-            this.CboFormaPago.Name = "CboFormaPago";
-            this.CboFormaPago.Size = new System.Drawing.Size(75, 25);
-            this.CboFormaPago.SelectedIndexChanged += new System.EventHandler(this.CboFormaPago_SelectedIndexChanged);
+            this.CboTipoPago.Name = "CboTipoPago";
+            this.CboTipoPago.Size = new System.Drawing.Size(75, 25);
+            this.CboTipoPago.SelectedIndexChanged += new System.EventHandler(this.CboFormaPago_SelectedIndexChanged);
             // 
             // LblCanasta
             // 
@@ -1045,11 +1048,11 @@
             this.PnlUsuarioRapido.Controls.Add(this.BtnCerrarRapido);
             this.PnlUsuarioRapido.Controls.Add(this.label12);
             this.PnlUsuarioRapido.Controls.Add(this.TxtNombresRapido);
-            this.PnlUsuarioRapido.Location = new System.Drawing.Point(266, 27);
+            this.PnlUsuarioRapido.Location = new System.Drawing.Point(325, 51);
             this.PnlUsuarioRapido.Margin = new System.Windows.Forms.Padding(2);
             this.PnlUsuarioRapido.Name = "PnlUsuarioRapido";
             this.PnlUsuarioRapido.Size = new System.Drawing.Size(532, 97);
-            this.PnlUsuarioRapido.TabIndex = 415;
+            this.PnlUsuarioRapido.TabIndex = 460;
             // 
             // BtnCerrarRapido
             // 
@@ -1114,7 +1117,7 @@
             this.LblEstadoCliente.AutoSize = true;
             this.LblEstadoCliente.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblEstadoCliente.ForeColor = System.Drawing.Color.Green;
-            this.LblEstadoCliente.Location = new System.Drawing.Point(22, 121);
+            this.LblEstadoCliente.Location = new System.Drawing.Point(22, 139);
             this.LblEstadoCliente.Name = "LblEstadoCliente";
             this.LblEstadoCliente.Size = new System.Drawing.Size(48, 13);
             this.LblEstadoCliente.TabIndex = 435;
@@ -1124,7 +1127,7 @@
             // 
             this.btnRegistrar.Image = global::Halley.Presentacion.Properties.Resources.Perfil_16x16;
             this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrar.Location = new System.Drawing.Point(375, 127);
+            this.btnRegistrar.Location = new System.Drawing.Point(475, 134);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(76, 19);
             this.btnRegistrar.TabIndex = 434;
@@ -1184,7 +1187,7 @@
             this.TxtRazonSocial.Location = new System.Drawing.Point(94, 66);
             this.TxtRazonSocial.MaxLength = 200;
             this.TxtRazonSocial.Name = "TxtRazonSocial";
-            this.TxtRazonSocial.Size = new System.Drawing.Size(357, 22);
+            this.TxtRazonSocial.Size = new System.Drawing.Size(224, 22);
             this.TxtRazonSocial.TabIndex = 429;
             this.TxtRazonSocial.Tag = null;
             // 
@@ -1237,7 +1240,7 @@
             this.TdgClientes.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TdgClientes.GroupByCaption = "Drag a column header here to group by that column";
             this.TdgClientes.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgClientes.Images"))));
-            this.TdgClientes.Location = new System.Drawing.Point(26, 62);
+            this.TdgClientes.Location = new System.Drawing.Point(34, 61);
             this.TdgClientes.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightRowRaiseCell;
             this.TdgClientes.Name = "TdgClientes";
             this.TdgClientes.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -1289,6 +1292,25 @@
             this.TxtFormatoticketera.Tag = null;
             this.TxtFormatoticketera.Visible = false;
             // 
+            // TxtCorreo
+            // 
+            this.TxtCorreo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtCorreo.Location = new System.Drawing.Point(94, 120);
+            this.TxtCorreo.MaxLength = 200;
+            this.TxtCorreo.Name = "TxtCorreo";
+            this.TxtCorreo.Size = new System.Drawing.Size(357, 22);
+            this.TxtCorreo.TabIndex = 441;
+            this.TxtCorreo.Tag = null;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(22, 124);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(57, 13);
+            this.label15.TabIndex = 442;
+            this.label15.Text = "Correo E.:";
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1339,9 +1361,13 @@
             this.Controls.Add(this.BarraVentas);
             this.Controls.Add(this.BtnNuevoComprobante);
             this.Controls.Add(this.BtnImprimir);
+            this.Controls.Add(this.TxtCorreo);
+            this.Controls.Add(this.label15);
             this.Name = "Ventas";
             this.Size = new System.Drawing.Size(1216, 551);
             this.Load += new System.EventHandler(this.Ventas_Load);
+            this.Controls.SetChildIndex(this.label15, 0);
+            this.Controls.SetChildIndex(this.TxtCorreo, 0);
             this.Controls.SetChildIndex(this.BtnImprimir, 0);
             this.Controls.SetChildIndex(this.BtnNuevoComprobante, 0);
             this.Controls.SetChildIndex(this.BarraVentas, 0);
@@ -1422,6 +1448,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TdgClientes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtICBPER)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TxtFormatoticketera)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TxtCorreo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1477,9 +1504,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripLabel Lbl5;
-        private System.Windows.Forms.ToolStripComboBox CboFormaPago;
-        private System.Windows.Forms.ToolStripLabel Lbl4;
         private System.Windows.Forms.ToolStripComboBox CboTipoPago;
+        private System.Windows.Forms.ToolStripLabel Lbl4;
+        private System.Windows.Forms.ToolStripComboBox CboFormaPago;
         private Presentacion.Ventas.UseCliente useCliente2;
         private System.Windows.Forms.Label lblNumPedido;
         private System.Windows.Forms.Label LblPedido;
@@ -1533,5 +1560,7 @@
         private System.Windows.Forms.Label label14;
         private C1.Win.C1Input.C1TextBox TxtICBPER;
         private C1.Win.C1Input.C1TextBox TxtFormatoticketera;
+        private System.Windows.Forms.Label label15;
+        private C1.Win.C1Input.C1TextBox TxtCorreo;
     }
 }

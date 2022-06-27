@@ -51,13 +51,19 @@ namespace Halley.Presentacion.Ventas.Pagos
             InitializeComponent();
         }
 
+        public string str_ID { get; set; }
+        public Int64 ComprobanteId { get; set; }
+        public int FormaPagoID { get; set; }
+
         private void TdgPreciosBuscados_DoubleClick(object sender, EventArgs e)
         {
             if (TdgComprobantes.RowCount > 0)
             {
                 TipoComprobanteID = Convert.ToInt32(TdgComprobantes.Columns["TipoComprobanteID"].Value);
-                NumComprobante = TdgComprobantes.Columns["NumComprobante"].Value.ToString().Substring(2);
-                EmpresaID = TdgComprobantes.Columns["NumComprobante"].Value.ToString().Substring(0,2);
+                NumComprobante = TdgComprobantes.Columns["NumComprobante"].Value.ToString();
+                str_ID = TdgComprobantes.Columns["str_ID"].Value.ToString();
+                EmpresaID = TdgComprobantes.Columns["NumComprobante"].Value.ToString().Substring(0, 2);
+                ComprobanteId = Convert.ToInt64(TdgComprobantes.Columns["ComprobanteId"].Value.ToString());
                 this.Close();
             }
         }
@@ -70,7 +76,8 @@ namespace Halley.Presentacion.Ventas.Pagos
 		        if (DtpFechaIni.Value != null & DtpFechaFin.Value != null & useCliente1.cbCliente.SelectedValue != null & CboTipoVenta.SelectedIndex != -1)
                 {
                     DataTable DTComprobantes = new DataTable();
-                    DTComprobantes = ObjCL_Cliente.GetComprobantesCliente(Convert.ToInt32(useCliente1.cbCliente.Columns["ClienteID"].Value), DtpFechaIni.Value, DtpFechaFin.Value.AddDays(1), Convert.ToInt32(CboTipoVenta.SelectedValue));
+                    DTComprobantes = ObjCL_Cliente.GetComprobantesCliente(Convert.ToInt32(useCliente1.cbCliente.Columns["ClienteID"].Value), 
+                        DtpFechaIni.Value, DtpFechaFin.Value.AddDays(1), Convert.ToInt32(CboTipoVenta.SelectedValue), FormaPagoID);
                     TdgComprobantes.SetDataBinding(DTComprobantes, "", true);
                 }
                 else
@@ -87,13 +94,14 @@ namespace Halley.Presentacion.Ventas.Pagos
         }
 
         private void FrmBuscarComprobante_Load(object sender, EventArgs e)
-        {
+        {             
             DtpFechaIni.Value = Convert.ToDateTime("01/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString());
             DtpFechaFin.Value = Convert.ToDateTime(DateTime.DaysInMonth(DateTime.Now.Year,DateTime.Now.Month).ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString());
             useCliente1.Cargar(DtClientes);
             DataTable DtTipoVentas = new DataTable();
             DtTipoVentas = ObjCL_Venta.GetTiposVenta();
             c1Combo.FillC1Combo1(CboTipoVenta, DtTipoVentas, "NomTipoVenta", "TipoVentaID");
+            CboTipoVenta.SelectedValue = "4";
         }
     }
 }

@@ -337,10 +337,11 @@ namespace Halley.Presentacion.Ventas
                         //aca modificar acacacacacacaca
                         DataTable dt = new DataTable();
                         DateTime FECHA_IMPRESION;
+                        DataTable DtCuotas = new DataTable();
                         dt = ObjCL_Venta.GenerarComprobante(DtDetalleComprobante, EmpresaID, AppSettings.SedeID, ClienteID, Convert.ToInt32(CboTipoComprobante.ComboBox.SelectedValue),
                                             useCliente2.txtDireccion.Text, TipoVentaID, TipoPagoId, Convert.ToInt32(CboFormaPago.ComboBox.SelectedValue), NumCaja, IGV, Subtotal, TotalIGV,
                                             TotalPagar, LstCreditos.SelectedIndex, CreditoID, CreditoDisponible, VendedorID, AppSettings.UserID, CboSerieGuia.ComboBox.SelectedValue.ToString(),
-                                            TipoTicket, DtValesConsumo, DtBoucher, DtNotaIngreso, 0, 0, TotalPagar);
+                                            TipoTicket, DtValesConsumo, DtBoucher, DtNotaIngreso, 0, 0, TotalPagar, DtCuotas);
 
                         NumComprobante = dt.Rows[0]["NumComprobante"].ToString();
                         FECHA_IMPRESION = Convert.ToDateTime(dt.Rows[0]["FECHA_ACTUAL"].ToString());

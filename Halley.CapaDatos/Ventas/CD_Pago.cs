@@ -57,6 +57,18 @@ namespace Halley.CapaDatos.Ventas
             return Ds;
         }
 
+        public DataSet GetCuotas(string NumComprobante, Int32 TipoComprobanteID)
+        {
+            DataSet Ds = new DataSet();
+            SqlDatabase SqlClient = new SqlDatabase(connectionString);
+            DbCommand SqlCommand = SqlClient.GetStoredProcCommand("ventas.Usp_GetCuotas");
+
+            SqlClient.AddInParameter(SqlCommand, "@NumComprobante", SqlDbType.Char, NumComprobante);
+            SqlClient.AddInParameter(SqlCommand, "@TipoComprobanteID", SqlDbType.TinyInt, TipoComprobanteID);
+            Ds.Load(SqlClient.ExecuteReader(SqlCommand), LoadOption.PreserveChanges, "Cuotas");
+            return Ds;
+        }
+
         public DataTable GetCreditosTotal(Int32 ClienteID)
         {
             DataTable dtTmp = new DataTable();
@@ -102,7 +114,7 @@ namespace Halley.CapaDatos.Ventas
             }
         }
 
-        public Int32 InsertPago(E_Pago ObjPago, E_NotaIngreso ObjNotaIngreso, int EstadoID)
+        public Int32 InsertPago(E_Pago ObjPago, E_NotaIngreso ObjNotaIngreso, int EstadoID, int int_IdCuota)
         {
             Int32 NotaIngresoID = 0;
             try
@@ -128,6 +140,8 @@ namespace Halley.CapaDatos.Ventas
 
                 SqlClient.AddInParameter(SqlCommand, "@Serie", SqlDbType.Char, ObjNotaIngreso.Serie);
                 SqlClient.AddInParameter(SqlCommand, "@Numero", SqlDbType.Char, ObjNotaIngreso.Numero);
+                SqlClient.AddInParameter(SqlCommand, "@int_IdCuota", SqlDbType.Int, int_IdCuota);
+                
 
                 NotaIngresoID = Convert.ToInt32(SqlClient.ExecuteScalar(SqlCommand));
             }

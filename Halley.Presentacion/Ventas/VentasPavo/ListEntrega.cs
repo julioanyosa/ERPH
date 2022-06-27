@@ -358,10 +358,11 @@ namespace Halley.Presentacion.Ventas.VentasPavo
 
                         //aca modificar acacacacacacaca
                         DataTable dt = new DataTable();
+                        DataTable DtCuotas = new DataTable();
                         dt =  ObjCL_Venta.GenerarComprobante(DtDetalleComprobante, EmpresaID, AppSettings.SedeID, ClienteID,Convert.ToInt32(CboTipoComprobante.ComboBox.SelectedValue),
                                             useCliente1.txtDireccion.Text, TipoVentaID, TipoPagoId, Convert.ToInt32(CboFormaPago.ComboBox.SelectedValue), NumCaja, IGV, Subtotal, TotalIGV,
                                             TotalPagar, LstCreditos.SelectedIndex, CreditoID, CreditoDisponible, VendedorID, AppSettings.UserID, CboSerieGuia.ComboBox.SelectedValue.ToString(),
-                                            null, DtValesConsumo, DtBoucher, DtNotaIngreso, 0, 0, TotalPagar);
+                                            null, DtValesConsumo, DtBoucher, DtNotaIngreso, 0, 0, TotalPagar, DtCuotas);
 
                         NumComprobante = dt.Rows[0]["NumComprobante"].ToString();
                         FECHA_IMPRESION = Convert.ToDateTime(dt.Rows[0]["FECHA_ACTUAL"].ToString());

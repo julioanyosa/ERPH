@@ -421,7 +421,7 @@ namespace Halley.CapaLogica.Ventas
     DataTable DTDetalles, string RUC, string Usuario, decimal Pagado, string Nomcaja, string NroSerieCaja,
     string NroAutorizacion, string TotalPagarLetras, string Nomcliente, string NroDocumento, string DireccionCliente,
     string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntregado, decimal MontoIGV, string TipoFE,
-        string TelefonoCelular, string TelefonoFijo, decimal TotalComprobante, decimal TotalICBPER)
+        string TelefonoCelular, string TelefonoFijo, decimal TotalComprobante, decimal TotalICBPER, int FormaPagoID, DataTable DtCuotas, object obj)
         {
             #region formato de etiquetera
             CantidadFilas = 0;
@@ -467,13 +467,28 @@ namespace Halley.CapaLogica.Ventas
 
 
             Stb.Append("****************************************\n");
-            Stb.Append("Nro Serie : " + NroSerieCaja + "        " + FECHA_IMPRESION.ToShortDateString() + "\n");
+            if (NroSerieCaja.Trim() != "")
+                Stb.Append("Nro Serie : " + NroSerieCaja + "     FE:" + FECHA_IMPRESION.ToShortDateString() + "\n");
+            else
+                Stb.Append("Fecha de emisión: " + FECHA_IMPRESION.ToShortDateString() + "\n");
+
             //Stb.Append("Nro Aut.  : " + NroAutorizacion + "     " + FECHA_IMPRESION.ToShortTimeString() + "\n");
-            Stb.Append(FECHA_IMPRESION.ToShortTimeString() + "\n");
+            Stb.Append("Hora de emisión: " + FECHA_IMPRESION.ToShortTimeString() + "\n");
             Stb.Append(DV_SEDEFILTRADA[0]["Distrito"].ToString() + "\n");
             Stb.Append(DV_SEDEFILTRADA[0]["Provincia"].ToString() + "\n");
             Stb.Append("****************************************\n");
-            Stb.Append(NombreComprobante + " " + TipoFE + Numcomprobante.Substring(0, 3) + "-0" + Numcomprobante.Substring(4) + "\n");
+
+
+            if (NombreComprobante.ToUpper().Contains("NOTA DE"))
+            {
+                Stb.Append(NombreComprobante + " " + Numcomprobante + "\n");
+            }
+            else
+            {
+                Stb.Append(NombreComprobante + " " + TipoFE + Numcomprobante.Substring(0, 3) + "-0" + Numcomprobante.Substring(4) + "\n");
+            }
+            
+
             if (Usuario.Length > 30)
                 Stb.Append("Caja #:" + Nomcaja + " Cajero: " + Usuario.Substring(0, 30) + "\n");
             else
@@ -513,7 +528,7 @@ namespace Halley.CapaLogica.Ventas
 
             Stb.Append("****************************************\n");
 
-            if (Pagado == 0)
+            if (Pagado == 0 && FormaPagoID != 1)
                 Stb.Append("OP. GRATUITAS: ".PadRight(20, ' ') + totalpordetalle.ToString("C").PadLeft(20, ' ') + "\n");
             else
                 Stb.Append("OP. GRATUITAS: ".PadRight(20, ' ') + 0.ToString("C").PadLeft(20, ' ') + "\n");
@@ -525,8 +540,8 @@ namespace Halley.CapaLogica.Ventas
 
             Stb.Append("OP. INAFECTA: ".PadRight(20, ' ') + 0.ToString("C").PadLeft(20, ' ') + "\n");
 
-                       
-                        if (MontoIGV == 0)
+
+            if (MontoIGV == 0)
                 Stb.Append("OP. GRAVADAS: ".PadRight(20, ' ') + 0.ToString("C").PadLeft(20, ' ') + "\n");
             else
                 Stb.Append("OP. GRAVADAS: ".PadRight(20, ' ') + (TotalComprobante - MontoIGV - TotalICBPER).ToString("C").PadLeft(20, ' ') + "\n");
@@ -551,7 +566,16 @@ namespace Halley.CapaLogica.Ventas
                 CantidadFilas += 1;
             }
             Stb.Append("IMPORTE TOTAL: ".PadRight(20, ' ') + TotalComprobante.ToString("C").PadLeft(20, ' ') + "\n\n");
-            Stb.Append("TOTAL PAGO EFECTIVO S/: ".PadRight(25, ' ') + Pagado.ToString("C").PadLeft(15, ' ') + "\n\n");
+
+            if (FormaPagoID == 2)//contado
+            {
+                Stb.Append("TOTAL PAGO EFECTIVO S/: ".PadRight(25, ' ') + Pagado.ToString("C").PadLeft(15, ' ') + "\n\n");
+            }
+            else if (FormaPagoID == 1)//credito
+            {
+                Stb.Append("TOTAL ADELANTO S/: ".PadRight(25, ' ') + MontoEntregado.ToString("C").PadLeft(15, ' ') + "\n\n");
+            }
+
             CantidadFilas += 10;
 
             TotalPagarLetras += " SOLES.";
@@ -572,9 +596,54 @@ namespace Halley.CapaLogica.Ventas
             }
 
 
-            Stb.Append("Monto entregado: " + MontoEntregado.ToString("C").PadLeft(40 - 17, ' ') + "\n");
-            Stb.Append("Vuelto: " + (MontoEntregado - Pagado).ToString("C").PadLeft(32, ' ') + "\n");
-            CantidadFilas += 2;
+     
+
+            if (!NombreComprobante.ToUpper().Contains("NOTA DE"))
+            {
+                Stb.Append("Monto entregado: " + MontoEntregado.ToString("C").PadLeft(40 - 17, ' ') + "\n");
+                CantidadFilas += 1;
+
+                if (FormaPagoID == 2)//contado
+                {
+                    Stb.Append("Vuelto: " + (MontoEntregado - Pagado).ToString("C").PadLeft(32, ' ') + "\n");
+                    Stb.Append("****************************************\n");
+                    Stb.Append("FORMA DE PAGO AL CONTADO" + "\n");
+                    CantidadFilas += 3;
+                }
+                else if (FormaPagoID == 1)//credito
+                {
+                    Stb.Append("****************************************\n");
+                    Stb.Append("FORMA DE PAGO AL CRÉDITO" + "\n");
+                    CantidadFilas += 2;
+
+                    DataView DV0 = new DataView(DtCuotas, "int_NroCuota = 0 and dec_MontoCuota > 0", "", DataViewRowState.CurrentRows);
+                    if (DV0.Count > 0)
+                    {
+                        Stb.Append("PAGO ADELANTADO : S/ " + Convert.ToDecimal(DV0[0]["dec_MontoCuota"]).ToString("N2") + "\n");
+                        CantidadFilas += 1;
+                    }
+
+                    DataView DVT = new DataView(DtCuotas, "int_NroCuota <> 0", "int_NroCuota", DataViewRowState.CurrentRows);
+                    decimal pendpag = 0;
+                    foreach (DataRowView DRV in DVT)
+                    {
+                        Stb.Append("CUOTA " + DRV["int_NroCuota"].ToString() + " : S/ "
+                            + Convert.ToDecimal(DRV["dec_MontoCuota"]).ToString("N2") + " FV: " +
+                            Convert.ToDateTime(DRV["dat_FechaPagar"]).ToString("dd/MM/yyyy") + "\n");
+
+                        pendpag += Convert.ToDecimal(DRV["dec_MontoCuota"]);
+
+                        CantidadFilas += 1;
+                    }
+
+                    Stb.Append("PENDIENTE DE PAGO : S/ " + pendpag.ToString("N2") + "\n");
+                    CantidadFilas += 1;
+                }
+            }
+
+           
+
+
 
             if (Canasta != "")
             {
@@ -582,10 +651,21 @@ namespace Halley.CapaLogica.Ventas
                 CantidadFilas += 1;
             }
 
-            Stb.Append("ESTA ES UNA REPRESENTACIÓN IMPRESA \nDE LA " + ((TipoFE == "F") ? "FACTURA ELECTRÓNICA" : "BOLETA ELECTRÓNICA") + "\n");
+            Stb.Append("ESTA ES UNA REPRESENTACIÓN IMPRESA \nDE LA " + NombreComprobante + "\n");
             CantidadFilas += 2;
             //Stb.Append(Convert.ToChar(27) + "i");//corte de la impresora
 
+            if (NombreComprobante.ToUpper().Contains("NOTA DE"))
+            {
+                E_NotaCredito objnc = (E_NotaCredito)obj;
+                //nota de credito
+                Stb.Append("\n");
+                Stb.Append("DATOS DEL DOCUMENTO AFECTADO" + "\n");
+                Stb.Append("DOCUMENTO AFECTADO: " + (objnc.str_TipoDocumentoVinculante == "01" ? "FACTURA" : "BOLETA") + " " + objnc.str_ID_DocumentoVinculante + "\n");
+                Stb.Append("TIPO NOTA: " + objnc.str_CodigoTipoNotaCredito + " - " + objnc.str_DescripcionTipoNotaCredito + "\n");
+                Stb.Append("MOTIVO: " + objnc.str_Motivo + "\n");
+                CantidadFilas += 5;
+            }
 
 
             //Stb.Append("Nro de Items: " + DTDetalles.Rows.Count.ToString() + "  *\n");
@@ -1053,9 +1133,9 @@ namespace Halley.CapaLogica.Ventas
 
         //Imprimir la venta
         public DataTable GenerarComprobante(DataTable DtDetalleComprobante, string EmpresaID, string SedeID, int ClienteID, int TipoComprobanteID,
-            string Direccion, int TipoVentaID, int TipoPagoId, int FormaPago, int NumCaja, decimal IGV, decimal Subtotal, decimal TotalIGV,
+            string Direccion, int TipoVentaID, int int_FormaPago, int int_tipoPago, int NumCaja, decimal IGV, decimal Subtotal, decimal TotalIGV,
            decimal TotalPagar, int CreditoSeleccionado, int CreditoID, decimal CreditoDisponible, int VendedorID, int UserID, string SerieComprobante, string TipoTicket,
-            DataTable DtValesConsumo, DataTable DtBoucher, DataTable DtNotaIngreso, decimal TotalICBPER, decimal Descuento,decimal MontoTotal)
+            DataTable DtValesConsumo, DataTable DtBoucher, DataTable DtNotaIngreso, decimal TotalICBPER, decimal Descuento, decimal MontoTotal, DataTable DtCuotas)
         {
             DataTable DT = new DataTable();
 
@@ -1064,9 +1144,15 @@ namespace Halley.CapaLogica.Ventas
             {
                 throw new Exception("si la venta pasa de S/ 700 debe exigir datos que identifiquen al cliente");
             }
-            else if ((TipoComprobanteID.ToString() == "2" | TipoComprobanteID.ToString() == "5") & (ClienteID == 1 | ClienteID == 204 | ClienteID == 241 | ClienteID == 3032))
+
+            if ((TipoComprobanteID.ToString() == "2" | TipoComprobanteID.ToString() == "5") & (ClienteID == 1 | ClienteID == 204 | ClienteID == 241 | ClienteID == 3032))
             {
                 throw new Exception("Si es factura debe exigir datos que identifiquen al cliente");
+            }
+
+            if ((int_FormaPago.ToString() == "1") & (ClienteID == 1 | ClienteID == 204 | ClienteID == 241 | ClienteID == 3032))
+            {
+                throw new Exception("Si es venta al crédito debe exigir datos que identifiquen al cliente");
             }
 
             #region crear tabla y agregar el detalle de la compra
@@ -1115,32 +1201,39 @@ namespace Halley.CapaLogica.Ventas
                 ObjComprobante.ClienteID = ClienteID;
                 ObjComprobante.Direccion = Direccion;
                 ObjComprobante.TipoVentaID = TipoVentaID;
-                ObjComprobante.TipoPagoId = TipoPagoId;
-                ObjComprobante.FormaPagoID = FormaPago;
+                ObjComprobante.TipoPagoId = int_FormaPago;
+                ObjComprobante.FormaPagoID = int_tipoPago;
                 ObjComprobante.NumCaja = NumCaja;
                 ObjComprobante.IGV = IGV;
                 ObjComprobante.SubTotal = Subtotal;
                 ObjComprobante.TotIgv = TotalIGV;
                 ObjComprobante.TipoTicket = TipoTicket;
-                if (TipoPagoId.ToString() == "1")//es credito
+                if (int_FormaPago.ToString() == "1")//es credito
                 {
-                    if (CreditoSeleccionado != -1)
-                    {
-                        ObjComprobante.CreditoID = CreditoID;
-                        estadoID = 14;//comprobante pendiente de pago
-
-                        //validar que el credito disponible sea mayor o igual al monto de la compra
-                        if (CreditoDisponible < (Subtotal + TotalIGV))
-                        {
-                            throw new Exception("El total del comprobante no debe ser mayor al crédito disponible.");
-                        }
-                    }
+                    //si hay un pago el estado sería ""
+                    DataView DVC = new DataView(DtCuotas, "int_NroCuota=0 and dec_MontoCuota > 0", "", DataViewRowState.CurrentRows);
+                    if (DVC.Count > 0)
+                        estadoID = 13;//PAGO PARCIAL                     
                     else
-                    {
-                        throw new Exception("Para la opción 'Venta Credito' el cliente debe tener un crédito y este crédito debe estar seleccionado en la lista 'Crédito'");
-                    }
+                        estadoID = 14;//PENDIENTE DE PAGO
+
+                    //if (CreditoSeleccionado != -1)
+                    //{
+                    //    ObjComprobante.CreditoID = CreditoID;
+                    //    estadoID = 14;//comprobante pendiente de pago
+
+                    //    //validar que el credito disponible sea mayor o igual al monto de la compra
+                    //    //if (CreditoDisponible < (Subtotal + TotalIGV))
+                    //    //{
+                    //    //    throw new Exception("El total del comprobante no debe ser mayor al crédito disponible.");
+                    //    //}
+                    //}
+                    //else
+                    //{
+                    //    throw new Exception("Para la opción 'Venta Credito' el cliente debe tener un crédito y este crédito debe estar seleccionado en la lista 'Crédito'");
+                    //}
                 }
-                else if (TipoPagoId.ToString() == "2")//es contado
+                else if (int_FormaPago.ToString() == "2")//es contado
                 {
                     estadoID = 12;//comprobante pagado
                 }
@@ -1154,9 +1247,9 @@ namespace Halley.CapaLogica.Ventas
                 ObjComprobante.TotalICBPER = TotalICBPER;
                 ObjComprobante.MontoTotal = MontoTotal;
                 ObjComprobante.Descuento = Descuento;
- 
+
                 //aca se genera el xml
-                DT = new CL_Comprobante().InsertComprobante(ObjComprobante, DtDetalleComprobanteInsert, 0, "D", DtValesConsumo, DtBoucher, DtNotaIngreso);
+                DT = new CL_Comprobante().InsertComprobante(ObjComprobante, DtDetalleComprobanteInsert, 0, "D", DtValesConsumo, DtBoucher, DtNotaIngreso, DtCuotas);
 
 
             }
@@ -1576,7 +1669,8 @@ namespace Halley.CapaLogica.Ventas
         public string[] FormatoTicketFEResumido(string NomEmpresa, string Direccion, string Numcomprobante, string NombreComprobante,
 DataTable DTDetalles, string RUC, string Usuario, decimal Pagado, string Nomcaja, string NroSerieCaja,
 string NroAutorizacion, string TotalPagarLetras, string Nomcliente, string NroDocumento, string DireccionCliente,
-string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntregado, decimal MontoIGV, string TipoFE,decimal TotalComprobante, decimal TotalICBPER)
+string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntregado, decimal MontoIGV, string TipoFE,
+            decimal TotalComprobante, decimal TotalICBPER, int FormaPagoID, DataTable DtCuotas, object  obj)
         {
             #region formato de etiquetera
             //calcular el apgo en letras
@@ -1586,8 +1680,8 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
             DataView DV_SEDEFILTRADA = new DataView(UTI_Datatables.Dt_Sedes, "SedeID = '" + AppSettings.SedeID + "'", "", DataViewRowState.CurrentRows);
 
             StringBuilder Stb = new StringBuilder();
-        
-            Stb.Append("Fecha : " + FECHA_IMPRESION.ToShortDateString() + " " + FECHA_IMPRESION.ToShortTimeString() + "\n");
+
+            Stb.Append("Fecha emisión: " + FECHA_IMPRESION.ToShortDateString() + " " + FECHA_IMPRESION.ToShortTimeString() + "\n");
             Stb.Append("****************************************\n");
             Stb.Append(NombreComprobante + " " + TipoFE + Numcomprobante.Substring(0, 3) + "-0" + Numcomprobante.Substring(4) + "\n");
             if (Usuario.Length > 30)
@@ -1626,15 +1720,60 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
 
             if ((TotalComprobante > Pagado) && (TotalComprobante - Pagado) < Convert.ToDecimal(0.10))
             {
-                Stb.Append("Redondeo: " + (Pagado - TotalComprobante).ToString("C").PadLeft(40 - 10, ' ') + "\n"); 
+                Stb.Append("Redondeo: " + (Pagado - TotalComprobante).ToString("C").PadLeft(40 - 10, ' ') + "\n");
             }
             Stb.Append("IMPORTE TOTAL: ".PadRight(20, ' ') + Pagado.ToString("C").PadLeft(20, ' ') + "\n\n");
 
 
-         
-
             Stb.Append("Monto entregado: " + MontoEntregado.ToString("C").PadLeft(40 - 17, ' ') + "\n");
-            Stb.Append("Vuelto: " + (MontoEntregado - Pagado).ToString("C").PadLeft(32, ' ') + "\n");
+            //if (MontoEntregado >= Pagado)
+            //    Stb.Append("Vuelto: " + (MontoEntregado - Pagado).ToString("C").PadLeft(32, ' ') + "\n");
+
+
+            if (FormaPagoID == 2)//contado
+            {
+                Stb.Append("Vuelto: " + (MontoEntregado - Pagado).ToString("C").PadLeft(32, ' ') + "\n");
+                Stb.Append("****************************************\n");
+                Stb.Append("FORMA DE PAGO AL CONTADO" + "\n");
+            }
+            else if (FormaPagoID == 1)//credito
+            {
+                Stb.Append("****************************************\n");
+                Stb.Append("FORMA DE PAGO AL CRÉDITO" + "\n");
+
+                DataView DV0 = new DataView(DtCuotas, "int_NroCuota = 0 and dec_MontoCuota > 0", "", DataViewRowState.CurrentRows);
+                if (DV0.Count > 0)
+                {
+                    Stb.Append("PAGO ADELANTADO : S/ " + Convert.ToDecimal(DV0[0]["dec_MontoCuota"]).ToString("N2") + "\n");
+                }
+
+                DataView DVT = new DataView(DtCuotas, "int_NroCuota <> 0", "int_NroCuota", DataViewRowState.CurrentRows);
+                decimal pendpag = 0;
+                foreach (DataRowView DRV in DVT)
+                {
+                    Stb.Append("CUOTA " + DRV["int_NroCuota"].ToString() + " : S/ "
+                        + Convert.ToDecimal(DRV["dec_MontoCuota"]).ToString("N2") + " FV: " +
+                        Convert.ToDateTime(DRV["dat_FechaPagar"]).ToString("dd/MM/yyyy") + "\n");
+
+                    pendpag += Convert.ToDecimal(DRV["dec_MontoCuota"]);
+
+                }
+
+                Stb.Append("PENDIENTE DE PAGO : S/ " + pendpag.ToString("N2") + "\n");
+                CantidadFilas += 1;
+
+                if (NombreComprobante.ToUpper().Contains("NOTA DE"))
+                {
+                    E_NotaCredito objnc = (E_NotaCredito)obj;
+                    //nota de credito
+                    Stb.Append("\n");
+                    Stb.Append("DATOS DEL DOCUMENTO AFECTADO" + "\n");
+                    Stb.Append("DOCUMENTO AFECTADO: " + (objnc.str_TipoDocumentoVinculante == "01" ? "FACTURA" : "BOLETA") + " " + objnc.str_ID_DocumentoVinculante + "\n");
+                    Stb.Append("TIPO NOTA: " + objnc.str_CodigoTipoNotaCredito + " - " + objnc.str_DescripcionTipoNotaCredito + "\n");
+                    Stb.Append("MOTIVO: " + objnc.str_Motivo + "\n");
+                    CantidadFilas += 5;
+                }
+            }
 
 
             //Stb.Append("***Por favor conserve su comprobante***");
@@ -1655,10 +1794,19 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
         }
         public DataSet ObtenerDatosCliente(string RUC, string urldni, string urlsunat)
         {
-            CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
-            DataSet Ds = new DataSet();
-            Ds = objCD_Venta.ObtenerDatosCliente(RUC, urldni, urlsunat);
-            return Ds;
+            try
+            {
+                CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
+                DataSet Ds = new DataSet();
+                Ds = objCD_Venta.ObtenerDatosCliente(RUC, urldni, urlsunat);
+                return Ds;
+            }
+            catch (Exception ex)
+            {
+                
+                throw new Exception(ex.Message);
+            }
+          
         }
 
         public void InsertarClientesSunat(string ruta)
@@ -1709,6 +1857,22 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
             Ds = objCD_Venta.ObtenerParaImpresion(ComprobanteId);
             return Ds;
         }
+        public DataSet ObtenerParaImpresionNc(Int64 ComprobanteId)
+        {
+            CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
+            DataSet Ds = new DataSet();
+            Ds = objCD_Venta.ObtenerParaImpresionNc(ComprobanteId);
+            return Ds;
+        }
+        
+        public DataTable ListarNotaCredito(DateTime FechaIni, DateTime FechaFin, int TipoComprobanteID, string EmpresaID)
+        {
+            CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
+     
+            DataTable dt = objCD_Venta.ListarNotaCredito(FechaIni, FechaFin, TipoComprobanteID, EmpresaID);
+            return dt;
+        }
 
+           
     }
 }
