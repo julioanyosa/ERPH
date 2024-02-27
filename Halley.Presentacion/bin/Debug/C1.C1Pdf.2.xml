@@ -4,6 +4,62 @@
     <name>C1.C1Pdf.2</name>
   </assembly>
   <members>
+    <member name="T:C1.Framework.ResourceLoader">
+      <summary>
+            Class with static methods used for enumerating and retrieving application
+            resources.
+            </summary>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.GetImages">
+      <summary>
+            Returns all images from the entry assembly. 
+            </summary>
+      <returns>A collection of name/image pairs.</returns>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.GetImages(System.Reflection.Assembly)">
+      <summary>
+            Returns all images from the specified assembly. 
+            </summary>
+      <param name="a">An <see cref="T:System.Reflection.Assembly" /> to load images from.</param>
+      <returns>A collection of name/image pairs.</returns>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.GetImage(System.String)">
+      <summary>
+            Loads an image from the entry assembly. 
+            </summary>
+      <param name="name">The case-insensitive name of the requested image.</param>
+      <returns>The <see cref="T:System.Drawing.Image" /> if it is found; null otherwise.</returns>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.GetImage(System.Reflection.Assembly,System.String)">
+      <summary>
+            Loads an image from the specified assembly. 
+            </summary>
+      <param name="a">An <see cref="T:System.Reflection.Assembly" /> to load image from.</param>
+      <param name="name">The case-insensitive name of the requested image.</param>
+      <returns>The <see cref="T:System.Drawing.Image" /> if it is found; null otherwise.</returns>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.GetStream(System.String)">
+      <summary>
+            Loads the specified manifest resource from the entry assembly. 
+            </summary>
+      <param name="name">The case-insensitive name of the manifest resource being requested.</param>
+      <returns>A <see cref="T:System.IO.Stream" /> representing this manifest resource.</returns>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.GetStream(System.Reflection.Assembly,System.String)">
+      <summary>
+            Loads the specified manifest resource from the specified assembly. 
+            </summary>
+      <param name="a">An <see cref="T:System.Reflection.Assembly" /> to load resource from.</param>
+      <param name="name">The case-insensitive name of the manifest resource being requested.</param>
+      <returns>A <see cref="T:System.IO.Stream" /> representing this manifest resource.</returns>
+    </member>
+    <member name="M:C1.Framework.ResourceLoader.DecodeImage(System.String)">
+      <summary>
+            Decodes an image from a base-64-encoded string.
+            </summary>
+      <param name="data">String that contains the encoded image data.</param>
+      <returns>The <see cref="T:System.Drawing.Image" /> encoded in the string.</returns>
+    </member>
     <member name="T:C1.C1Pdf.AttachmentIconEnum">
       <summary>
             Specifies the type of attachment icon to use.
@@ -28,6 +84,177 @@
       <summary>
             Graph attachment icon.
             </summary>
+    </member>
+    <member name="T:C1.C1Pdf.SignatureHandler">
+      <summary>
+            Specifies the type of signature handler used to authenticate digital signatures
+            (see <see cref="P:C1.C1Pdf.PdfSignature.Handler" />).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.SignatureHandler.PPKMS">
+      <summary>
+            Authenticates using hash code instead of the actual file data (faster).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.SignatureHandler.PPKLite">
+      <summary>
+            Authenticates using the actual file data (slower but more secure).
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfSignature">
+      <summary>
+            Represents a digital signature field of an <b>AcroForm</b>.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfFieldBase">
+      <summary>
+            The abstract base class from which all other <b>AcroForm</b>
+            field classes (<b>AcroField</b>) are derived.
+            </summary>
+      <remarks>
+            The non-abstract derived classes include
+            <see cref="T:C1.C1Pdf.PdfTextBox" />, <see cref="T:C1.C1Pdf.PdfCheckBox" />,
+            <see cref="T:C1.C1Pdf.PdfPushButton" />, <see cref="T:C1.C1Pdf.PdfRadioButton" />,
+            <see cref="T:C1.C1Pdf.PdfComboBox" />, <see cref="T:C1.C1Pdf.PdfSignature" />,
+            and <see cref="T:C1.C1Pdf.PdfListBox" />.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.Name">
+      <summary>
+            Gets or sets the name of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            <para>
+            If the current object is a <see cref="T:C1.C1Pdf.PdfRadioButton" />,
+            the same name must be specified for all radio buttons in a group.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.Value">
+      <summary>
+            Gets or sets the value of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.DefaultValue">
+      <summary>
+            Gets or sets the default value of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.IsReadOnly">
+      <summary>
+            Gets or sets a value indicating whether the current <see cref="T:C1.C1Pdf.PdfFieldBase" />
+            represents a read-only field.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.IsRequired">
+      <summary>
+            Gets or sets a value indicating whether the current <see cref="T:C1.C1Pdf.PdfFieldBase" />
+            represents a required field.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.BorderWidth">
+      <summary>
+            Gets or sets the width of the border around the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.BorderStyle">
+      <summary>
+            Gets or sets the style of the border around the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.BorderColor">
+      <summary>
+            Gets or sets the color of the border around the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.BackColor">
+      <summary>
+            Gets or sets the background color of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.ForeColor">
+      <summary>
+            Gets or sets the foreground (text) color of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.Font">
+      <summary>
+            Gets or sets the <see cref="T:System.Drawing.Font" /> of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.Rotation">
+      <summary>
+            Gets or sets the rotation angle of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />,
+            in degrees counter-clockwise from the <b>X</b> axis.
+            </summary>
+      <remarks>This field to support only 0, 90, 180 and 270 degree of rotation.</remarks>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.Visibility">
+      <summary>
+            Gets or sets the visibility of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.ToolTip">
+      <summary>
+            Gets or sets the tooltip associated with the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.Text">
+      <summary>
+            Gets or sets the text of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfFieldBase.DefaultText">
+      <summary>
+            Gets or sets the default text for the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfSignature.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfSignature" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.Certificate">
+      <summary>
+            Gets or sets the certificate of this digital signature.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.ContactInfo">
+      <summary>
+            Gets or sets the contact information (such as an e-mail address).
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.Location">
+      <summary>
+            Gets or sets the location information (such as a site address).
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.Reason">
+      <summary>
+            Gets or sets the signing reason info (arbitrary text).
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.Handler">
+      <summary>
+            Gets or sets the type of handler used to authenticate the current signature.
+            </summary>
+      <remarks>
+            The default value is <see cref="F:C1.C1Pdf.SignatureHandler.PPKMS" />, a fast handler based on a hash code of the file content.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.Image">
+      <summary>
+            Gets or sets the image associated with the current signature. 
+            </summary>
+      <remarks>
+            Note that if this property is set to a non-<c>null</c> value,
+            the <see cref="P:C1.C1Pdf.PdfSignature.Text" /> property on the current signature is ignored
+            (and returns an empty string).
+            </remarks>
+      <seealso cref="P:C1.C1Pdf.PdfSignature.Text" />
+    </member>
+    <member name="P:C1.C1Pdf.PdfSignature.Text">
+      <summary>
+            Gets or sets the text of the current <see cref="T:C1.C1Pdf.PdfSignature" />.
+            </summary>
+      <seealso cref="P:C1.C1Pdf.PdfSignature.Image" />
     </member>
     <member name="T:C1.C1Pdf.ImageSizeModeEnum">
       <summary>
@@ -147,6 +374,41 @@
             a cache, and don't want to create temporary files.
             </remarks>
     </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.PieArc(System.Drawing.RectangleF,System.Single,System.Single,System.Boolean,System.Boolean)">
+      <summary>
+            For internal use only. Draws a pie slice or an arc.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.RoundRect(System.Drawing.RectangleF,System.Drawing.SizeF)">
+      <summary>
+            For internal use only. Draws a rounded rectangle.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.Ellipse(System.Drawing.RectangleF)">
+      <summary>
+            For internal use only. Draws an ellipse.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.Polygon(System.Drawing.PointF[])">
+      <summary>
+            For internal use only. Draws a polygon.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.GetStreamPosition">
+      <summary>
+            For internal use only. Gets the Position on the page stream.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.GetCurrentID">
+      <summary>
+            For internal use only. Gets the ID of the last object.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocumentBase.GetNewID">
+      <summary>
+            For internal use only. Increments the ID for the next object.
+            </summary>
+    </member>
     <member name="M:C1.C1Pdf.C1PdfDocumentBase.Write(System.String,System.Object[])">
       <summary>
             Writes raw content into the Pdf stream for the current page.
@@ -216,6 +478,18 @@
       <summary>
             Gets the collection of <see cref="T:C1.C1Pdf.PdfPage" /> objects that make up the document.
             </summary>
+    </member>
+    <member name="P:C1.C1Pdf.C1PdfDocumentBase.SaveAllImagesAsJpeg">
+      <summary>
+            Gets or sets whether all images should be saved in the <b>Jpeg</b> format.
+            </summary>
+      <remarks>
+        <para>By default, <see cref="T:C1.C1Pdf.C1PdfDocument" /> will save images in their original format,
+            which may support transparency and loss-less compression.</para>
+        <para>By setting this property to true, all images will be saved in the <b>Jpeg</b> format.
+            The <b>Jpeg</b> format provides excellent compression and performance, but does not support 
+            transparency.</para>
+      </remarks>
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.#ctor">
       <summary>
@@ -563,7 +837,7 @@
             Combined with the <see cref="F:System.Drawing.StringFormatFlags.DirectionRightToLeft" /> flags, it will cause text to render from
             the top to the bottom of the rectangle.</para>
         <para>The <b>DrawString</b> method returns the index of the first character that was not 
-            printed because it did not fit the output rectangle. You can use this value make text flow from 
+            printed because it did not fit the output rectangle. You can use this value to make text flow from 
             page to page, or from one frame to another within a page.</para>
       </remarks>
       <example>
@@ -596,7 +870,7 @@
         <see cref="T:System.Drawing.RectangleF" /> structure that specifies the location of the drawn text, in points from the top left corner of the page.</param>
       <param name="sf">
         <see cref="T:System.Drawing.StringFormat" /> object that specifies formatting attributes applied to the drawn text.</param>
-      <returns>The index of first character that was not printed because it did not fit in the specified rectangle, or int.MaxValue if the whole string was rendered.</returns>
+      <returns>The index of first character that was not printed because it did not fit in the specified rectangle.</returns>
       <seealso cref="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32,System.Drawing.StringFormat)" />
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32)">
@@ -613,7 +887,7 @@
       <param name="rc">
         <see cref="T:System.Drawing.RectangleF" /> structure that specifies the location of the drawn text, in points from the top left corner of the page.</param>
       <param name="firstChar">Index of the first character that will be rendered.</param>
-      <returns>The index of first character that was not printed because it did not fit in the specified rectangle, or int.MaxValue if the whole string was rendered.</returns>
+      <returns>The index of first character that was not printed because it did not fit in the specified rectangle.</returns>
       <seealso cref="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32,System.Drawing.StringFormat)" />
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF)">
@@ -628,7 +902,7 @@
       <param name="rc">
         <see cref="T:System.Drawing.RectangleF" /> structure that specifies the location of the drawn text, 
             in points from the top left corner of the page.</param>
-      <returns>The index of first character that was not printed because it did not fit in the specified rectangle, or int.MaxValue if the whole string was rendered.</returns>
+      <returns>The index of first character that was not printed because it did not fit in the specified rectangle.</returns>
       <remarks>
             This overload renders strings aligned to the top left corner of the specified rectangle,
             wrapping text as needed within the rectangle, without clipping, and in the horizontal
@@ -652,7 +926,7 @@
         <see cref="T:System.Drawing.PointF" /> structure that specifies the location of the drawn text, in points</param>
       <param name="sf">
         <see cref="T:System.Drawing.StringFormat" /> object that specifies formatting attributes applied to the drawn text.</param>
-      <returns>The index of first character that was not printed because it did not fit in the specified rectangle, or int.MaxValue if the whole string was rendered.</returns>
+      <returns>The index of first character that was not printed because it did not fit in the specified rectangle.</returns>
       <seealso cref="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32,System.Drawing.StringFormat)" />
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.PointF)">
@@ -667,7 +941,7 @@
         <see cref="T:System.Drawing.Brush" /> object that defines the color of the drawn text.</param>
       <param name="pt">
         <see cref="T:System.Drawing.PointF" /> structure that specifies the location of the drawn text, in points from the top left corner of the page.</param>
-      <returns>The index of first character that was not printed because it did not fit in the specified rectangle, or int.MaxValue if the whole string was rendered.</returns>
+      <returns>The index of first character that was not printed because it did not fit in the specified rectangle.</returns>
       <seealso cref="M:C1.C1Pdf.C1PdfDocument.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32,System.Drawing.StringFormat)" />
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.DrawImage(System.Drawing.Image,System.Drawing.RectangleF,System.Drawing.ContentAlignment,C1.C1Pdf.ImageSizeModeEnum)">
@@ -714,7 +988,7 @@
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.MeasureStringRtf(System.String,System.Drawing.Font,System.Single)">
       <summary>
-            Measures an Rtf string when drawn with a given <see cref="T:System.Drawing.Font" /> object
+            Measures an RTF string when drawn with a given <see cref="T:System.Drawing.Font" /> object
             into a rectangle with the specified width. 
             </summary>
       <param name="text">String to measure.</param>
@@ -730,7 +1004,7 @@
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.MeasureStringRtf(System.String,System.Drawing.Font)">
       <summary>
-            Measures an Rtf string when drawn with a given <see cref="T:System.Drawing.Font" /> object.
+            Measures an RTF string when drawn with a given <see cref="T:System.Drawing.Font" /> object.
             </summary>
       <param name="text">String to measure.</param>
       <param name="font">
@@ -739,9 +1013,9 @@
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.DrawStringRtf(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF)">
       <summary>
-            Draws an Rtf string in the specified rectangle with the specified <see cref="T:System.Drawing.Brush" /> and <see cref="T:System.Drawing.Font" /> objects.
+            Draws an RTF string in the specified rectangle with the specified <see cref="T:System.Drawing.Brush" /> and <see cref="T:System.Drawing.Font" /> objects.
             </summary>
-      <param name="text">Rtf string to draw.</param>
+      <param name="text">RTF string to draw.</param>
       <param name="font">
         <see cref="T:System.Drawing.Font" /> object that defines the appearance and size of the drawn text.</param>
       <param name="brush">
@@ -754,28 +1028,28 @@
       <remarks>
         <para>This method is similar to <see cref="M:C1.C1Pdf.C1PdfDocument.MeasureString(System.String,System.Drawing.Font,System.Single)" />, except it recognizes Rtf (Rich Text Format) 
             strings like those used in the <see cref="T:System.Windows.Forms.RichTextBox" /> control.</para>
-        <para>There are two types of Rtf strings:</para>
-        <para>1) Complete Rtf strings contain an Rtf header that specifies the fonts and colors
+        <para>There are two types of RTF strings:</para>
+        <para>1) Complete RTF strings contain an Rtf header that specifies the fonts and colors
             used within the string. These strings can be obtained from a <see cref="T:System.Windows.Forms.RichTextBox" /> control
             using the <see cref="P:System.Windows.Forms.RichTextBox.Rtf" /> property, or from Rtf files saved to disk.
             In this case, the <paramref name="font" /> and <paramref name="brush" /> parameters are not used.</para>
-        <para>2) Partial Rtf strings contain embedded Rtf tags but no Rtf header. These strings
+        <para>2) Partial RTF strings contain embedded Rtf tags but no Rtf header. These strings
             are easy to build in code and can be used to render text with special attributes such as 
             bold and italics (for example: "this text contains {\b BOLD} and {\i ITALICS}".
             In this case, the <paramref name="font" /> and <paramref name="brush" /> parameters are used
             to build the Rtf header automatically.</para>
         <para>The <b>DrawStringRtf</b> method returns the index of the first character that was not 
-            printed because it did not fit the output rectangle. You can use this value make text flow from 
+            printed because it did not fit the output rectangle. You can use this value to make text flow from 
             page to page, or from one frame to another within a page. To do this, use the overload that
             takes the starting character in the text as a parameter.</para>
       </remarks>
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.DrawStringRtf(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32)">
       <summary>
-            Draws an Rtf string in the specified rectangle with the specified <see cref="T:System.Drawing.Brush" /> and <see cref="T:System.Drawing.Font" /> objects,
+            Draws an RTF string in the specified rectangle with the specified <see cref="T:System.Drawing.Brush" /> and <see cref="T:System.Drawing.Font" /> objects,
             starting at a given offset within the string.
             </summary>
-      <param name="text">Rtf string to draw.</param>
+      <param name="text">RTF string to draw.</param>
       <param name="font">
         <see cref="T:System.Drawing.Font" /> object that defines the appearance and size of the drawn text.</param>
       <param name="brush">
@@ -788,18 +1062,18 @@
       <remarks>
         <para>This method is similar to <see cref="M:C1.C1Pdf.C1PdfDocument.MeasureString(System.String,System.Drawing.Font,System.Single)" />, except it recognizes Rtf (Rich Text Format) 
             strings like those used in the <see cref="T:System.Windows.Forms.RichTextBox" /> control.</para>
-        <para>There are two types of Rtf strings:</para>
-        <para>1) Complete Rtf strings contain an Rtf header that specifies the fonts and colors
+        <para>There are two types of RTF strings:</para>
+        <para>1) Complete RTF strings contain an Rtf header that specifies the fonts and colors
             used within the string. These strings can be obtained from a <see cref="T:System.Windows.Forms.RichTextBox" /> control
             using the <see cref="P:System.Windows.Forms.RichTextBox.Rtf" /> property, or from Rtf files saved to disk.
             In this case, the <paramref name="font" /> and <paramref name="brush" /> parameters are not used.</para>
-        <para>2) Partial Rtf strings contain embedded Rtf tags but no Rtf header. These strings
+        <para>2) Partial RTF strings contain embedded Rtf tags but no Rtf header. These strings
             are easy to build in code and can be used to render text with special attributes such as 
             bold and italics (for example: "this text contains {\b BOLD} and {\i ITALICS}".
             In this case, the <paramref name="font" /> and <paramref name="brush" /> parameters are used
             to build the Rtf header automatically.</para>
         <para>The <b>DrawStringRtf</b> method returns the index of the first character that was not 
-            printed because it did not fit the output rectangle. You can use this value make text flow from 
+            printed because it did not fit the output rectangle. You can use this value to make text flow from 
             page to page, or from one frame to another within a page. Note that this value is not an index 
             into the raw Rtf input, but into the text represented by the Rtf. See example below.</para>
       </remarks>
@@ -814,7 +1088,7 @@
             // get Rtf to render
             string text = richTextBox1.Rtf;
             
-            // print the Rtf string spanning multiple pages
+            // print the RTF string spanning multiple pages
             _c1pdf.Clear();
             for (int start = 0; start &lt; int.MaxValue; )
             {
@@ -828,6 +1102,69 @@
             _c1pdf.Save(fn);
             System.Diagnostics.Process.Start(fn);
             </code></example>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.Dispose(System.Boolean)">
+      <summary>
+            Releases all resources used by the Control.
+            </summary>
+      <param name="disposing">True to release both managed and unmanaged resources; 
+            False to release only unmanaged resources.</param>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.MeasureStringHtml(System.String,System.Drawing.Font,System.Single)">
+      <summary>
+            Measures an HTML string when drawn with a given <see cref="T:System.Drawing.Font" /> object
+            into a rectangle with the specified width. 
+            </summary>
+      <param name="text">String to measure.</param>
+      <param name="font">
+        <see cref="T:System.Drawing.Font" /> object that defines the appearance and size of the text.</param>
+      <param name="width">Maximum width of the string.</param>
+      <returns>The size of the string expressed in points.</returns>
+      <remarks>
+        <para>This method is similar to <see cref="M:C1.C1Pdf.C1PdfDocument.MeasureString(System.String,System.Drawing.Font,System.Single)" />, except the
+            <paramref name="text" /> parameter contains an HTML string instead of plain text.</para>
+        <para>For details, see the <see cref="M:C1.C1Pdf.C1PdfDocument.DrawStringHtml(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF)" /> method.</para>
+      </remarks>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.MeasureStringHtml(System.String,System.Drawing.Font)">
+      <summary>
+            Measures an HTML string when drawn with a given <see cref="T:System.Drawing.Font" /> object.
+            </summary>
+      <param name="text">String to measure.</param>
+      <param name="font">
+        <see cref="T:System.Drawing.Font" /> object that defines the appearance and size of the text.</param>
+      <returns>The size of the string expressed in points.</returns>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.DrawStringHtml(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF)">
+      <summary>
+            Draws an HTML string in the specified rectangle with the specified <see cref="T:System.Drawing.Brush" /> and <see cref="T:System.Drawing.Font" /> objects.
+            </summary>
+      <param name="text">HTML string to draw.</param>
+      <param name="font">
+        <see cref="T:System.Drawing.Font" /> object that defines the appearance and size of the drawn text.</param>
+      <param name="brush">
+        <see cref="T:System.Drawing.Brush" /> object that defines the color of the drawn text.</param>
+      <param name="rc">
+        <see cref="T:System.Drawing.RectangleF" /> structure that specifies the location of the drawn text, in points from the top left 
+            corner of the page.</param>
+      <returns>The offset of the first line that was not printed because it did not fit in the specified rectangle, or the value of 
+            <see cref="F:System.Int32.MaxValue" /> if the entire string was rendered.</returns>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.DrawStringHtml(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32)">
+      <summary>
+            Draws an HTML string in the specified rectangle with the specified <see cref="T:System.Drawing.Brush" /> and <see cref="T:System.Drawing.Font" /> objects,
+            starting at a given offset within the string.
+            </summary>
+      <param name="text">HTML string to draw.</param>
+      <param name="font">
+        <see cref="T:System.Drawing.Font" /> object that defines the appearance and size of the drawn text.</param>
+      <param name="brush">
+        <see cref="T:System.Drawing.Brush" /> object that defines the color of the drawn text.</param>
+      <param name="rc">
+        <see cref="T:System.Drawing.RectangleF" /> structure that specifies the location of the drawn text, in points from the top left corner of the page.</param>
+      <param name="offset">Offset of the first line to draw (usually the return value of a previous call to <b>DrawStringHtml</b>).</param>
+      <returns>The offset of the first line that was not printed because it did not fit in the specified rectangle, or the value of 
+            <see cref="F:System.Int32.MaxValue" /> if the entire string was rendered.</returns>
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.AddBookmark(System.String,System.Int32,System.Single)">
       <summary>
@@ -843,53 +1180,12 @@
             method allows you to build this outline structure by adding outline entries
             (bookmarks).</remarks>
     </member>
-    <member name="M:C1.C1Pdf.C1PdfDocument.AddBookmark(System.String,System.Int32,System.Int32,System.Single)">
-      <summary>
-            Adds a bookmark to the specified page.
-            </summary>
-      <param name="text">Text that appears on the outline tree.</param>
-      <param name="level">Outline level (zero is the top level).</param>
-      <param name="page">Index of the page that contains the bookmark.</param>
-      <param name="y">Position on the specified page where the outline entry is located (in points).</param>
-      <remarks>
-            Most long Pdf documents contain an outline structure that is displayed on a pane 
-            on the left of the reader. The outline makes it easy to browse through a 
-            document's structure and find specific topics. The <b>AddBookmark</b>
-            method allows you to build this outline structure by adding outline entries
-            (bookmarks).</remarks>
-    </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.AddLink(System.String,System.Drawing.RectangleF)">
       <summary>
             Adds a hyperlink to the current page.
             </summary>
       <param name="url">Link destination (can be a Url, a file name, or a local link destination).</param>
       <param name="rc">Area on the page that will behave as a link (expressed in points, from the top-left corner of the page).</param>
-    </member>
-    <member name="M:C1.C1Pdf.C1PdfDocument.AddLink(System.String,System.Int32,System.Drawing.RectangleF)">
-      <summary>
-            Adds a hyperlink to the document.
-            </summary>
-      <param name="url">Link destination (can be a Url, a file name, or a local link destination).</param>
-      <param name="page">Index of the page that contains the hyperlink</param>
-      <param name="rc">Area on the page that will behave as a link (expressed in points, from the top-left corner of the page).</param>
-      <remarks>
-        <para>Hyperlinks can be external (Urls and file names) or local (other locations within the same document).</para>
-        <para>Local links are useful when you want to implement some type of cross-referencing within the document, such 
-            as a table of contents or an index. Local links are identical to regular hyperlinks, except for two things:</para>
-        <para>1) The <paramref name="url" /> parameter must start with a "#", and </para>
-        <para>2) You must specify the target location for the link using the <see cref="M:C1.C1Pdf.C1PdfDocument.AddTarget(System.String,System.Drawing.RectangleF)" /> method.</para>
-        <para>Note that the <b>AddLink</b> method does not add any visible content to the page, so you will 
-            usually need another command along with <b>AddLink</b> to specify some text or an image that the user 
-            can see, as the example below demonstrates.</para>
-      </remarks>
-      <example>
-            The code below adds a string that says "Visit ComponentOne" and a link that takes the user to the ComponentOne home page:
-            <code>
-            RectangleF rc = new RectangleF(50, 50, 100, 15);
-            Font font = new Font("Arial", 10, FontStyle.Underline);
-            _c1pdf.AddLink("http://www.componentone.com", rc);
-            _c1pdf.DrawString("Visit ComponentOne", font, Brushes.Blue, rc);
-            </code></example>
     </member>
     <member name="M:C1.C1Pdf.C1PdfDocument.AddTarget(System.String,System.Drawing.RectangleF)">
       <summary>
@@ -946,6 +1242,36 @@
             the mouse pointer and tool tip change to indicate that the user can retrieve the attachment. 
             The user can right-click the attachment area to open or save the attachment.
             </remarks>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.AddField(C1.C1Pdf.PdfFieldBase,System.Drawing.RectangleF)">
+      <summary>
+            Adds an AcroField to the current page.
+            </summary>
+      <param name="field">The <see cref="T:C1.C1Pdf.PdfFieldBase" /> object.</param>
+      <param name="rc">Area on the page that will behave as an AcroField (in points from the top-left corner of the page).</param>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.AddField(C1.C1Pdf.PdfFieldBase,System.Int32,System.Drawing.RectangleF)">
+      <summary>
+            Adds an AcroField to the document.
+            </summary>
+      <param name="field">The <see cref="T:C1.C1Pdf.PdfFieldBase" /> object.</param>
+      <param name="page">Index of the page that will contain the AcroField.</param>
+      <param name="rc">Area on the page that will behave as a AcroField (in points from the top-left corner of the page).</param>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.AddNote(C1.C1Pdf.PdfNoteBase,System.Drawing.RectangleF)">
+      <summary>
+            Adds an annotation item to the current page.
+            </summary>
+      <param name="note">The <see cref="T:C1.C1Pdf.PdfNoteBase" /> object.</param>
+      <param name="rc">Area on the page that will behave as an AcroField (in points from the top-left corner of the page).</param>
+    </member>
+    <member name="M:C1.C1Pdf.C1PdfDocument.AddNote(C1.C1Pdf.PdfNoteBase,System.Int32,System.Drawing.RectangleF)">
+      <summary>
+            Adds an annotation item to the document.
+            </summary>
+      <param name="note">The <see cref="T:C1.C1Pdf.PdfNoteBase" /> object.</param>
+      <param name="page">Index of the page that will contain the AcroField.</param>
+      <param name="rc">Area on the page that will behave as a AcroField (in points from the top-left corner of the page).</param>
     </member>
     <member name="P:C1.C1Pdf.C1PdfDocument.PaperKind">
       <summary>
@@ -1077,6 +1403,740 @@
             causes <see cref="T:C1.C1Pdf.C1PdfDocument" /> to use the date and time when the document
             is saved as the creation date.</para>
       </remarks>
+    </member>
+    <member name="T:C1.C1Pdf.FieldVisibility">
+      <summary>
+            Specifies the visibility of an <b>AcroField</b>
+            (of a type derived from <see cref="T:C1.C1Pdf.PdfFieldBase" />).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldVisibility.Visible">
+      <summary>
+            The <b>AcroField</b> is visible.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldVisibility.Hidden">
+      <summary>
+            The <b>AcroField</b> is hidden.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldVisibility.VisibleNotPrintable">
+      <summary>
+            The <b>AcroField</b> is visible but does not print.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldVisibility.HiddenPrintable">
+      <summary>
+            The <b>AcroField</b> is hidden but does print.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.FieldBorderStyle">
+      <summary>
+            Specifies the border style of an <b>AcroField</b>.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderStyle.Solid">
+      <summary>
+            The border is solid.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderStyle.Dashed">
+      <summary>
+            The border is dashed.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderStyle.Beveled">
+      <summary>
+            The border is beveled.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderStyle.Inset">
+      <summary>
+            The border is inset.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderStyle.Underline">
+      <summary>
+            The border is underlined.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.FieldBorderWidth">
+      <summary>
+            Specifies the border width of an <b>AcroField</b>.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderWidth.None">
+      <summary>
+            No border.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderWidth.Thin">
+      <summary>
+            Thin border (1 point wide).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderWidth.Medium">
+      <summary>
+            Medium border (2 points wide).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.FieldBorderWidth.Thick">
+      <summary>
+            Thick border (3 points wide).
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.ButtonLayout">
+      <summary>
+            Specifies the layout of text and image on the face of a <see cref="T:C1.C1Pdf.PdfPushButton" />.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.TextOnly">
+      <summary>
+            Only text is displayed on the button face.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.ImageOnly">
+      <summary>
+            Only image is displayed on the button face.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.ImageTopTextBottom">
+      <summary>
+            Image is displayed above the text.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.TextTopImageBottom">
+      <summary>
+            Text is displayed above the image.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.ImageLeftTextRight">
+      <summary>
+            Image is displayed on the left and text on the right.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.TextLeftImageRight">
+      <summary>
+            Text is displayed on the left and image on the right.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonLayout.TextOverImage">
+      <summary>
+            Text is displayed over image.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.ButtonStateChange">
+      <summary>
+            Specifies the type of change of a <see cref="T:C1.C1Pdf.PdfPushButton" /> state
+            that can be associated with a particular <see cref="T:C1.C1Pdf.PdfPushButton.Action" />
+            (see <see cref="P:C1.C1Pdf.PdfPushButton.Actions" />).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonStateChange.Released">
+      <summary>
+            A pressed button is released
+            (this is the default state change associated with <see cref="T:C1.C1Pdf.PdfPushButton.Action" />).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonStateChange.Pressed">
+      <summary>
+            A button is pressed.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonStateChange.MouseEnter">
+      <summary>
+            The mouse cursor enters a button.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonStateChange.MouseLeave">
+      <summary>
+            The mouse cursor leaves a button.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonStateChange.GotFocus">
+      <summary>
+            A button receives the keyboard focus.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonStateChange.LostFocus">
+      <summary>
+            A button loses the keyboard focus.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.ButtonAction">
+      <summary>
+            Specifies actions that can be performed when a <see cref="T:C1.C1Pdf.PdfPushButton" />'s state
+            changes as described by <see cref="T:C1.C1Pdf.ButtonAction" />.
+            For most actions, additional information needs to be specified by the
+            <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property on the action.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.CallMenu">
+      <summary>
+            Calls an Adobe Acrobat's menu item
+            specified by the <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            <para>
+            For instance, setting <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> to <b>"SaveAs"</b>
+            will invoke the save file dialog, while setting it to <b>"Close"</b> will close
+            the document. For the complete listing please refer to the Adobe documentation.
+            </para></summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.OpenUrl">
+      <summary>
+            Opens a URL
+            specified by the <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.OpenFile">
+      <summary>
+            Opens a file
+            specified by the <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.GotoPage">
+      <summary>
+            Goes to the page
+            specified by the <see cref="P:C1.C1Pdf.PdfPushButton.Action.PageNo" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.ClearFields">
+      <summary>
+            Clears all fields of the containing <b>AcroForm</b>.
+            To prevent some of the fields from being cleared,
+            assign a comma-separated list of their names (e.g. <b>Field1,Field2</b>)
+            to the <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+      <seealso cref="P:C1.C1Pdf.PdfFieldBase.Name" />
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.ShowField">
+      <summary>
+            Shows a field if it were hidden.
+            The <see cref="P:C1.C1Pdf.PdfFieldBase.Name" /> of the field should be assigned
+            to the <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.ButtonAction.HideField">
+      <summary>
+            Hides a field if it were visible.
+            The <see cref="P:C1.C1Pdf.PdfFieldBase.Name" /> of the field should be assigned
+            to the <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> property
+            of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.CheckmarkType">
+      <summary>
+            Specifies the look of checkmark in <see cref="T:C1.C1Pdf.PdfCheckBox" />
+            and <see cref="T:C1.C1Pdf.PdfRadioButton" /> fields.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Default">
+      <summary>
+            Shows a default checkmark
+            (<see cref="F:C1.C1Pdf.CheckmarkType.Circle" /> for <see cref="T:C1.C1Pdf.PdfRadioButton" />,
+            <see cref="F:C1.C1Pdf.CheckmarkType.Check" /> for <see cref="T:C1.C1Pdf.PdfCheckBox" />).
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Check">
+      <summary>
+            Shows a "check" ("tick", V-shaped with longer right stroke) checkmark.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Circle">
+      <summary>
+            Shows a circular checkmark.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Cross">
+      <summary>
+            Shows a cross (X-shaped) checkmark.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Diamond">
+      <summary>
+            Shows a diamond-shaped checkmark.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Square">
+      <summary>
+            Shows a square checkmark.
+            </summary>
+    </member>
+    <member name="F:C1.C1Pdf.CheckmarkType.Star">
+      <summary>
+            Shows a star-shaped checkmark.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfTextFieldBase">
+      <summary>
+            The abstract base class for <b>AcroForm</b> field classes
+            that allow text input (<see cref="T:C1.C1Pdf.PdfTextBox" /> and
+            <see cref="T:C1.C1Pdf.PdfComboListBase" />).
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextFieldBase.IsSpellCheck">
+      <summary>
+            Gets or sets a value indicating whether the current <see cref="T:C1.C1Pdf.PdfTextFieldBase" />
+            should be spell-checked.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfTextBox">
+      <summary>
+            Represents a text input box.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfTextBox.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfTextBox" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextBox.IsMultiline">
+      <summary>
+            Gets or set a value indicating whether the current <see cref="T:C1.C1Pdf.PdfTextBox" />
+            is multiline.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextBox.IsPassword">
+      <summary>
+            Gets or set a value indicating whether the current <see cref="T:C1.C1Pdf.PdfTextBox" />
+            is used for password input.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextBox.IsFileSelect">
+      <summary>
+            Gets or set a value indicating whether the current <see cref="T:C1.C1Pdf.PdfTextBox" />
+            is used to enter file names.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextBox.IsScroll">
+      <summary>
+            Gets or set a value indicating whether the current <see cref="T:C1.C1Pdf.PdfTextBox" />
+            supports text scrolling.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextBox.Alignment">
+      <summary>
+            Gets or sets the text alignment of the current <see cref="T:C1.C1Pdf.PdfTextBox" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextBox.MaxLength">
+      <summary>
+            Gets or set the maximum length of the current <see cref="T:C1.C1Pdf.PdfTextBox" />.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfPushButton">
+      <summary>
+            Represents a push button.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfPushButton.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfPushButton" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Layout">
+      <summary>
+            Gets or sets the layout of the current <see cref="T:C1.C1Pdf.PdfPushButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Image">
+      <summary>
+            Gets or sets the image displayed on the current <see cref="T:C1.C1Pdf.PdfPushButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Active">
+      <summary>
+            Gets or sets a value indicating whether the current <see cref="T:C1.C1Pdf.PdfPushButton" />
+            is active.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Actions">
+      <summary>
+            Gets the collection of actions associated with the current <see cref="T:C1.C1Pdf.PdfPushButton" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Click">
+      <summary>
+            Gets or sets the <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> invoked when the current button is clicked
+            (corresponds to <see cref="F:C1.C1Pdf.ButtonStateChange.Released" />).
+            This property is a shortcut to the first action in the <see cref="P:C1.C1Pdf.PdfPushButton.ActionCollection.Released" />
+            collection of the current button's <see cref="P:C1.C1Pdf.PdfPushButton.Actions" />.
+            Note that setting this property clears the <see cref="P:C1.C1Pdf.PdfPushButton.ActionCollection.Released" />
+            collection prior to assignment.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfPushButton.Action">
+      <summary>
+            Represents an action that can be taken when the state of a <see cref="T:C1.C1Pdf.PdfPushButton" />
+            changes.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfPushButton.Action.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> class.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfPushButton.Action.#ctor(C1.C1Pdf.ButtonAction)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> class.
+            </summary>
+      <param name="actionType">Specifies the action type.</param>
+    </member>
+    <member name="M:C1.C1Pdf.PdfPushButton.Action.#ctor(C1.C1Pdf.ButtonAction,System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> class.
+            </summary>
+      <param name="actionType">Specifies the action type.</param>
+      <param name="cmd">Specifies the command associated with the action (semantics depend on <paramref name="actionType" />).</param>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Action.ActionType">
+      <summary>
+            Gets or sets the type of the current <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Action.Command">
+      <summary>
+            Gets or sets the command associated with the current <see cref="T:C1.C1Pdf.PdfPushButton.Action" />.
+            Command semantics depend on <see cref="P:C1.C1Pdf.PdfPushButton.Action.ActionType" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.Action.PageNo">
+      <summary>
+            Gets or sets the 1-based page number for
+            <see cref="F:C1.C1Pdf.ButtonAction.GotoPage" /> action.
+            Note that setting this property overrides the current
+            <see cref="P:C1.C1Pdf.PdfPushButton.Action.Command" /> value with the string representation
+            of the page number.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfPushButton.ActionCollection">
+      <summary>
+            Represents a collection of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfPushButton.ActionCollection.Clear">
+      <summary>
+            Clears the current <see cref="T:C1.C1Pdf.PdfPushButton.ActionCollection" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.Owner">
+      <summary>
+            Gets the <see cref="T:C1.C1Pdf.PdfPushButton" /> object that owns the current <see cref="T:C1.C1Pdf.PdfPushButton.ActionCollection" /> object.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.Item(C1.C1Pdf.ButtonStateChange)">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with the specified button state change
+            (multiple actions can be associated with each state change).
+            <para>
+            Returns <b>null</b> if no actions are associated with the specified state change
+            in the current <see cref="T:C1.C1Pdf.PdfPushButton.ActionCollection" />.
+            </para></summary>
+      <param name="change">The type of state change for which to return the associated actions.</param>
+      <returns>The list of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects associated with the specified state change.</returns>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.Item(C1.C1Pdf.ButtonStateChange,System.Int32)">
+      <summary>
+            Gets or sets the <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> from the current collection,
+            with the specified index among actions associated with the
+            specified button state change (<see cref="T:C1.C1Pdf.ButtonStateChange" />).
+            </summary>
+      <param name="change">The type of state change for which to return the associated actions.</param>
+      <param name="index">The action index among actions associated with <paramref name="change" />.</param>
+      <returns>The action with the specified <paramref name="index" />
+            among actions associated with <paramref name="change" />,
+            or <b>null</b> if no such action exists.</returns>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.GotFocus">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with <see cref="F:C1.C1Pdf.ButtonStateChange.GotFocus" /> button state change.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.LostFocus">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with <see cref="F:C1.C1Pdf.ButtonStateChange.LostFocus" /> button state change.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.MouseEnter">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with <see cref="F:C1.C1Pdf.ButtonStateChange.MouseEnter" /> button state change.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.MouseLeave">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with <see cref="F:C1.C1Pdf.ButtonStateChange.MouseLeave" /> button state change.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.Pressed">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with <see cref="F:C1.C1Pdf.ButtonStateChange.Pressed" /> button state change.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfPushButton.ActionCollection.Released">
+      <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1" /> of <see cref="T:C1.C1Pdf.PdfPushButton.Action" /> objects from the current collection
+            associated with <see cref="F:C1.C1Pdf.ButtonStateChange.Released" /> button state change.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfRadioCheckBase">
+      <summary>
+            The abstract base class for <see cref="T:C1.C1Pdf.PdfRadioButton" />
+            and <see cref="T:C1.C1Pdf.PdfCheckBox" /> types.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfRadioCheckBase.CheckmarkType">
+      <summary>
+            Gets or sets the type of checkmark used by the current object.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfRadioCheckBase.Checked">
+      <summary>
+            Gets or sets a value indicating whether the current object
+            is in a checked state.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfRadioCheckBase.Text">
+      <summary>
+            Gets or sets the text value of the current object.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfRadioCheckBase.DefaultText">
+      <summary>
+            Gets or sets the default text value of the current object.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfRadioButton">
+      <summary>
+            Represents a radio button.
+            </summary>
+      <remarks>
+            To join several radio buttons into a group (so that only one button in the 
+            group can be checked at any one moment), assign the same value to the 
+            <see cref="P:C1.C1Pdf.PdfFieldBase.Name" /> property of all buttons in the group.
+            </remarks>
+    </member>
+    <member name="M:C1.C1Pdf.PdfRadioButton.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfRadioButton" /> class.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfCheckBox">
+      <summary>
+            Represents a checkbox.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfCheckBox.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfRadioButton" /> class.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfComboListBase">
+      <summary>
+            The abstract base class for <see cref="T:C1.C1Pdf.PdfComboBox" />
+            and <see cref="T:C1.C1Pdf.PdfListBox" /> types.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfComboListBase.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfComboListBase" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfComboListBase.Items">
+      <summary>
+            Gets a <see cref="T:System.Collections.Generic.List`1" /> representing the collection of items
+            contained in the current combo or list.
+            <para>
+            Values are strings representing the items.
+            </para></summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfComboListBase.SelectedColor">
+      <summary>
+            Gets the selection color for the current combo or list.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfComboListBase.DefaultValue">
+      <summary>
+            Gets or sets the default value of the current <see cref="T:C1.C1Pdf.PdfFieldBase" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfComboListBase.Text">
+      <summary>
+            Gets or sets the text value of the current combo or list.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfComboListBase.DefaultText">
+      <summary>
+            Gets or sets the default text value of the current combo or list.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfComboBox">
+      <summary>
+            Represents a combo box.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfComboBox.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfComboBox" /> class.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfListBox">
+      <summary>
+            Represents a list box.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfListBox.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfListBox" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfListBox.IsMultiselect">
+      <summary>
+            Gets or sets a value indicating wther multiple items
+            can be selected in the current <see cref="T:C1.C1Pdf.PdfListBox" />.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfNoteBase">
+      <summary>
+            The abstract base class from which all other notes
+            classes are derived.
+            </summary>
+      <remarks>
+            Non-abstract classes derived from <b>PdfNoteBase</b> include
+            <see cref="T:C1.C1Pdf.PdfTextNote" />, <see cref="T:C1.C1Pdf.PdfLineNote" />,
+            <see cref="T:C1.C1Pdf.PdfSquareNote" /> and <see cref="T:C1.C1Pdf.PdfCircleNote" />.
+            </remarks>
+    </member>
+    <member name="P:C1.C1Pdf.PdfNoteBase.Thickness">
+      <summary>
+            Gets or sets the thickness of the current note's border, in points.
+            Valid values are in the range from 1 to 12 points.
+            Default thickness is 1 point.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfNoteBase.ForeColor">
+      <summary>
+            Gets or sets the foreground/line color of the current note.
+            The default is black for text notes, red for all others.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfNoteBase.Opacity">
+      <summary>
+            Gets or sets the opacity of the current note, in percent from 0 to 100.
+            The default value is 100%.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfNoteBase.Contents">
+      <summary>
+            Gets or sets the text of the current note.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfNoteBase.PopupOpen">
+      <summary>
+            Gets or sets a value indicating whether the popup associated with the current note
+            should show when the document is opened.
+            <para>This property is false by default.</para></summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfRectNote">
+      <summary>
+            The abstract base class for notes that have a surface
+            (<see cref="T:C1.C1Pdf.PdfTextNote" />, <see cref="T:C1.C1Pdf.PdfSquareNote" />).
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfRectNote.FillColor">
+      <summary>
+            Gets or sets the fill (background) color of the current note.
+            <para>
+            The default fill color is yellow for text, transparent for other note types.
+            </para></summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfTextNote">
+      <summary>
+            Represents a text note.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfTextNote.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfTextNote" /> class.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextNote.Font">
+      <summary>
+            Gets or sets the <see cref="T:System.Drawing.Font" /> of the current <see cref="T:C1.C1Pdf.PdfTextNote" />.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextNote.BorderColor">
+      <summary>
+            Gets or sets the color of the border around the current <see cref="T:C1.C1Pdf.PdfTextNote" />.
+            <para>The default border color is black.</para></summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfTextNote.Alignment">
+      <summary>
+            Gets or sets the horizontal alignment of the text the current <see cref="T:C1.C1Pdf.PdfTextNote" />.
+            <para>The default horizontal alignment is near (left).</para></summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfLineNote">
+      <summary>
+            Represents a note that is a single straight line.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfLineNote.#ctor(System.Drawing.PointF,System.Drawing.PointF)">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfLineNote" /> class.
+            </summary>
+      <param name="pt1">The starting point of the line.</param>
+      <param name="pt2">The ending point of the line.</param>
+    </member>
+    <member name="P:C1.C1Pdf.PdfLineNote.Begin">
+      <summary>
+            Gets the starting point of the current line note.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfLineNote.End">
+      <summary>
+            Gets the ending point of the current line note.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfLineNote.Rectangle">
+      <summary>
+            Gets the (approximate) bounding rectangle for the current line note.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfLineNote.Opacity">
+      <summary>
+            Gets or sets the opacity of the current note, in percent from 0 to 100.
+            The default value is 100%.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfSquareNote">
+      <summary>
+            Represents a rectangular note.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfSquareNote.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfSquareNote" /> class.
+            </summary>
+    </member>
+    <member name="T:C1.C1Pdf.PdfCircleNote">
+      <summary>
+            Represents an elliptical note.
+            </summary>
+    </member>
+    <member name="M:C1.C1Pdf.PdfCircleNote.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:C1.C1Pdf.PdfCircleNote" /> class.
+            </summary>
     </member>
     <member name="T:C1.C1Pdf.PdfPageCollection">
       <summary>
@@ -1315,6 +2375,11 @@
     <member name="P:C1.C1Pdf.PdfSecurity.AllowEditAnnotations">
       <summary>
             Gets or sets whether the user can edit annotations in the Pdf document.
+            </summary>
+    </member>
+    <member name="P:C1.C1Pdf.PdfSecurity.SignedTime">
+      <summary>
+            Gets universal signed time for the Pdf document.
             </summary>
     </member>
     <member name="T:C1.C1Pdf.PageLayoutEnum">

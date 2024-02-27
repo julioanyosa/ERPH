@@ -767,5 +767,15 @@ namespace Halley.CapaLogica.Almacen
 
             return respuesta + valorNumerico.ToString().Substring(1, valorNumerico.ToString().Length - 1);
         }
+
+        public DataTable SalidaMercaderia(DateTime @fechaIni, DateTime @fechaFin, string @EmpresaID)
+        {
+            DataTable dtTmp = new DataTable();
+            CD_Kardex ObjCD_Kardex = new CD_Kardex(AppSettings.GetConnectionString);
+            dtTmp = ObjCD_Kardex.SalidaMercaderia(@fechaIni, @fechaFin, @EmpresaID);
+
+            return dtTmp;
+        }
+
     }
 }

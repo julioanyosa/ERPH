@@ -43,7 +43,7 @@ namespace Halley.Presentacion.Almacen.Reportes
             InitializeComponent();
             this.ocultarToolStrip();
             c1Combo.FillC1Combo(this.cbMovimiento, new CL_Almacen().GetMovimiento(), "NomMovimiento", "MovimientoID");
-            
+
         }
 
         #endregion
@@ -52,7 +52,7 @@ namespace Halley.Presentacion.Almacen.Reportes
 
         private void Rep_Kardex_Load(object sender, EventArgs e)
         {
-             DateTime fechatemp = DateTime.Today;
+            DateTime fechatemp = DateTime.Today;
 
             dtpInicial.Value = new DateTime(fechatemp.Year, fechatemp.Month, 1);
             dtpFinal.Value = DateTime.Today;
@@ -70,7 +70,7 @@ namespace Halley.Presentacion.Almacen.Reportes
             CboPeriodo.DataSource = c1Combo.DtPeriodos().Copy();
             CboPeriodo.DisplayMember = "Descripcion";
             CboPeriodo.ValueMember = "Codigo";
-            CboPeriodo.SelectedValue = DateTime.Now.Month.ToString().PadLeft(2,'0');
+            CboPeriodo.SelectedValue = DateTime.Now.Month.ToString().PadLeft(2, '0');
 
             c1cboCia.SelectedValue = AppSettings.EmpresaID;
 
@@ -182,7 +182,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 GetKardex2(2);
             else if (TcKardex.SelectedIndex == 3)//REPORTE CANTIDAD DE VENTAS
                 GetKardexVenta(3);
-            
+
         }
 
 
@@ -207,7 +207,7 @@ namespace Halley.Presentacion.Almacen.Reportes
         }
 
 
-        void get_Kardex(string ProductoId, int TipoMovimiento,int UsuarioID, DateTime FecInicial, DateTime FecFinal)
+        void get_Kardex(string ProductoId, int TipoMovimiento, int UsuarioID, DateTime FecInicial, DateTime FecFinal)
         {
             try
             {
@@ -215,9 +215,9 @@ namespace Halley.Presentacion.Almacen.Reportes
 
                 Habilitar(true);
                 Limpiar();
-                          
+
                 dt = new DataTable();
-                dt = new CL_Kardex().getKardex(c1cboCia.SelectedValue.ToString() + CboSede.SelectedValue.ToString(), ProductoId, TipoMovimiento,UsuarioID, FecInicial, FecFinal);
+                dt = new CL_Kardex().getKardex(c1cboCia.SelectedValue.ToString() + CboSede.SelectedValue.ToString(), ProductoId, TipoMovimiento, UsuarioID, FecInicial, FecFinal);
 
                 if (dt.Rows.Count == 0)
                 {
@@ -238,7 +238,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                     txtUltMovimiento.Text = dtProducto.Rows[0][3].ToString();
                     Habilitar(false);
                 }
-                
+
                 //Estructua del Kardex
                 dtKardex = new DataTable();
                 dtKardex.Columns.Add("Fecha", typeof(string));
@@ -292,7 +292,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 else
                     ConfigurarTdbGrid(80, 0, false, 0, false, 0, false, 90, 90, 150, 0, false, 200, 200, 300);
 
-                    Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
@@ -304,7 +304,7 @@ namespace Halley.Presentacion.Almacen.Reportes
 
 
         void ConfigurarTdbGrid(int Fecha, int Codigo, bool _Codigo, int Producto, bool _Producto, int UM,
-                                      bool _UM, int Salida, int Entrada, int Documento, int Movimiento,bool _Movimiento, int AlmacenOrigen,
+                                      bool _UM, int Salida, int Entrada, int Documento, int Movimiento, bool _Movimiento, int AlmacenOrigen,
                                       int AlmacenDestino, int SedeDestino)
         {
             try
@@ -332,7 +332,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 this.tdbgKardex.Splits[0].DisplayColumns["UM"].Visible = _UM;
                 this.tdbgKardex.Splits[0].DisplayColumns["UM"].Width = UM;
                 this.tdbgKardex.Splits[0].DisplayColumns["UM"].HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center;
-                
+
                 this.tdbgKardex.Columns["Salida"].Caption = "Salida";
                 this.tdbgKardex.Columns["Salida"].NumberFormat = "FormatText Event";
                 this.tdbgKardex.Splits[0].DisplayColumns["Salida"].Style.Locked = true;
@@ -354,25 +354,25 @@ namespace Halley.Presentacion.Almacen.Reportes
                 this.tdbgKardex.Splits[0].DisplayColumns["Documento"].Visible = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["Documento"].Width = Documento;
                 this.tdbgKardex.Splits[0].DisplayColumns["Documento"].HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center;
-               
+
                 this.tdbgKardex.Columns["Movimiento"].Caption = "Tipo Movimiento";
                 this.tdbgKardex.Splits[0].DisplayColumns["Movimiento"].Style.Locked = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["Movimiento"].Visible = _Movimiento;
                 this.tdbgKardex.Splits[0].DisplayColumns["Movimiento"].Width = Movimiento;
                 this.tdbgKardex.Splits[0].DisplayColumns["Movimiento"].HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center;
-               
+
                 this.tdbgKardex.Columns["AlmacenOrigen"].Caption = "Almacen Interno";
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenOrigen"].Style.Locked = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenOrigen"].Visible = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenOrigen"].Width = AlmacenOrigen;
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenOrigen"].HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center;
-               
+
                 this.tdbgKardex.Columns["AlmacenDestino"].Caption = "Almacen Externo";
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenDestino"].Style.Locked = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenDestino"].Visible = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenDestino"].Width = AlmacenDestino;
                 this.tdbgKardex.Splits[0].DisplayColumns["AlmacenDestino"].HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center;
-               
+
                 this.tdbgKardex.Columns["SedeDestino"].Caption = "Sede Destino";
                 this.tdbgKardex.Splits[0].DisplayColumns["SedeDestino"].Style.Locked = true;
                 this.tdbgKardex.Splits[0].DisplayColumns["SedeDestino"].Visible = true;
@@ -386,7 +386,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 MessageBox.Show(ex.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-           
+
         }
 
         #endregion
@@ -411,20 +411,20 @@ namespace Halley.Presentacion.Almacen.Reportes
             try
             {
                 Cursor = Cursors.WaitCursor;
-                if(RbNormal.Checked == true)
+                if (RbNormal.Checked == true)
                     DtTemp = new CL_Kardex().getDTKardex_varios(ProductoId, c1cboCia.SelectedValue.ToString(), FecInicial, FecFinal, CboSede.SelectedValue.ToString(), 1);
-                else if(RbAgrupadoVentas.Checked == true)
+                else if (RbAgrupadoVentas.Checked == true)
                     DtTemp = new CL_Kardex().getDTKardex_varios(ProductoId, c1cboCia.SelectedValue.ToString(), FecInicial, FecFinal, CboSede.SelectedValue.ToString(), 4);
-                if(Accion == 1)
+                if (Accion == 1)
                     TdgKardexValorizado.SetDataBinding(DtTemp, "", true);
                 else if (Accion == 2)
                     TdgKardexValorizadoReal.SetDataBinding(DtTemp, "", true);
                 Cursor = Cursors.Default;
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 Cursor = Cursors.Default;
-                MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -454,7 +454,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 Dr["DomicilioFiscal"] = customerRow[0]["DomicilioFiscal"];
                 Dt.Rows.Add(Dr);
                 Ds2.Tables.Add(Dt.Copy());
-                
+
 
                 string Titulo;
                 string Producto;
@@ -505,19 +505,19 @@ namespace Halley.Presentacion.Almacen.Reportes
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("¿Seguro que desea guardar los cambios?.\nEsta modificación no es reversible.","Aviso",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Seguro que desea guardar los cambios?.\nEsta modificación no es reversible.", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 //*********guardar los cambios realizados en el kardex
                 //filtrar los modificados
                 DataTable DTModificada = new DataTable("Modificados");
                 DataTable DTModificadaCierre = new DataTable("Modificados");
-                DataView DV = new DataView(DtTemp,"Tabla = 'K'","",DataViewRowState.ModifiedCurrent);
+                DataView DV = new DataView(DtTemp, "Tabla = 'K'", "", DataViewRowState.ModifiedCurrent);
                 DataView DV2 = new DataView(DtTemp, "Tabla = 'C'", "", DataViewRowState.ModifiedCurrent);
                 //DTModificada = DtTemp.GetChanges(DataRowState.Modified);
                 bool Mod1 = false, Mod2 = false;
 
                 DTModificada = DV.ToTable();
-                if(DTModificada != null && DTModificada.Rows.Count > 0)
+                if (DTModificada != null && DTModificada.Rows.Count > 0)
                 {
                     new CL_Kardex().UpdateXMLKardex(DTModificada);
                     Mod1 = true;
@@ -528,7 +528,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 {
                     new CL_Kardex().UpdateXMLCierreMensual(DTModificadaCierre);
                     Mod2 = true;
-                    
+
                 }
 
                 if (Mod1 == true | Mod2 == true)
@@ -555,13 +555,15 @@ namespace Halley.Presentacion.Almacen.Reportes
             {
                 PnlPeriodo.Visible = true;
                 BtnGenerarSunat.Visible = true;
+                btnSalidaMercaderia.Visible = true;
             }
             else if (RbRAngo.Checked == true)
             {
                 PnlPeriodo.Visible = false;
                 BtnGenerarSunat.Visible = false;
+                btnSalidaMercaderia.Visible = false;
             }
-                
+
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -580,16 +582,16 @@ namespace Halley.Presentacion.Almacen.Reportes
                         DtTemp.AcceptChanges();
                     }
                 }
-                
+
                 else if (TdgKardexValorizado.RowCount > 0 && MessageBox.Show("¿Seguro que desea eliminar el id: " + TdgKardexValorizado.Columns["KardexID"].Value.ToString() + "?.\nEsta modificación no es reversible.", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        new CL_Kardex().DeleteKardex(Convert.ToInt32(TdgKardexValorizado.Columns["KardexID"].Value));
-                        MessageBox.Show("Se elimino correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //Eliminar
-                        DataRow[] customerRow = DtTemp.Select("KardexID = '" + TdgKardexValorizado.Columns["KardexID"].Value.ToString() + "'");
-                        customerRow[0].Delete();
-                        DtTemp.AcceptChanges();
-                    }
+                {
+                    new CL_Kardex().DeleteKardex(Convert.ToInt32(TdgKardexValorizado.Columns["KardexID"].Value));
+                    MessageBox.Show("Se elimino correctamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Eliminar
+                    DataRow[] customerRow = DtTemp.Select("KardexID = '" + TdgKardexValorizado.Columns["KardexID"].Value.ToString() + "'");
+                    customerRow[0].Delete();
+                    DtTemp.AcceptChanges();
+                }
             }
             catch (Exception ex)
             {
@@ -622,9 +624,9 @@ namespace Halley.Presentacion.Almacen.Reportes
 
         private void TddMovimiento_RowChange(object sender, EventArgs e)
         {
-             if (TdgKardexValorizado.RowCount > 0)
+            if (TdgKardexValorizado.RowCount > 0)
             {
-                 //mostrar el movimiento
+                //mostrar el movimiento
                 TdgKardexValorizado.Columns["NomMovimiento"].Value = TddMovimiento.Columns["NomMovimiento"].Value;
             }
         }
@@ -635,41 +637,41 @@ namespace Halley.Presentacion.Almacen.Reportes
 
 
             if (dtpInicial.Value != null & dtpFinal.Value != null & folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                ProductoId = "";
+
+                if (RbRAngo.Checked == true)
                 {
-
-                    ProductoId = "";
-
-                    if (RbRAngo.Checked == true)
-                    {
-                        FecInicial = Convert.ToDateTime(dtpInicial.Value.ToShortDateString());
-                        FecFinal = Convert.ToDateTime(this.dtpFinal.Value.ToShortDateString());
-                    }
-                    else if (RbPeriodo.Checked == true)
-                    {
-                        FecInicial = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1);
-                        FecFinal = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1).AddMonths(1).AddDays(-1);
-                    }
-
-
-                    //DtTemp = new CL_Kardex().getDTKardexPLE(ProductoId, c1cboCia.SelectedValue.ToString(), Convert.ToInt32(CboAnno.SelectedValue),Convert.ToInt32(CboPeriodo.SelectedValue));
-
-                    DtTemp = new CL_Kardex().getDTKardex_varios(ProductoId, c1cboCia.SelectedValue.ToString(), FecInicial, FecFinal, CboSede.SelectedValue.ToString(), 1);
-                    dt = new CL_Kardex().ArmarReporteKardex(DtTemp);
-
-                    CL_Kardex _CL_Kardex = new CL_Kardex();
-
-                    //obtenre ruc
-                    DataRow[] customerRow = UTI_Datatables.DtEmpresas.Select("EmpresaID = '" + c1cboCia.SelectedValue.ToString() + "'");
-
-                    _CL_Kardex.getKardex3(dt, CboPeriodo.SelectedValue.ToString(), CboAnno.SelectedValue.ToString(), customerRow[0]["RUC"].ToString(), folderBrowserDialog1.SelectedPath);
-                    MessageBox.Show("Se realizo el archivo txt correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    FecInicial = Convert.ToDateTime(dtpInicial.Value.ToShortDateString());
+                    FecFinal = Convert.ToDateTime(this.dtpFinal.Value.ToShortDateString());
                 }
-            
+                else if (RbPeriodo.Checked == true)
+                {
+                    FecInicial = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1);
+                    FecFinal = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1).AddMonths(1).AddDays(-1);
+                }
 
-                
 
-      
+                //DtTemp = new CL_Kardex().getDTKardexPLE(ProductoId, c1cboCia.SelectedValue.ToString(), Convert.ToInt32(CboAnno.SelectedValue),Convert.ToInt32(CboPeriodo.SelectedValue));
+
+                DtTemp = new CL_Kardex().getDTKardex_varios(ProductoId, c1cboCia.SelectedValue.ToString(), FecInicial, FecFinal, CboSede.SelectedValue.ToString(), 1);
+                dt = new CL_Kardex().ArmarReporteKardex(DtTemp);
+
+                CL_Kardex _CL_Kardex = new CL_Kardex();
+
+                //obtenre ruc
+                DataRow[] customerRow = UTI_Datatables.DtEmpresas.Select("EmpresaID = '" + c1cboCia.SelectedValue.ToString() + "'");
+
+                _CL_Kardex.getKardex3(dt, CboPeriodo.SelectedValue.ToString(), CboAnno.SelectedValue.ToString(), customerRow[0]["RUC"].ToString(), folderBrowserDialog1.SelectedPath);
+                MessageBox.Show("Se realizo el archivo txt correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+
+
+
+
 
             Cursor = Cursors.Default;
         }
@@ -686,7 +688,7 @@ namespace Halley.Presentacion.Almacen.Reportes
                 {
                     Ds.Tables.Clear();
 
-                    
+
                     dt = new DataTable();
                     dt = new CL_Kardex().ArmarReporteKardex(DtTemp);
 
@@ -745,7 +747,7 @@ namespace Halley.Presentacion.Almacen.Reportes
             }
 
             DtTemp = new CL_Kardex().getDTKardex_varios(ProductoId, c1cboCia.SelectedValue.ToString(), FecInicial, FecFinal, CboSede.SelectedValue.ToString(), 5);
-            MostrarKardex("I",FecInicial,FecFinal);
+            MostrarKardex("I", FecInicial, FecFinal);
         }
 
         private void BtnReporteInventarioDetallado_Click(object sender, EventArgs e)
@@ -765,6 +767,131 @@ namespace Halley.Presentacion.Almacen.Reportes
 
             DtTemp = new CL_Kardex().getDTKardex_varios(ProductoId, c1cboCia.SelectedValue.ToString(), FecInicial, FecFinal, CboSede.SelectedValue.ToString(), 1);
             MostrarKardex("I", FecInicial, FecFinal);
+        }
+
+        private void btnSalidaMercaderia_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+
+
+            FecInicial = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1);
+            FecFinal = new DateTime(Convert.ToInt16(CboAnno.SelectedValue.ToString()), Convert.ToInt16(CboPeriodo.SelectedValue.ToString()), 1).AddMonths(1).AddDays(-1);
+
+            string nombrearchivo = "";
+
+
+            nombrearchivo = "EmitidosDesde" + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString()
+                + dtpInicial.Value.ToShortDateString().Replace("/", "-") + "A" + dtpFinal.Value.ToShortDateString().Replace("/", "-");
+
+
+            DataTable dt = new CL_Kardex().SalidaMercaderia(FecInicial, FecFinal, c1cboCia.SelectedValue.ToString());
+
+            if (dt.Rows.Count > 0)
+            {
+                try
+                {
+
+                    FolderBrowserDialog fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        string filepath = fbd.SelectedPath + "\\" + nombrearchivo;
+
+                        dt.ExportToExcel(filepath);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No existe información en el criterio buscado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+
+
+
+            Cursor = Cursors.Default;
+        }
+    }
+
+
+    public static class My_DataTable_Extensions
+    {
+        /// <summary> 
+        /// Export DataTable to Excel file 
+        /// </summary> 
+        /// <param name="DataTable">Source DataTable</param> 
+        /// <param name="ExcelFilePath">Path to result file name</param> 
+        public static void ExportToExcel(this System.Data.DataTable DataTable, string ExcelFilePath = null)
+        {
+            try
+            {
+                int ColumnsCount;
+
+                if (DataTable == null || (ColumnsCount = DataTable.Columns.Count) == 0)
+                    throw new Exception("ExportToExcel: Null or empty input table!\n");
+
+                // load excel, and create a new workbook 
+                Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
+                Excel.Workbooks.Add();
+
+                // single worksheet 
+                Microsoft.Office.Interop.Excel._Worksheet Worksheet = Excel.ActiveSheet;
+
+                object[] Header = new object[ColumnsCount];
+
+                // column headings    
+                for (int i = 0; i < ColumnsCount; i++)
+                    Header[i] = DataTable.Columns[i].ColumnName;
+
+                Microsoft.Office.Interop.Excel.Range HeaderRange = Worksheet.get_Range((Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[1, 1]), (Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[1, ColumnsCount]));
+                HeaderRange.Value = Header;
+                HeaderRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+                HeaderRange.Font.Bold = true;
+
+                // DataCells 
+                int RowsCount = DataTable.Rows.Count;
+                object[,] Cells = new object[RowsCount, ColumnsCount];
+
+                for (int j = 0; j < RowsCount; j++)
+                    for (int i = 0; i < ColumnsCount; i++)
+                    {
+                        Cells[j, i] = DataTable.Rows[j][i];
+                    }
+
+                Worksheet.get_Range((Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[2, 1]), (Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[RowsCount + 1, ColumnsCount])).NumberFormat = "@";
+                Worksheet.get_Range((Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[2, 1]), (Microsoft.Office.Interop.Excel.Range)(Worksheet.Cells[RowsCount + 1, ColumnsCount])).Value = Cells;
+                
+
+                // check fielpath 
+                if (ExcelFilePath != null && ExcelFilePath != "")
+                {
+                    try
+                    {
+                        Worksheet.SaveAs(ExcelFilePath + ".xls");
+                        Excel.Quit();
+                        MessageBox.Show("Excel guardado!");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+                         + ex.Message);
+                    }
+                }
+                else // no filepath is given 
+                {
+                    Excel.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ExportToExcel: \n" + ex.Message);
+            }
         }
     }
 }

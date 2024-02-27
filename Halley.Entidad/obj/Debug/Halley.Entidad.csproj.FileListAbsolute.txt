@@ -47,3 +47,11 @@ D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.dll
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.pdb
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.dll
 D:\janyosa\personal\SISTEMAS\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.pdb
+C:\SISTEMAS\ERPH\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.dll
+C:\SISTEMAS\ERPH\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.pdb
+C:\SISTEMAS\ERPH\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.dll
+C:\SISTEMAS\ERPH\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.pdb
+D:\sistemas\ERPH\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.dll
+D:\sistemas\ERPH\ERPH\Halley.Entidad\bin\Debug\Halley.Entidad.pdb
+D:\sistemas\ERPH\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.dll
+D:\sistemas\ERPH\ERPH\Halley.Entidad\obj\Debug\Halley.Entidad.pdb

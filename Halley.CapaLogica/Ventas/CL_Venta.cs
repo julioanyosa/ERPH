@@ -487,7 +487,7 @@ namespace Halley.CapaLogica.Ventas
             {
                 Stb.Append(NombreComprobante + " " + TipoFE + Numcomprobante.Substring(0, 3) + "-0" + Numcomprobante.Substring(4) + "\n");
             }
-            
+
 
             if (Usuario.Length > 30)
                 Stb.Append("Caja #:" + Nomcaja + " Cajero: " + Usuario.Substring(0, 30) + "\n");
@@ -596,7 +596,7 @@ namespace Halley.CapaLogica.Ventas
             }
 
 
-     
+
 
             if (!NombreComprobante.ToUpper().Contains("NOTA DE"))
             {
@@ -641,7 +641,7 @@ namespace Halley.CapaLogica.Ventas
                 }
             }
 
-           
+
 
 
 
@@ -1592,48 +1592,35 @@ namespace Halley.CapaLogica.Ventas
 
         public Boolean ValidarDocumento(int IDTipoDocumento, int TipoComprobanteID, int ClienteID, string TipoTicket)
         {
+            /*
+1	RUC
+2	DNI
+3	OTROS TIPOS DE DOCUMENTOS
+4	CARNET DE EXTRANJERIA
+5	PASAPORTE
+6	CÉDULA DIPLOMÁTICA DE IDENTIDAD
+             
+ 1	BOLETA
+2	FACTURA
+3	TICKET
+4	BOLETA ELECTRONICA
+5	FACTURA ELECTRONICA
+6	NOTA DE CRÉDITO BOLETA
+7	NOTA DE CRÉDITO FACTURA
+             */
             Boolean Validado = false;
-            if (TipoComprobanteID == 2 & IDTipoDocumento == 1) //es factura y es RUC
+            if ((TipoComprobanteID == 2 | TipoComprobanteID == 5) & IDTipoDocumento == 1)
             {
                 Validado = true;
                 return Validado;
             }
-            if (TipoComprobanteID == 5 & IDTipoDocumento == 1) //es factura electronica y es RUC
+            if ((TipoComprobanteID == 1 | TipoComprobanteID == 4) & (IDTipoDocumento == 2 | IDTipoDocumento == 4 | IDTipoDocumento == 5 | IDTipoDocumento == 6))
             {
                 Validado = true;
                 return Validado;
             }
-            if (TipoComprobanteID == 1 & IDTipoDocumento == 2) //es boleta y es DNI 
-            {
-                Validado = true;
-                return Validado;
-            }
-            if (TipoComprobanteID == 1 & IDTipoDocumento == 1) //es boleta y es RUC 
-            {
-                Validado = true;
-                return Validado;
-            }
-            if (TipoComprobanteID == 4 & IDTipoDocumento == 2) //es boleta electronica y es DNI 
-            {
-                Validado = true;
-                return Validado;
-            }
-            if (TipoComprobanteID == 1 & ClienteID == 204) //es boleta y clientes varios
-            {
-                Validado = true;
-                return Validado;
-            }
-            if (TipoComprobanteID == 4 & ClienteID == 204) //es boleta electronica y clientes varios
-            {
-                Validado = true;
-                return Validado;
-            }
-            if (TipoComprobanteID == 3 & TipoTicket == "B") //es ticket boleta
-            {
-                Validado = true;
-                return Validado;
-            }
-            if (TipoComprobanteID == 3 & TipoTicket == "F" & IDTipoDocumento == 1 & ClienteID != 1 & ClienteID != 204 & ClienteID != 241 & ClienteID != 3032) //es ticket factura con RUC
+
+            if ((TipoComprobanteID == 1 | TipoComprobanteID == 4) & ClienteID == 204) //es boleta y clientes varios
             {
                 Validado = true;
                 return Validado;
@@ -1670,7 +1657,7 @@ namespace Halley.CapaLogica.Ventas
 DataTable DTDetalles, string RUC, string Usuario, decimal Pagado, string Nomcaja, string NroSerieCaja,
 string NroAutorizacion, string TotalPagarLetras, string Nomcliente, string NroDocumento, string DireccionCliente,
 string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntregado, decimal MontoIGV, string TipoFE,
-            decimal TotalComprobante, decimal TotalICBPER, int FormaPagoID, DataTable DtCuotas, object  obj)
+            decimal TotalComprobante, decimal TotalICBPER, int FormaPagoID, DataTable DtCuotas, object obj)
         {
             #region formato de etiquetera
             //calcular el apgo en letras
@@ -1803,10 +1790,10 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
-          
+
         }
 
         public void InsertarClientesSunat(string ruta)
@@ -1864,15 +1851,15 @@ string Canasta, Boolean ConCliente, DateTime FECHA_IMPRESION, decimal MontoEntre
             Ds = objCD_Venta.ObtenerParaImpresionNc(ComprobanteId);
             return Ds;
         }
-        
+
         public DataTable ListarNotaCredito(DateTime FechaIni, DateTime FechaFin, int TipoComprobanteID, string EmpresaID)
         {
             CD_Venta objCD_Venta = new CD_Venta(AppSettings.GetConnectionString);
-     
+
             DataTable dt = objCD_Venta.ListarNotaCredito(FechaIni, FechaFin, TipoComprobanteID, EmpresaID);
             return dt;
         }
 
-           
+
     }
 }

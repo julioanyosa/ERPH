@@ -625,5 +625,18 @@ namespace Halley.CapaDatos.Almacen
                  throw new Exception(ex.Message);
              }
          }
+
+         public DataTable SalidaMercaderia(DateTime @fechaIni, DateTime @fechaFin, string @EmpresaID)
+         {
+             DataTable dtTmp = new DataTable();
+             SqlDatabase SqlClient = new SqlDatabase(connectionString);
+             DbCommand SqlCommand = SqlClient.GetStoredProcCommand("almacen.proc_salidaMercaderia");
+
+             SqlClient.AddInParameter(SqlCommand, "@fechaIni", SqlDbType.Date, @fechaIni);
+             SqlClient.AddInParameter(SqlCommand, "@fechaFin", SqlDbType.Date, @fechaFin);
+             SqlClient.AddInParameter(SqlCommand, "@EmpresaID", SqlDbType.Char, @EmpresaID);
+             dtTmp.Load(SqlClient.ExecuteReader(SqlCommand));
+             return dtTmp;
+         }
     }
 }

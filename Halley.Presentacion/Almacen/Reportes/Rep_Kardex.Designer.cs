@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rep_Kardex));
             C1.Win.C1TrueDBGrid.Style style1 = new C1.Win.C1TrueDBGrid.Style();
             C1.Win.C1TrueDBGrid.Style style2 = new C1.Win.C1TrueDBGrid.Style();
             C1.Win.C1TrueDBGrid.Style style3 = new C1.Win.C1TrueDBGrid.Style();
@@ -53,6 +52,7 @@
             C1.Win.C1TrueDBGrid.Style style22 = new C1.Win.C1TrueDBGrid.Style();
             C1.Win.C1TrueDBGrid.Style style23 = new C1.Win.C1TrueDBGrid.Style();
             C1.Win.C1TrueDBGrid.Style style24 = new C1.Win.C1TrueDBGrid.Style();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rep_Kardex));
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnGenerarSunat = new C1.Win.C1Input.C1Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -108,6 +108,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.CrvKardex = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSalidaMercaderia = new C1.Win.C1Input.C1Button();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.PnlPeriodo.SuspendLayout();
@@ -137,24 +138,23 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnSalidaMercaderia);
             this.panel2.Controls.Add(this.BtnGenerarSunat);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnConsultar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1829, 111);
+            this.panel2.Size = new System.Drawing.Size(1372, 76);
             this.panel2.TabIndex = 6;
             // 
             // BtnGenerarSunat
             // 
             this.BtnGenerarSunat.Image = ((System.Drawing.Image)(resources.GetObject("BtnGenerarSunat.Image")));
-            this.BtnGenerarSunat.Location = new System.Drawing.Point(1358, 58);
-            this.BtnGenerarSunat.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGenerarSunat.Location = new System.Drawing.Point(1079, 45);
             this.BtnGenerarSunat.Name = "BtnGenerarSunat";
-            this.BtnGenerarSunat.Size = new System.Drawing.Size(176, 30);
+            this.BtnGenerarSunat.Size = new System.Drawing.Size(161, 21);
             this.BtnGenerarSunat.TabIndex = 420;
             this.BtnGenerarSunat.Text = "Generar kardex Sunat";
             this.BtnGenerarSunat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -171,11 +171,9 @@
             this.groupBox2.Controls.Add(this.dtpFinal);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(869, 1);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(616, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(481, 102);
+            this.groupBox2.Size = new System.Drawing.Size(361, 70);
             this.groupBox2.TabIndex = 419;
             this.groupBox2.TabStop = false;
             // 
@@ -185,10 +183,9 @@
             this.PnlPeriodo.Controls.Add(this.label11);
             this.PnlPeriodo.Controls.Add(this.CboPeriodo);
             this.PnlPeriodo.Controls.Add(this.label10);
-            this.PnlPeriodo.Location = new System.Drawing.Point(160, 13);
-            this.PnlPeriodo.Margin = new System.Windows.Forms.Padding(4);
+            this.PnlPeriodo.Location = new System.Drawing.Point(120, 9);
             this.PnlPeriodo.Name = "PnlPeriodo";
-            this.PnlPeriodo.Size = new System.Drawing.Size(306, 80);
+            this.PnlPeriodo.Size = new System.Drawing.Size(230, 55);
             this.PnlPeriodo.TabIndex = 416;
             // 
             // CboAnno
@@ -202,25 +199,22 @@
             this.CboAnno.ColumnCaptionHeight = 17;
             this.CboAnno.ColumnFooterHeight = 17;
             this.CboAnno.ColumnWidth = 54;
-            this.CboAnno.ContentHeight = 21;
+            this.CboAnno.ContentHeight = 17;
             this.CboAnno.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboAnno.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboAnno.EditorFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboAnno.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboAnno.EditorHeight = 21;
+            this.CboAnno.EditorHeight = 17;
             this.CboAnno.Images.Add(((System.Drawing.Image)(resources.GetObject("CboAnno.Images"))));
             this.CboAnno.ItemHeight = 15;
-            this.CboAnno.Location = new System.Drawing.Point(83, 44);
-            this.CboAnno.Margin = new System.Windows.Forms.Padding(4);
+            this.CboAnno.Location = new System.Drawing.Point(62, 30);
             this.CboAnno.MatchEntryTimeout = ((long)(2000));
             this.CboAnno.MaxDropDownItems = ((short)(5));
             this.CboAnno.MaxLength = 32767;
             this.CboAnno.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.CboAnno.Name = "CboAnno";
-            this.CboAnno.RowDivider.Color = System.Drawing.Color.DarkGray;
-            this.CboAnno.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboAnno.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboAnno.Size = new System.Drawing.Size(109, 27);
+            this.CboAnno.Size = new System.Drawing.Size(82, 23);
             this.CboAnno.TabIndex = 401;
             this.CboAnno.PropBag = resources.GetString("CboAnno.PropBag");
             // 
@@ -228,10 +222,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(8, 44);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(6, 30);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 19);
+            this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 400;
             this.label11.Text = "Año:";
             // 
@@ -245,25 +238,22 @@
             this.CboPeriodo.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.CboPeriodo.ColumnCaptionHeight = 17;
             this.CboPeriodo.ColumnFooterHeight = 17;
-            this.CboPeriodo.ContentHeight = 21;
+            this.CboPeriodo.ContentHeight = 17;
             this.CboPeriodo.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboPeriodo.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboPeriodo.EditorFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboPeriodo.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboPeriodo.EditorHeight = 21;
+            this.CboPeriodo.EditorHeight = 17;
             this.CboPeriodo.Images.Add(((System.Drawing.Image)(resources.GetObject("CboPeriodo.Images"))));
             this.CboPeriodo.ItemHeight = 15;
-            this.CboPeriodo.Location = new System.Drawing.Point(83, 6);
-            this.CboPeriodo.Margin = new System.Windows.Forms.Padding(4);
+            this.CboPeriodo.Location = new System.Drawing.Point(62, 4);
             this.CboPeriodo.MatchEntryTimeout = ((long)(2000));
             this.CboPeriodo.MaxDropDownItems = ((short)(5));
             this.CboPeriodo.MaxLength = 32767;
             this.CboPeriodo.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.CboPeriodo.Name = "CboPeriodo";
-            this.CboPeriodo.RowDivider.Color = System.Drawing.Color.DarkGray;
-            this.CboPeriodo.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboPeriodo.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboPeriodo.Size = new System.Drawing.Size(213, 27);
+            this.CboPeriodo.Size = new System.Drawing.Size(160, 23);
             this.CboPeriodo.TabIndex = 399;
             this.CboPeriodo.PropBag = resources.GetString("CboPeriodo.PropBag");
             // 
@@ -271,10 +261,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(8, 6);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(6, 4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 19);
+            this.label10.Size = new System.Drawing.Size(51, 13);
             this.label10.TabIndex = 398;
             this.label10.Text = "Periodo:";
             // 
@@ -282,10 +271,9 @@
             // 
             this.RbPeriodo.AutoSize = true;
             this.RbPeriodo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbPeriodo.Location = new System.Drawing.Point(12, 57);
-            this.RbPeriodo.Margin = new System.Windows.Forms.Padding(4);
+            this.RbPeriodo.Location = new System.Drawing.Point(9, 39);
             this.RbPeriodo.Name = "RbPeriodo";
-            this.RbPeriodo.Size = new System.Drawing.Size(112, 23);
+            this.RbPeriodo.Size = new System.Drawing.Size(87, 17);
             this.RbPeriodo.TabIndex = 415;
             this.RbPeriodo.Text = "Por Periodo";
             this.RbPeriodo.UseVisualStyleBackColor = true;
@@ -296,10 +284,9 @@
             this.RbRAngo.AutoSize = true;
             this.RbRAngo.Checked = true;
             this.RbRAngo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbRAngo.Location = new System.Drawing.Point(12, 23);
-            this.RbRAngo.Margin = new System.Windows.Forms.Padding(4);
+            this.RbRAngo.Location = new System.Drawing.Point(9, 16);
             this.RbRAngo.Name = "RbRAngo";
-            this.RbRAngo.Size = new System.Drawing.Size(98, 23);
+            this.RbRAngo.Size = new System.Drawing.Size(77, 17);
             this.RbRAngo.TabIndex = 414;
             this.RbRAngo.TabStop = true;
             this.RbRAngo.Text = "Por rango";
@@ -309,39 +296,35 @@
             // dtpInicial
             // 
             this.dtpInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpInicial.Location = new System.Drawing.Point(312, 18);
-            this.dtpInicial.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpInicial.Location = new System.Drawing.Point(234, 12);
             this.dtpInicial.Name = "dtpInicial";
-            this.dtpInicial.Size = new System.Drawing.Size(113, 26);
+            this.dtpInicial.Size = new System.Drawing.Size(86, 22);
             this.dtpInicial.TabIndex = 115;
             // 
             // dtpFinal
             // 
             this.dtpFinal.CalendarMonthBackground = System.Drawing.Color.Yellow;
             this.dtpFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFinal.Location = new System.Drawing.Point(312, 54);
-            this.dtpFinal.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpFinal.Location = new System.Drawing.Point(234, 37);
             this.dtpFinal.Name = "dtpFinal";
-            this.dtpFinal.Size = new System.Drawing.Size(113, 26);
+            this.dtpFinal.Size = new System.Drawing.Size(86, 22);
             this.dtpFinal.TabIndex = 117;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(228, 25);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(171, 17);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 19);
+            this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 114;
             this.label5.Text = "F. Inicial :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(237, 61);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(178, 42);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 19);
+            this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 116;
             this.label4.Text = "F. Final :";
             // 
@@ -354,21 +337,18 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.cbProducto);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(12, 1);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(855, 102);
+            this.groupBox1.Size = new System.Drawing.Size(607, 70);
             this.groupBox1.TabIndex = 110;
             this.groupBox1.TabStop = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(447, 28);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(335, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 19);
+            this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 400;
             this.label7.Text = "Sede:";
             // 
@@ -383,26 +363,23 @@
             this.CboSede.ColumnCaptionHeight = 17;
             this.CboSede.ColumnFooterHeight = 17;
             this.CboSede.ColumnHeaders = false;
-            this.CboSede.ContentHeight = 21;
+            this.CboSede.ContentHeight = 17;
             this.CboSede.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.CboSede.DisplayMember = "NomEmpresa";
             this.CboSede.EditorBackColor = System.Drawing.SystemColors.Window;
             this.CboSede.EditorFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboSede.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.CboSede.EditorHeight = 21;
+            this.CboSede.EditorHeight = 17;
             this.CboSede.Images.Add(((System.Drawing.Image)(resources.GetObject("CboSede.Images"))));
             this.CboSede.ItemHeight = 15;
-            this.CboSede.Location = new System.Drawing.Point(501, 18);
-            this.CboSede.Margin = new System.Windows.Forms.Padding(4);
+            this.CboSede.Location = new System.Drawing.Point(376, 12);
             this.CboSede.MatchEntryTimeout = ((long)(2000));
             this.CboSede.MaxDropDownItems = ((short)(10));
             this.CboSede.MaxLength = 32767;
             this.CboSede.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.CboSede.Name = "CboSede";
-            this.CboSede.RowDivider.Color = System.Drawing.Color.DarkGray;
-            this.CboSede.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.CboSede.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.CboSede.Size = new System.Drawing.Size(345, 27);
+            this.CboSede.Size = new System.Drawing.Size(225, 23);
             this.CboSede.TabIndex = 399;
             this.CboSede.ValueMember = "EmpresaID";
             this.CboSede.PropBag = resources.GetString("CboSede.PropBag");
@@ -410,10 +387,9 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 54);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(17, 37);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 19);
+            this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 398;
             this.label6.Text = "Productos:";
             // 
@@ -429,26 +405,23 @@
             this.c1cboCia.ColumnFooterHeight = 17;
             this.c1cboCia.ColumnHeaders = false;
             this.c1cboCia.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.c1cboCia.ContentHeight = 21;
+            this.c1cboCia.ContentHeight = 17;
             this.c1cboCia.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.c1cboCia.DisplayMember = "NomEmpresa";
             this.c1cboCia.EditorBackColor = System.Drawing.SystemColors.Window;
             this.c1cboCia.EditorFont = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.c1cboCia.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.c1cboCia.EditorHeight = 21;
+            this.c1cboCia.EditorHeight = 17;
             this.c1cboCia.Images.Add(((System.Drawing.Image)(resources.GetObject("c1cboCia.Images"))));
             this.c1cboCia.ItemHeight = 15;
-            this.c1cboCia.Location = new System.Drawing.Point(113, 15);
-            this.c1cboCia.Margin = new System.Windows.Forms.Padding(4);
+            this.c1cboCia.Location = new System.Drawing.Point(85, 10);
             this.c1cboCia.MatchEntryTimeout = ((long)(2000));
             this.c1cboCia.MaxDropDownItems = ((short)(10));
             this.c1cboCia.MaxLength = 32767;
             this.c1cboCia.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.c1cboCia.Name = "c1cboCia";
-            this.c1cboCia.RowDivider.Color = System.Drawing.Color.DarkGray;
-            this.c1cboCia.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.c1cboCia.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.c1cboCia.Size = new System.Drawing.Size(251, 27);
+            this.c1cboCia.Size = new System.Drawing.Size(188, 23);
             this.c1cboCia.TabIndex = 396;
             this.c1cboCia.ValueMember = "EmpresaID";
             this.c1cboCia.PropBag = resources.GetString("c1cboCia.PropBag");
@@ -456,10 +429,9 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(35, 20);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(26, 14);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(64, 19);
+            this.label14.Size = new System.Drawing.Size(53, 13);
             this.label14.TabIndex = 397;
             this.label14.Text = "Empresa:";
             // 
@@ -471,35 +443,31 @@
             this.cbProducto.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cbProducto.ColumnCaptionHeight = 17;
             this.cbProducto.ColumnFooterHeight = 17;
-            this.cbProducto.ContentHeight = 21;
+            this.cbProducto.ContentHeight = 17;
             this.cbProducto.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cbProducto.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cbProducto.EditorFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbProducto.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbProducto.EditorHeight = 21;
+            this.cbProducto.EditorHeight = 17;
             this.cbProducto.Images.Add(((System.Drawing.Image)(resources.GetObject("cbProducto.Images"))));
             this.cbProducto.ItemHeight = 15;
-            this.cbProducto.Location = new System.Drawing.Point(113, 53);
-            this.cbProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.cbProducto.Location = new System.Drawing.Point(85, 36);
             this.cbProducto.MatchEntryTimeout = ((long)(2000));
             this.cbProducto.MaxDropDownItems = ((short)(5));
             this.cbProducto.MaxLength = 32767;
             this.cbProducto.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cbProducto.Name = "cbProducto";
-            this.cbProducto.RowDivider.Color = System.Drawing.Color.DarkGray;
-            this.cbProducto.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cbProducto.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cbProducto.Size = new System.Drawing.Size(733, 27);
+            this.cbProducto.Size = new System.Drawing.Size(516, 23);
             this.cbProducto.TabIndex = 112;
             this.cbProducto.PropBag = resources.GetString("cbProducto.PropBag");
             // 
             // btnConsultar
             // 
             this.btnConsultar.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultar.Image")));
-            this.btnConsultar.Location = new System.Drawing.Point(1358, 13);
-            this.btnConsultar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConsultar.Location = new System.Drawing.Point(983, 16);
             this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(120, 34);
+            this.btnConsultar.Size = new System.Drawing.Size(90, 23);
             this.btnConsultar.TabIndex = 118;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -509,10 +477,9 @@
             // RbAgrupadoVentas
             // 
             this.RbAgrupadoVentas.AutoSize = true;
-            this.RbAgrupadoVentas.Location = new System.Drawing.Point(1597, 9);
-            this.RbAgrupadoVentas.Margin = new System.Windows.Forms.Padding(4);
+            this.RbAgrupadoVentas.Location = new System.Drawing.Point(1198, 6);
             this.RbAgrupadoVentas.Name = "RbAgrupadoVentas";
-            this.RbAgrupadoVentas.Size = new System.Drawing.Size(135, 23);
+            this.RbAgrupadoVentas.Size = new System.Drawing.Size(113, 17);
             this.RbAgrupadoVentas.TabIndex = 421;
             this.RbAgrupadoVentas.Text = "Agrupado ventas";
             this.RbAgrupadoVentas.UseVisualStyleBackColor = true;
@@ -521,10 +488,9 @@
             // 
             this.RbNormal.AutoSize = true;
             this.RbNormal.Checked = true;
-            this.RbNormal.Location = new System.Drawing.Point(1495, 9);
-            this.RbNormal.Margin = new System.Windows.Forms.Padding(4);
+            this.RbNormal.Location = new System.Drawing.Point(1121, 6);
             this.RbNormal.Name = "RbNormal";
-            this.RbNormal.Size = new System.Drawing.Size(75, 23);
+            this.RbNormal.Size = new System.Drawing.Size(62, 17);
             this.RbNormal.TabIndex = 420;
             this.RbNormal.TabStop = true;
             this.RbNormal.Text = "Normal";
@@ -533,10 +499,9 @@
             // ckbMovimiento
             // 
             this.ckbMovimiento.AutoSize = true;
-            this.ckbMovimiento.Location = new System.Drawing.Point(7, 15);
-            this.ckbMovimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbMovimiento.Location = new System.Drawing.Point(5, 10);
             this.ckbMovimiento.Name = "ckbMovimiento";
-            this.ckbMovimiento.Size = new System.Drawing.Size(18, 17);
+            this.ckbMovimiento.Size = new System.Drawing.Size(15, 14);
             this.ckbMovimiento.TabIndex = 120;
             this.ckbMovimiento.UseVisualStyleBackColor = true;
             this.ckbMovimiento.CheckedChanged += new System.EventHandler(this.ckbMovimiento_CheckedChanged);
@@ -544,10 +509,9 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 16);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(21, 11);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(104, 19);
+            this.label9.Size = new System.Drawing.Size(86, 13);
             this.label9.TabIndex = 113;
             this.label9.Text = "T. Movimiento :";
             // 
@@ -560,25 +524,22 @@
             this.cbMovimiento.ColumnCaptionHeight = 17;
             this.cbMovimiento.ColumnFooterHeight = 17;
             this.cbMovimiento.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cbMovimiento.ContentHeight = 21;
+            this.cbMovimiento.ContentHeight = 17;
             this.cbMovimiento.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cbMovimiento.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cbMovimiento.EditorFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMovimiento.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbMovimiento.EditorHeight = 21;
+            this.cbMovimiento.EditorHeight = 17;
             this.cbMovimiento.Images.Add(((System.Drawing.Image)(resources.GetObject("cbMovimiento.Images"))));
             this.cbMovimiento.ItemHeight = 15;
-            this.cbMovimiento.Location = new System.Drawing.Point(148, 9);
-            this.cbMovimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.cbMovimiento.Location = new System.Drawing.Point(111, 6);
             this.cbMovimiento.MatchEntryTimeout = ((long)(2000));
             this.cbMovimiento.MaxDropDownItems = ((short)(5));
             this.cbMovimiento.MaxLength = 32767;
             this.cbMovimiento.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cbMovimiento.Name = "cbMovimiento";
-            this.cbMovimiento.RowDivider.Color = System.Drawing.Color.DarkGray;
-            this.cbMovimiento.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cbMovimiento.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cbMovimiento.Size = new System.Drawing.Size(308, 27);
+            this.cbMovimiento.Size = new System.Drawing.Size(231, 23);
             this.cbMovimiento.TabIndex = 114;
             this.cbMovimiento.VisualStyle = C1.Win.C1List.VisualStyle.Office2007Blue;
             this.cbMovimiento.PropBag = resources.GetString("cbMovimiento.PropBag");
@@ -586,80 +547,72 @@
             // txtUltMovimiento
             // 
             this.txtUltMovimiento.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUltMovimiento.Location = new System.Drawing.Point(1127, 9);
-            this.txtUltMovimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUltMovimiento.Location = new System.Drawing.Point(845, 6);
             this.txtUltMovimiento.Name = "txtUltMovimiento";
-            this.txtUltMovimiento.Size = new System.Drawing.Size(184, 26);
+            this.txtUltMovimiento.Size = new System.Drawing.Size(138, 22);
             this.txtUltMovimiento.TabIndex = 118;
             this.txtUltMovimiento.Tag = null;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1028, 22);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(771, 15);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 19);
+            this.label8.Size = new System.Drawing.Size(68, 13);
             this.label8.TabIndex = 117;
             this.label8.Text = "F. Ult. Mov :";
             // 
             // txtUM
             // 
             this.txtUM.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUM.Location = new System.Drawing.Point(1381, 9);
-            this.txtUM.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUM.Location = new System.Drawing.Point(1036, 6);
             this.txtUM.Name = "txtUM";
-            this.txtUM.Size = new System.Drawing.Size(69, 26);
+            this.txtUM.Size = new System.Drawing.Size(52, 22);
             this.txtUM.TabIndex = 116;
             this.txtUM.Tag = null;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1329, 22);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(997, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 19);
+            this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 115;
             this.label3.Text = "UM :";
             // 
             // txtExistencia_actual
             // 
             this.txtExistencia_actual.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExistencia_actual.Location = new System.Drawing.Point(852, 9);
-            this.txtExistencia_actual.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExistencia_actual.Location = new System.Drawing.Point(639, 6);
             this.txtExistencia_actual.Name = "txtExistencia_actual";
-            this.txtExistencia_actual.Size = new System.Drawing.Size(163, 26);
+            this.txtExistencia_actual.Size = new System.Drawing.Size(122, 22);
             this.txtExistencia_actual.TabIndex = 114;
             this.txtExistencia_actual.Tag = null;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(720, 22);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(540, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 19);
+            this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 113;
             this.label2.Text = "Existencia actual :";
             // 
             // txtCodigo
             // 
             this.txtCodigo.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(548, 9);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCodigo.Location = new System.Drawing.Point(411, 6);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(163, 26);
+            this.txtCodigo.Size = new System.Drawing.Size(122, 22);
             this.txtCodigo.TabIndex = 112;
             this.txtCodigo.Tag = null;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(473, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(355, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 19);
+            this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 111;
             this.label1.Text = "Codigo :";
             // 
@@ -678,8 +631,7 @@
             this.tdbgKardex.FlatStyle = C1.Win.C1TrueDBGrid.FlatModeEnum.Standard;
             this.tdbgKardex.GroupByCaption = "Drag a column header here to group by that column";
             this.tdbgKardex.Images.Add(((System.Drawing.Image)(resources.GetObject("tdbgKardex.Images"))));
-            this.tdbgKardex.Location = new System.Drawing.Point(4, 51);
-            this.tdbgKardex.Margin = new System.Windows.Forms.Padding(4);
+            this.tdbgKardex.Location = new System.Drawing.Point(3, 35);
             this.tdbgKardex.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightRow;
             this.tdbgKardex.Name = "tdbgKardex";
             this.tdbgKardex.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -689,7 +641,7 @@
             this.tdbgKardex.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.tdbgKardex.RowDivider.Style = C1.Win.C1TrueDBGrid.LineStyleEnum.None;
             this.tdbgKardex.RowHeight = 15;
-            this.tdbgKardex.Size = new System.Drawing.Size(1769, 486);
+            this.tdbgKardex.Size = new System.Drawing.Size(1327, 333);
             this.tdbgKardex.TabIndex = 92;
             this.tdbgKardex.Text = "Productos Genéricos";
             this.tdbgKardex.FormatText += new C1.Win.C1TrueDBGrid.FormatTextEventHandler(this.tdbgKardex_FormatText);
@@ -703,11 +655,10 @@
             this.TcKardex.Controls.Add(this.TpKardex2);
             this.TcKardex.Controls.Add(this.Tp3);
             this.TcKardex.Controls.Add(this.tabPage1);
-            this.TcKardex.Location = new System.Drawing.Point(12, 120);
-            this.TcKardex.Margin = new System.Windows.Forms.Padding(4);
+            this.TcKardex.Location = new System.Drawing.Point(9, 82);
             this.TcKardex.Name = "TcKardex";
             this.TcKardex.SelectedIndex = 0;
-            this.TcKardex.Size = new System.Drawing.Size(1792, 580);
+            this.TcKardex.Size = new System.Drawing.Size(1344, 397);
             this.TcKardex.TabIndex = 7;
             // 
             // TpKardex1
@@ -724,11 +675,10 @@
             this.TpKardex1.Controls.Add(this.label1);
             this.TpKardex1.Controls.Add(this.txtExistencia_actual);
             this.TpKardex1.Controls.Add(this.label2);
-            this.TpKardex1.Location = new System.Drawing.Point(4, 28);
-            this.TpKardex1.Margin = new System.Windows.Forms.Padding(4);
+            this.TpKardex1.Location = new System.Drawing.Point(4, 22);
             this.TpKardex1.Name = "TpKardex1";
-            this.TpKardex1.Padding = new System.Windows.Forms.Padding(4);
-            this.TpKardex1.Size = new System.Drawing.Size(1784, 548);
+            this.TpKardex1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.TpKardex1.Size = new System.Drawing.Size(1336, 371);
             this.TpKardex1.TabIndex = 0;
             this.TpKardex1.Text = "Con Almacenes";
             this.TpKardex1.UseVisualStyleBackColor = true;
@@ -748,11 +698,10 @@
             this.TpKardex2.Controls.Add(this.BtnActualizar);
             this.TpKardex2.Controls.Add(this.BtnMostrar);
             this.TpKardex2.Controls.Add(this.TdgKardexValorizado);
-            this.TpKardex2.Location = new System.Drawing.Point(4, 28);
-            this.TpKardex2.Margin = new System.Windows.Forms.Padding(4);
+            this.TpKardex2.Location = new System.Drawing.Point(4, 22);
             this.TpKardex2.Name = "TpKardex2";
-            this.TpKardex2.Padding = new System.Windows.Forms.Padding(4);
-            this.TpKardex2.Size = new System.Drawing.Size(1784, 548);
+            this.TpKardex2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.TpKardex2.Size = new System.Drawing.Size(1336, 371);
             this.TpKardex2.TabIndex = 1;
             this.TpKardex2.Text = "Por Producto";
             this.TpKardex2.UseVisualStyleBackColor = true;
@@ -760,10 +709,9 @@
             // BtnReporteInventarioDetallado
             // 
             this.BtnReporteInventarioDetallado.Image = ((System.Drawing.Image)(resources.GetObject("BtnReporteInventarioDetallado.Image")));
-            this.BtnReporteInventarioDetallado.Location = new System.Drawing.Point(1156, 3);
-            this.BtnReporteInventarioDetallado.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnReporteInventarioDetallado.Location = new System.Drawing.Point(867, 2);
             this.BtnReporteInventarioDetallado.Name = "BtnReporteInventarioDetallado";
-            this.BtnReporteInventarioDetallado.Size = new System.Drawing.Size(163, 34);
+            this.BtnReporteInventarioDetallado.Size = new System.Drawing.Size(122, 23);
             this.BtnReporteInventarioDetallado.TabIndex = 424;
             this.BtnReporteInventarioDetallado.Text = "Rep Inv detallado";
             this.BtnReporteInventarioDetallado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -773,10 +721,9 @@
             // BtnReporteInventarioResumido
             // 
             this.BtnReporteInventarioResumido.Image = ((System.Drawing.Image)(resources.GetObject("BtnReporteInventarioResumido.Image")));
-            this.BtnReporteInventarioResumido.Location = new System.Drawing.Point(979, 4);
-            this.BtnReporteInventarioResumido.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnReporteInventarioResumido.Location = new System.Drawing.Point(734, 3);
             this.BtnReporteInventarioResumido.Name = "BtnReporteInventarioResumido";
-            this.BtnReporteInventarioResumido.Size = new System.Drawing.Size(169, 34);
+            this.BtnReporteInventarioResumido.Size = new System.Drawing.Size(127, 23);
             this.BtnReporteInventarioResumido.TabIndex = 423;
             this.BtnReporteInventarioResumido.Text = "Rep Inv resumido";
             this.BtnReporteInventarioResumido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -787,10 +734,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1384, 12);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(1038, 8);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(101, 19);
+            this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 422;
             this.label12.Text = "Tipo Reporte:";
             // 
@@ -810,8 +756,7 @@
             this.TddOperacionKardex.HeadingStyle = style4;
             this.TddOperacionKardex.HighLightRowStyle = style5;
             this.TddOperacionKardex.Images.Add(((System.Drawing.Image)(resources.GetObject("TddOperacionKardex.Images"))));
-            this.TddOperacionKardex.Location = new System.Drawing.Point(49, 145);
-            this.TddOperacionKardex.Margin = new System.Windows.Forms.Padding(4);
+            this.TddOperacionKardex.Location = new System.Drawing.Point(37, 99);
             this.TddOperacionKardex.Name = "TddOperacionKardex";
             this.TddOperacionKardex.OddRowStyle = style6;
             this.TddOperacionKardex.RecordSelectorStyle = style7;
@@ -820,7 +765,7 @@
             this.TddOperacionKardex.RowHeight = 15;
             this.TddOperacionKardex.RowSubDividerColor = System.Drawing.Color.DarkGray;
             this.TddOperacionKardex.ScrollTips = false;
-            this.TddOperacionKardex.Size = new System.Drawing.Size(453, 214);
+            this.TddOperacionKardex.Size = new System.Drawing.Size(340, 147);
             this.TddOperacionKardex.Style = style8;
             this.TddOperacionKardex.TabIndex = 125;
             this.TddOperacionKardex.TabStop = false;
@@ -844,8 +789,7 @@
             this.TddTipoDocumento.HeadingStyle = style12;
             this.TddTipoDocumento.HighLightRowStyle = style13;
             this.TddTipoDocumento.Images.Add(((System.Drawing.Image)(resources.GetObject("TddTipoDocumento.Images"))));
-            this.TddTipoDocumento.Location = new System.Drawing.Point(584, 206);
-            this.TddTipoDocumento.Margin = new System.Windows.Forms.Padding(4);
+            this.TddTipoDocumento.Location = new System.Drawing.Point(438, 141);
             this.TddTipoDocumento.Name = "TddTipoDocumento";
             this.TddTipoDocumento.OddRowStyle = style14;
             this.TddTipoDocumento.RecordSelectorStyle = style15;
@@ -854,7 +798,7 @@
             this.TddTipoDocumento.RowHeight = 15;
             this.TddTipoDocumento.RowSubDividerColor = System.Drawing.Color.DarkGray;
             this.TddTipoDocumento.ScrollTips = false;
-            this.TddTipoDocumento.Size = new System.Drawing.Size(529, 237);
+            this.TddTipoDocumento.Size = new System.Drawing.Size(397, 163);
             this.TddTipoDocumento.Style = style16;
             this.TddTipoDocumento.TabIndex = 124;
             this.TddTipoDocumento.TabStop = false;
@@ -878,8 +822,7 @@
             this.TddMovimiento.HeadingStyle = style20;
             this.TddMovimiento.HighLightRowStyle = style21;
             this.TddMovimiento.Images.Add(((System.Drawing.Image)(resources.GetObject("TddMovimiento.Images"))));
-            this.TddMovimiento.Location = new System.Drawing.Point(973, 151);
-            this.TddMovimiento.Margin = new System.Windows.Forms.Padding(4);
+            this.TddMovimiento.Location = new System.Drawing.Point(730, 103);
             this.TddMovimiento.Name = "TddMovimiento";
             this.TddMovimiento.OddRowStyle = style22;
             this.TddMovimiento.RecordSelectorStyle = style23;
@@ -888,7 +831,7 @@
             this.TddMovimiento.RowHeight = 15;
             this.TddMovimiento.RowSubDividerColor = System.Drawing.Color.DarkGray;
             this.TddMovimiento.ScrollTips = false;
-            this.TddMovimiento.Size = new System.Drawing.Size(450, 208);
+            this.TddMovimiento.Size = new System.Drawing.Size(338, 143);
             this.TddMovimiento.Style = style24;
             this.TddMovimiento.TabIndex = 123;
             this.TddMovimiento.TabStop = false;
@@ -900,10 +843,9 @@
             // BtnEliminar
             // 
             this.BtnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminar.Image")));
-            this.BtnEliminar.Location = new System.Drawing.Point(8, 4);
-            this.BtnEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnEliminar.Location = new System.Drawing.Point(6, 3);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(115, 34);
+            this.BtnEliminar.Size = new System.Drawing.Size(86, 23);
             this.BtnEliminar.TabIndex = 122;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -913,10 +855,9 @@
             // BtnIngresar
             // 
             this.BtnIngresar.Image = ((System.Drawing.Image)(resources.GetObject("BtnIngresar.Image")));
-            this.BtnIngresar.Location = new System.Drawing.Point(638, 4);
-            this.BtnIngresar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnIngresar.Location = new System.Drawing.Point(478, 3);
             this.BtnIngresar.Name = "BtnIngresar";
-            this.BtnIngresar.Size = new System.Drawing.Size(138, 34);
+            this.BtnIngresar.Size = new System.Drawing.Size(104, 23);
             this.BtnIngresar.TabIndex = 121;
             this.BtnIngresar.Text = "Ingresar";
             this.BtnIngresar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -926,10 +867,9 @@
             // BtnActualizar
             // 
             this.BtnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("BtnActualizar.Image")));
-            this.BtnActualizar.Location = new System.Drawing.Point(131, 4);
-            this.BtnActualizar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnActualizar.Location = new System.Drawing.Point(98, 3);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(115, 34);
+            this.BtnActualizar.Size = new System.Drawing.Size(86, 23);
             this.BtnActualizar.TabIndex = 120;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -939,10 +879,9 @@
             // BtnMostrar
             // 
             this.BtnMostrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnMostrar.Image")));
-            this.BtnMostrar.Location = new System.Drawing.Point(784, 4);
-            this.BtnMostrar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnMostrar.Location = new System.Drawing.Point(588, 3);
             this.BtnMostrar.Name = "BtnMostrar";
-            this.BtnMostrar.Size = new System.Drawing.Size(173, 34);
+            this.BtnMostrar.Size = new System.Drawing.Size(130, 23);
             this.BtnMostrar.TabIndex = 119;
             this.BtnMostrar.Text = "Mostrar valorizado";
             this.BtnMostrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -963,8 +902,7 @@
             this.TdgKardexValorizado.GroupByCaption = "Drag a column header here to group by that column";
             this.TdgKardexValorizado.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgKardexValorizado.Images"))));
             this.TdgKardexValorizado.LinesPerRow = 2;
-            this.TdgKardexValorizado.Location = new System.Drawing.Point(4, 42);
-            this.TdgKardexValorizado.Margin = new System.Windows.Forms.Padding(4);
+            this.TdgKardexValorizado.Location = new System.Drawing.Point(3, 29);
             this.TdgKardexValorizado.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightCell;
             this.TdgKardexValorizado.Name = "TdgKardexValorizado";
             this.TdgKardexValorizado.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -972,7 +910,7 @@
             this.TdgKardexValorizado.PreviewInfo.ZoomFactor = 75D;
             this.TdgKardexValorizado.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("TdgKardexValorizado.PrintInfo.PageSettings")));
             this.TdgKardexValorizado.RowHeight = 15;
-            this.TdgKardexValorizado.Size = new System.Drawing.Size(1743, 499);
+            this.TdgKardexValorizado.Size = new System.Drawing.Size(1308, 342);
             this.TdgKardexValorizado.TabIndex = 0;
             this.TdgKardexValorizado.Text = "c1TrueDBGrid1";
             this.TdgKardexValorizado.AfterColEdit += new C1.Win.C1TrueDBGrid.ColEventHandler(this.TdgKardexValorizado_AfterColEdit);
@@ -981,11 +919,10 @@
             // Tp3
             // 
             this.Tp3.Controls.Add(this.TdgKardexValorizadoReal);
-            this.Tp3.Location = new System.Drawing.Point(4, 28);
-            this.Tp3.Margin = new System.Windows.Forms.Padding(4);
+            this.Tp3.Location = new System.Drawing.Point(4, 22);
             this.Tp3.Name = "Tp3";
-            this.Tp3.Padding = new System.Windows.Forms.Padding(4);
-            this.Tp3.Size = new System.Drawing.Size(1784, 548);
+            this.Tp3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Tp3.Size = new System.Drawing.Size(1336, 371);
             this.Tp3.TabIndex = 2;
             this.Tp3.Text = "Producto Real";
             this.Tp3.UseVisualStyleBackColor = true;
@@ -1002,8 +939,7 @@
             this.TdgKardexValorizadoReal.GroupByCaption = "Drag a column header here to group by that column";
             this.TdgKardexValorizadoReal.Images.Add(((System.Drawing.Image)(resources.GetObject("TdgKardexValorizadoReal.Images"))));
             this.TdgKardexValorizadoReal.LinesPerRow = 2;
-            this.TdgKardexValorizadoReal.Location = new System.Drawing.Point(4, 4);
-            this.TdgKardexValorizadoReal.Margin = new System.Windows.Forms.Padding(4);
+            this.TdgKardexValorizadoReal.Location = new System.Drawing.Point(3, 3);
             this.TdgKardexValorizadoReal.MarqueeStyle = C1.Win.C1TrueDBGrid.MarqueeEnum.HighlightCell;
             this.TdgKardexValorizadoReal.Name = "TdgKardexValorizadoReal";
             this.TdgKardexValorizadoReal.PreviewInfo.Location = new System.Drawing.Point(0, 0);
@@ -1011,7 +947,7 @@
             this.TdgKardexValorizadoReal.PreviewInfo.ZoomFactor = 75D;
             this.TdgKardexValorizadoReal.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("TdgKardexValorizadoReal.PrintInfo.PageSettings")));
             this.TdgKardexValorizadoReal.RowHeight = 15;
-            this.TdgKardexValorizadoReal.Size = new System.Drawing.Size(1776, 540);
+            this.TdgKardexValorizadoReal.Size = new System.Drawing.Size(1330, 365);
             this.TdgKardexValorizadoReal.TabIndex = 1;
             this.TdgKardexValorizadoReal.Text = "c1TrueDBGrid1";
             this.TdgKardexValorizadoReal.PropBag = resources.GetString("TdgKardexValorizadoReal.PropBag");
@@ -1019,11 +955,10 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.CrvKardex);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1784, 548);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(1336, 371);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Solo Ventas";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1034,21 +969,32 @@
             this.CrvKardex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CrvKardex.Cursor = System.Windows.Forms.Cursors.Default;
             this.CrvKardex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CrvKardex.Location = new System.Drawing.Point(4, 4);
-            this.CrvKardex.Margin = new System.Windows.Forms.Padding(4);
+            this.CrvKardex.Location = new System.Drawing.Point(3, 3);
             this.CrvKardex.Name = "CrvKardex";
-            this.CrvKardex.Size = new System.Drawing.Size(1776, 540);
+            this.CrvKardex.Size = new System.Drawing.Size(1330, 365);
             this.CrvKardex.TabIndex = 8;
+            // 
+            // btnSalidaMercaderia
+            // 
+            this.btnSalidaMercaderia.Image = ((System.Drawing.Image)(resources.GetObject("btnSalidaMercaderia.Image")));
+            this.btnSalidaMercaderia.Location = new System.Drawing.Point(1079, 20);
+            this.btnSalidaMercaderia.Name = "btnSalidaMercaderia";
+            this.btnSalidaMercaderia.Size = new System.Drawing.Size(161, 21);
+            this.btnSalidaMercaderia.TabIndex = 421;
+            this.btnSalidaMercaderia.Text = "salida mercadería";
+            this.btnSalidaMercaderia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSalidaMercaderia.UseVisualStyleBackColor = true;
+            this.btnSalidaMercaderia.Visible = false;
+            this.btnSalidaMercaderia.Click += new System.EventHandler(this.btnSalidaMercaderia_Click);
             // 
             // Rep_Kardex
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TcKardex);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Rep_Kardex";
-            this.Size = new System.Drawing.Size(1829, 741);
+            this.Size = new System.Drawing.Size(1372, 507);
             this.Load += new System.EventHandler(this.Rep_Kardex_Load);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.TcKardex, 0);
@@ -1144,6 +1090,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private C1.Win.C1Input.C1Button BtnReporteInventarioResumido;
         private C1.Win.C1Input.C1Button BtnReporteInventarioDetallado;
+        private C1.Win.C1Input.C1Button btnSalidaMercaderia;
 
     }
 }

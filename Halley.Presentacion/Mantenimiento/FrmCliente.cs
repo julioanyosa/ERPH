@@ -276,6 +276,32 @@ namespace Halley.Presentacion.Mantenimiento
 
         private bool validarControles()
         {
+            /*
+             
+             1	RUC
+2	DNI
+3	OTROS TIPOS DE DOCUMENTOS
+4	CARNET DE EXTRANJERIA
+5	PASAPORTE
+6	CÉDULA DIPLOMÁTICA DE IDENTIDAD
+             */
+            if (Convert.ToInt32( CboTipoDocumento.SelectedValue) == 1 & TxtNroDocumento.Text.Length != 11) {
+                ErrProvider.SetError(TxtNroDocumento, "En caso de RUC debe ingresar 11 digitos."); 
+                return false; 
+            }
+
+            if (Convert.ToInt32(CboTipoDocumento.SelectedValue) == 2 & TxtNroDocumento.Text.Length != 11)
+            {
+                ErrProvider.SetError(TxtNroDocumento, "En caso de DNI debe ingresar 8 digitos.");
+                return false;
+            }
+            if ((Convert.ToInt32(CboTipoDocumento.SelectedValue) == 4 | Convert.ToInt32(CboTipoDocumento.SelectedValue) == 5)  & TxtNroDocumento.Text.Length != 12)
+            {
+                ErrProvider.SetError(TxtNroDocumento, "En caso de carnet de extranjería o pasaporte debe ingresar 12 digitos, de contar con menos dígitos, completar con ceros a la izquierda.");
+                return false;
+            }
+
+
             if (CboTipoCliente.SelectedValue == null) { ErrProvider.SetError(CboTipoCliente, "Debe seleccionar un tipo de cliente."); return false; }
             if (TxtNroDocumento.Text == "") { ErrProvider.SetError(TxtNroDocumento, "Debe Ingresar número de documento."); return false; }
 
@@ -286,7 +312,10 @@ namespace Halley.Presentacion.Mantenimiento
                 if (TxtRazonSocial.Text == "") { ErrProvider.SetError(TxtRazonSocial, "Debe Ingresar la razon social de la empresa o persona."); return false; }
                 RazonSocial = TxtRazonSocial.Text;
             }
-            if (CboTipoDocumento.SelectedValue.ToString() == "2")//DNI
+            if (CboTipoDocumento.SelectedValue.ToString() == "2" | 
+                CboTipoDocumento.SelectedValue.ToString() == "4" |
+                CboTipoDocumento.SelectedValue.ToString() == "5" |
+                CboTipoDocumento.SelectedValue.ToString() == "6")//DNI
             {
                 if (TxtNombre1.Text == "") { ErrProvider.SetError(TxtNombre1, "Debe Ingresar un nombre de persona."); return false; }
                 if (TxtApellido1.Text == "") { ErrProvider.SetError(TxtApellido1, "Debe Ingresar apellido paterno."); return false; }

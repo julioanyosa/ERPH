@@ -97,7 +97,8 @@ namespace Halley.Presentacion.Ventas
         }
 
         private void Ventas_Load(object sender, EventArgs e)
-        {
+        { 
+
             DataSet dsurlsunat = new CL_Venta().ObtenerUrlSunat();
             urldni = dsurlsunat.Tables[0].Rows[0]["urldni"].ToString();
             urlsunat = dsurlsunat.Tables[0].Rows[0]["urlsunat"].ToString();
@@ -293,6 +294,9 @@ namespace Halley.Presentacion.Ventas
             {
                 ClienteID = GuardarCliente(ClienteID);
 
+                if (ClienteID == 0)
+                    return;
+
                 bool haycero = false;
                 string Producto = "";
                 foreach (DataRow DrC in DtDetalleComprobante.Rows)
@@ -426,6 +430,8 @@ namespace Halley.Presentacion.Ventas
                             tipodoc = 2;//es dni
                         if (TxtNroDocumentoCliente.Text.Length == 11)
                             tipodoc = 1;//es ruc
+                        else
+                            tipodoc = 4;//extranjeria
 
                         Validado = ObjCL_Venta.ValidarDocumento(tipodoc, Convert.ToInt32(CboTipoComprobante.ComboBox.SelectedValue), ClienteID, TipoTicket);
 
@@ -2408,15 +2414,15 @@ namespace Halley.Presentacion.Ventas
             try
             {
 
-                if (TxtNroDocumentoCliente.Text.Length != 8 & TxtNroDocumentoCliente.Text.Length != 11)
-                {
-                    TxtRazonSocial.Text = "";
-                    TxtDireccion.Value = "";
-                    LblEstadoCliente.Text = "";
-                    ClienteID = 0;
-                    MessageBox.Show("El Nro del documento debe tener una longitud de 8 o 11 dígitos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                //if (TxtNroDocumentoCliente.Text.Length != 8 & TxtNroDocumentoCliente.Text.Length != 11)
+                //{
+                //    TxtRazonSocial.Text = "";
+                //    TxtDireccion.Value = "";
+                //    LblEstadoCliente.Text = "";
+                //    ClienteID = 0;
+                //    MessageBox.Show("El Nro del documento debe tener una longitud de 8 o 11 dígitos", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //    return;
+                //}
                 TxtRazonSocial.Text = "";
                 TxtDireccion.Value = "";
                 LblEstadoCliente.Text = "";
@@ -2434,7 +2440,7 @@ namespace Halley.Presentacion.Ventas
                     DistritoId = Convert.ToInt32(dtres.Rows[0]["DistritoId"]);
                     TxtCorreo.Text = Convert.ToString(dtres.Rows[0]["Email"]);
 
-                    if (dtres.Rows[0]["FUENTE"].ToString() == "SUNAT" & TxtNroDocumentoCliente.Text.Length == 8)
+                    if (dtres.Rows[0]["FUENTE"].ToString() == "RENIEC" & TxtNroDocumentoCliente.Text.Length == 8)
                     {
                         TxtRazonSocial.Text = dtres.Rows[0]["nombresapellidos"].ToString();
                         TxtDireccion.Value = "";
@@ -2442,6 +2448,7 @@ namespace Halley.Presentacion.Ventas
                         NombreVia = "";
                         DireccionNumero = "";
                         DireccionInterior = "";
+                         
                     }
                     else if (dtres.Rows[0]["FUENTE"].ToString() == "SUNAT" & TxtNroDocumentoCliente.Text.Length == 11)
                     {
@@ -2451,10 +2458,12 @@ namespace Halley.Presentacion.Ventas
                         NombreVia = "";
                         DireccionNumero = "";
                         DireccionInterior = "";
+                         
 
                     }
                     else if (dtres.Rows[0]["FUENTE"].ToString() == "CLIENTE" | dtres.Rows[0]["FUENTE"].ToString() == "PADRON")
-                    {
+                    { 
+
                         TxtRazonSocial.Text = dtres.Rows[0]["RazonSocial"].ToString();
                         TxtDireccion.Value = dtres.Rows[0]["Direccion"].ToString();
 
@@ -2463,9 +2472,7 @@ namespace Halley.Presentacion.Ventas
                         DireccionInterior = dtres.Rows[0]["DireccionInterior"].ToString();
 
                         LblEstadoCliente.Text = "Estado: " + dtres.Rows[0]["ESTADO"].ToString() + ". Condicion domicilio: " + dtres.Rows[0]["CONDICION_DE_DOMICILIO"].ToString();
-                    }
-
-
+                    } 
                 }
                 else if (DS.Tables[0].Rows.Count > 1)
                 {
@@ -2515,22 +2522,26 @@ namespace Halley.Presentacion.Ventas
 
             if (cli == 0)
             {
+                
+
                 E_Cliente ObjCliente = new E_Cliente();
 
-
-
-                if (TxtNroDocumentoCliente.Text.Length == 8)
-                {
-                    ObjCliente.TipoClienteID = 1;
-                    ObjCliente.IDTipoDocumento = 2;
-                }
-
-                else if (TxtNroDocumentoCliente.Text.Length == 11)
+                if (TxtNroDocumentoCliente.Text.Length == 11)
                 {
                     ObjCliente.TipoClienteID = 2;
                     ObjCliente.IDTipoDocumento = 1;
                 }
-
+                else if (TxtNroDocumentoCliente.Text.Length == 8)
+                {
+                    ObjCliente.TipoClienteID = 1;
+                    ObjCliente.IDTipoDocumento = 2;
+                }
+                else 
+                {
+                    ObjCliente.TipoClienteID = 1;
+                    ObjCliente.IDTipoDocumento = 4; //carnet de extranjeria
+                }
+           
 
                 ObjCliente.NroDocumento = TxtNroDocumentoCliente.Text;
                 ObjCliente.RazonSocial = TxtRazonSocial.Text;
@@ -2542,6 +2553,13 @@ namespace Halley.Presentacion.Ventas
                 ObjCliente.Email = TxtCorreo.Text;
                 ObjCliente.Direccion = TxtDireccion.Value.ToString();
 
+                if (TxtNroDocumentoCliente.Text.Length != 11 & TxtNroDocumentoCliente.Text.Length != 8)
+                {
+                    DistritoId = 1815;
+                    ProvinciaId = 191;
+                    DepartamentoId = 25;
+                } 
+                 
                 ObjCliente.DistritoId = DistritoId;
                 ObjCliente.ProvinciaId = ProvinciaId;
                 ObjCliente.DepartamentoId = DepartamentoId;

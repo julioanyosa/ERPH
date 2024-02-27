@@ -435,6 +435,43 @@ namespace Halley.Presentacion.Contabilidad.Reportes
 
 
                 }
+                if (Convert.ToInt16(dtcabecera.Rows[0]["TipoComprobanteID"]) == 6)//NOTA DE CRÉDITO BOLETA
+                {
+                    CodigoTipoComprobante = "07";
+                    Formatoticket = objVenta.FormatoTicketFE(NomEmpresa, AppSettings.NomSede, dtcabecera.Rows[0]["NumComprobante"].ToString().Substring(2),
+                    "NOTA DE CRÉDITO BOLETA: ", dtdetalle, RUC, AppSettings.Usuario, Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]), dtcabecera.Rows[0]["NomCaja"].ToString(), SerieEticketera,
+                    NroAutorizacion, TotalPagarLetras, dtcabecera.Rows[0]["RazonSocialCliente"].ToString(),
+                    dtcabecera.Rows[0]["NroDocumentoCliente"].ToString(), dtcabecera.Rows[0]["DireccionCliente"].ToString(),
+                    "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]),
+                    Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "B",
+                       DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(), Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]),
+                       Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]), Convert.ToInt32(dtcabecera.Rows[0]["TipoPagoID"]), DtCuotas, null);
+
+                    e.Graphics.DrawString(Formatoticket[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
+
+
+                }
+                else if (Convert.ToInt16(dtcabecera.Rows[0]["TipoComprobanteID"]) == 7)//NOTA DE CRÉDITO FACTURA
+                {
+                    CodigoTipoComprobante = "07";
+                    TipoLetra = "F";
+                    TipoDocumentoCliente = "RUC";
+                    Canticabecera = 35;
+
+                    Formatoticket = objVenta.FormatoTicketFE(NomEmpresa, AppSettings.NomSede, dtcabecera.Rows[0]["NumComprobante"].ToString().Substring(2),
+                    "NOTA DE CRÉDITO FACTURA: ", dtdetalle, RUC, AppSettings.Usuario, Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]), dtcabecera.Rows[0]["NomCaja"].ToString(), SerieEticketera,
+                    NroAutorizacion, TotalPagarLetras, dtcabecera.Rows[0]["RazonSocialCliente"].ToString(),
+                    dtcabecera.Rows[0]["NroDocumentoCliente"].ToString(), dtcabecera.Rows[0]["DireccionCliente"].ToString(),
+                    "", ConCliente, Convert.ToDateTime(dtcabecera.Rows[0]["AudCrea"]), Convert.ToDecimal(dtcabecera.Rows[0]["MontoPagado"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalIGV"]), "F",
+                       DtDatosSede.Rows[0]["TelefonoCelular"].ToString(), DtDatosSede.Rows[0]["TelefonoFijo"].ToString(),
+                       Convert.ToDecimal(dtcabecera.Rows[0]["Monto"]), Convert.ToDecimal(dtcabecera.Rows[0]["TotalICBPER"]),
+                       Convert.ToInt32(dtcabecera.Rows[0]["TipoPagoID"]), DtCuotas, null);
+
+                    e.Graphics.DrawString(Formatoticket[0], TxtFormato.Font, Brushes.Black, 0, 0); //total pagar en letras
+                    //e.Graphics.DrawString(Convert.ToChar(27) + "i", TxtPrecio.Font, Brushes.Black, 0, 0); //total pagar en letras
+
+
+                }
 
 
                 /*imprimir el codigo de barras*/

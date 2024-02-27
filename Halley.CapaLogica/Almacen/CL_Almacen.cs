@@ -203,5 +203,7 @@ namespace Halley.CapaLogica.Almacen
             xmlDetalle = xml.Replace("Table", "Despacho");
             ObjCD_Almacen.InsertXMLDespachos(xmlDetalle, UsuarioID,MovimientoID);
         }
+
+
     }
 }

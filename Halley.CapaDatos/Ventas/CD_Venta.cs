@@ -714,12 +714,12 @@ namespace Halley.CapaDatos.Ventas
         }
         public DataSet ObtenerDatosCliente(string RUC, string urldni, string urlsunat)
         {
-        
+
             DataSet DS = new DataSet();
             DataSet DSLOCAL = new DataSet();
             try
             {
-         
+
                 SqlDatabase SqlClient = new SqlDatabase(connectionString);
                 DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerDatosCliente");
                 SqlClient.AddInParameter(SqlCommand, "@RUC", SqlDbType.VarChar, RUC);
@@ -750,7 +750,7 @@ namespace Halley.CapaDatos.Ventas
 
 
                             dt.Columns.Add("FUENTE", typeof(string));
-                            dt.Rows[0]["FUENTE"] = "SUNAT";
+                            dt.Rows[0]["FUENTE"] = "RENIEC";
 
                             dt.Columns.Add("NroDocumento", typeof(string));
                             dt.Columns.Add("DepartamentoId", typeof(int));
@@ -771,6 +771,10 @@ namespace Halley.CapaDatos.Ventas
                                 dt.Rows[0]["Email"] = "";
 
                             DS.Tables.Add(dt);
+                        }
+                        else
+                        {
+                            return DSLOCAL;
                         }
 
 
@@ -812,7 +816,7 @@ namespace Halley.CapaDatos.Ventas
                             dt.Columns.Add("ClienteID", typeof(int));
                             dt.Columns.Add("Email", typeof(string));
 
-                            
+
 
                             dt.Rows[0]["NroDocumento"] = RUC;
                             if (dtTmp1.Rows.Count > 0)
@@ -841,8 +845,10 @@ namespace Halley.CapaDatos.Ventas
                     }
                 }
 
-               
-                return DS;
+                if (DS.Tables.Count == 0)
+                    return DSLOCAL;
+                else
+                    return DS;
 
             }
             catch (Exception ex)
@@ -900,7 +906,6 @@ namespace Halley.CapaDatos.Ventas
             SqlDatabase SqlClient = new SqlDatabase(connectionString);
             DbCommand SqlCommand = SqlClient.GetStoredProcCommand("Ventas.ObtenerParaImpresion");
             SqlClient.AddInParameter(SqlCommand, "@ComprobanteId", SqlDbType.BigInt, ComprobanteId);
-
             dsPedido.Load(SqlClient.ExecuteReader(SqlCommand), LoadOption.PreserveChanges, "Comprobante", "DetalleComprobante", "Cuotas");
             return dsPedido;
         }
